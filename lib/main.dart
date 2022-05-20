@@ -4,6 +4,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/login/login_screen.dart';
+import 'package:mego_market/Screens/on_boarding/on_boarding_screen.dart';
 import 'package:mego_market/Screens/splash/splash_screen.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/layout/home_screen.dart';
@@ -31,12 +32,13 @@ void main() async {
 
   token = CacheHelper.getData(key: 'token');
 
-  // if(onBoarding != null)
-
-  if (token != null) {
-    widget = HomeScreen();
-  } else {
-    widget = LoginScreen();
+  if(onBoarding != null)
+  {
+    if(token != null) widget = HomeScreen();
+    else widget = LoginScreen();
+  }else
+  {
+    widget = onBoardingScreen();
   }
 
   runApp(Myapp(

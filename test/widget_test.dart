@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mego_market/Screens/login/login_screen.dart';
+import 'package:mego_market/Screens/on_boarding/on_boarding_screen.dart';
 
 import 'package:mego_market/main.dart';
 
@@ -16,7 +16,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(Myapp(
       isDark: false,
-      startWidget: LoginScreen(),
+      startWidget: onBoardingScreen(),
     ));
 
     // Verify that our counter starts at 0.
