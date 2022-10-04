@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable, unused_local_variable, unnecessary_null_comparison, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';

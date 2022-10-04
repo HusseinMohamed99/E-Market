@@ -1,4 +1,3 @@
-// ignore_for_file: unused_import, use_key_in_widget_constructors, must_be_immutable, prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_string_escapes, sized_box_for_whitespace, unnecessary_string_interpolations, curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +10,8 @@ import 'package:mego_market/shared/componnetns/constants.dart';
 
 class CartScreen extends StatelessWidget {
   TextEditingController counterController = TextEditingController();
+
+  CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class CartScreen extends StatelessWidget {
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(
                         Icons.shopping_bag_outlined,
                         size: 70,
@@ -67,10 +68,10 @@ class CartScreen extends StatelessWidget {
               )
             : Scaffold(
                 body: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Column(children: [
                     ListView.separated(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) => cartProducts(
                           MainCubit.get(context)
@@ -93,21 +94,21 @@ class CartScreen extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   'The number of pieces :',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(' $cartLength  items',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -116,13 +117,13 @@ class CartScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text('TOTAL :',
+                                const Text('TOTAL :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20)),
-                                Spacer(),
-                                Text('${cartModel!.data!.total}\ LE',
-                                    style: TextStyle(
+                                const Spacer(),
+                                Text('${cartModel!.data!.total} LE',
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: Colors.white)),
@@ -132,7 +133,7 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: double.infinity,
                       height: 60,
                     ),
@@ -162,7 +163,7 @@ class CartScreen extends StatelessWidget {
         elevation: 20,
         child: Container(
           height: 455,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               Image(
@@ -172,7 +173,7 @@ class CartScreen extends StatelessWidget {
               ),
               Text(
                 '${model.product!.name}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                 ),
                 maxLines: 3,
@@ -189,17 +190,17 @@ class CartScreen extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Text('Price :',
+                        const Text('Price :',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
-                          ' ${model.product!.price}\ LE',
-                          style: TextStyle(
+                          ' ${model.product!.price} LE',
+                          style: const TextStyle(
                               fontSize: 20,
                               color: Colors.deepOrangeAccent,
                               fontWeight: FontWeight.bold),
@@ -207,8 +208,8 @@ class CartScreen extends StatelessWidget {
                         space(110, 0),
                         if (model.product!.discount != 0)
                           Text(
-                            '${model.product!.oldPrice} \ LE',
-                            style: TextStyle(
+                            '${model.product!.oldPrice}  LE',
+                            style: const TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey),
                           ),
@@ -216,20 +217,21 @@ class CartScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 20,
                           height: 20,
                           child: MaterialButton(
                             onPressed: () {
                               int quantity = model.quantity! - 1;
-                              if (quantity != 0)
+                              if (quantity != 0) {
                                 MainCubit.get(context)
                                     .updateCartData(model.id!, quantity);
+                              }
                             },
                             minWidth: 10,
                             //shape: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                             padding: EdgeInsets.zero,
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Icon(
                                 Icons.remove,
@@ -239,30 +241,31 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Text(
                           '${model.quantity}',
-                          style: TextStyle(fontSize: 25),
+                          style: const TextStyle(fontSize: 25),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
-                        Container(
+                        SizedBox(
                           width: 20,
                           height: 20,
                           child: MaterialButton(
                             onPressed: () {
                               int quantity = model.quantity! + 1;
-                              if (quantity <= 5)
+                              if (quantity <= 5) {
                                 MainCubit.get(context)
                                     .updateCartData(model.id!, quantity);
+                              }
                             },
                             minWidth: 10,
                             //shape: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                             padding: EdgeInsets.zero,
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Icon(
                                 Icons.add,
@@ -272,7 +275,7 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         TextButton(
                           onPressed: () {
                             MainCubit.get(context)
@@ -291,7 +294,7 @@ class CartScreen extends StatelessWidget {
                                     : Colors.grey,
                                 size: 30,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 2.5,
                               ),
                               Text(
@@ -307,7 +310,7 @@ class CartScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Container(
@@ -320,7 +323,7 @@ class CartScreen extends StatelessWidget {
                             MainCubit.get(context).changeCart(model.product!.id!);
                           },
                           child: Row(
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.delete_forever_outlined,
                                 color: Colors.grey,
