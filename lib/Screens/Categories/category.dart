@@ -1,4 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +9,15 @@ import 'package:mego_market/shared/componnetns/components.dart';
 
 
 class CategoriesScreen extends StatelessWidget {
+  const CategoriesScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return ListView.separated(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => CatList(
               MainCubit.get(context).categoriesModel!.data!.data[index], context),
           separatorBuilder: (context, index) => myDivider(),
@@ -49,7 +50,7 @@ class CategoriesScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20.0,
               ),
               Text(
@@ -60,10 +61,10 @@ class CategoriesScreen extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              Spacer(),
+              const Spacer(),
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_forward_ios,
                 ),
               ),
