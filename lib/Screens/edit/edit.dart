@@ -1,4 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, prefer_const_constructors
 
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,8 @@ class EditScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
   var nameController = TextEditingController();
+
+  EditScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +38,8 @@ class EditScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(children: [
                     if (state is UserUpdateLoadingStates)
-                      LinearProgressIndicator(),
-                    SizedBox(
+                      const LinearProgressIndicator(),
+                    const SizedBox(
                       height: 20,
                     ),
                     defaultTextFormField(
@@ -53,7 +54,7 @@ class EditScreen extends StatelessWidget {
                       label: 'Name',
                       hint: 'Enter your name',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     defaultTextFormField(
@@ -68,7 +69,7 @@ class EditScreen extends StatelessWidget {
                       label: 'Email',
                       hint: 'Enter your Email',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     defaultTextFormField(
@@ -83,7 +84,7 @@ class EditScreen extends StatelessWidget {
                       label: 'Phone',
                       hint: 'Enter your Phone',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     defaultMaterialButton(
@@ -104,7 +105,7 @@ class EditScreen extends StatelessWidget {
               ),
             ),
           ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
+          fallback: (context) => const Center(child: CircularProgressIndicator()),
         );
       },
     );

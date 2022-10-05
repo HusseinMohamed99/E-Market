@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/category_details/category_details.dart';
@@ -18,7 +17,7 @@ class CategoriesScreen extends StatelessWidget {
       builder: (context, state) {
         return ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) => CatList(
+          itemBuilder: (context, index) => catList(
               MainCubit.get(context).categoriesModel!.data!.data[index], context),
           separatorBuilder: (context, index) => myDivider(),
           itemCount: MainCubit.get(context).categoriesModel!.data!.data.length,
@@ -27,7 +26,7 @@ class CategoriesScreen extends StatelessWidget {
     );
   }
 
-  Widget CatList(DataModel model, context) => InkWell(
+  Widget catList(DataModel model, context) => InkWell(
         onTap: () {
           MainCubit.get(context).getCategoriesDetailData(model.id!);
           navigateTo(context, CategoryProductsScreen(model.name!));

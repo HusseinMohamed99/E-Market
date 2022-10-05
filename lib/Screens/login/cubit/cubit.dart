@@ -1,6 +1,4 @@
-// ignore_for_file: unnecessary_import, camel_case_types, non_constant_identifier_names, duplicate_ignore
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/login/cubit/state.dart';
@@ -8,16 +6,16 @@ import 'package:mego_market/model/login/login_model.dart';
 import 'package:mego_market/network/End_Points.dart';
 import 'package:mego_market/network/dio_helper.dart';
 
-class loginCubit extends Cubit<LoginState> {
-  loginCubit() : super(LoginInitialState());
-  static loginCubit get(context) => BlocProvider.of(context);
+class LoginCubit extends Cubit<LoginState> {
+  LoginCubit() : super(LoginInitialState());
+  static LoginCubit get(context) => BlocProvider.of(context);
 
   LoginModel? loginModel;
 
-  void UserLogin({required String email, required String password}) {
+  void userLogin({required String email, required String password}) {
     emit(LoginLoadingState());
     DioHelper.postData(
-      url: LOGIN,
+      url: login,
       data: {
         'email': email,
         'password': password,

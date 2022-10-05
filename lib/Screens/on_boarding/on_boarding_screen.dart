@@ -38,13 +38,15 @@ class BoardingModel {
 
 }
 
-class onBoardingScreen extends StatefulWidget {
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({Key? key}) : super(key: key);
+
 
   @override
-  State<onBoardingScreen> createState() => _onBoardingScreenState();
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _onBoardingScreenState extends State<onBoardingScreen> {
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var pageController = PageController();
 
 
@@ -116,9 +118,11 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                     setState(() {
                       isLast = true;
                     });
-                  }else setState(() {
+                  }else {
+                    setState(() {
                     isLast = false;
                   });
+                  }
                 },
                 controller: pageController,
                 itemBuilder: (context, index) => buildBoardingItem(boarding[index]),
@@ -182,13 +186,13 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
       Expanded(
         child: Image(
           image: AssetImage(
-            '${model.image}',
+            model.image,
 
           ),
         ),
       ),
       Center(
-        child: Text('${model.text}',
+        child: Text(model.text,
           style:GoogleFonts.lobster(
              fontSize: 40.0,
              fontWeight: FontWeight.w900,
@@ -205,7 +209,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${model.title}',
+            model.title,
             style:GoogleFonts.lobster(
               fontSize: 30.0,
               color: Colors.black,
@@ -213,7 +217,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
           ),
 
           Text(
-            '${model.body}',
+            model.body,
             style:GoogleFonts.lobster(
               fontSize: 30.0,
               color: Colors.black,

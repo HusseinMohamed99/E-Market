@@ -19,14 +19,14 @@ class ProductsScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is ChangeFavoritesSuccessStates) {
           if (state.model.status!) {
-            ShowToast(
+            showToast(
               text: state.model.message!,
-              state: ToastStates.SUCCESS,
+              state: ToastStates.success,
             );
           } else {
-            ShowToast(
+            showToast(
               text: state.model.message!,
-              state: ToastStates.ERROR,
+              state: ToastStates.error,
             );
           }
         }

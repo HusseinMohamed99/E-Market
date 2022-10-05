@@ -1,4 +1,3 @@
-// ignore_for_file: constant_identifier_names, prefer_const_constructors, non_constant_identifier_names, avoid_types_as_parameter_names, body_might_complete_normally_nullable, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -24,7 +23,7 @@ Widget defaultTextFormField({
 }) =>
     TextFormField(
       focusNode: FocusNode(),
-      style: TextStyle(),
+      style: const TextStyle(),
       maxLines: 1,
       minLines: 1,
       controller: controller,
@@ -56,7 +55,7 @@ Widget defaultTextFormField({
         isCollapsed: false,
         fillColor: Colors.deepOrange.withOpacity(0.2),
         hoverColor: Colors.red.withOpacity(0.2),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
@@ -64,7 +63,7 @@ Widget defaultTextFormField({
             color: Colors.green,
           ),
         ),
-        focusedErrorBorder: OutlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
@@ -73,14 +72,14 @@ Widget defaultTextFormField({
           ),
         ),
         labelText: label,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           fontStyle: FontStyle.italic,
           color: Colors.deepOrangeAccent,
         ),
         hintText: hint,
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.white),
         focusColor: Colors.white,
-        disabledBorder: OutlineInputBorder(
+        disabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
@@ -88,7 +87,7 @@ Widget defaultTextFormField({
             color: Colors.green,
           ),
         ),
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
@@ -96,7 +95,7 @@ Widget defaultTextFormField({
             color: Colors.black,
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
@@ -119,24 +118,24 @@ Widget defaultMaterialButton({
     Container(
       width: width,
       height: height,
-      child: MaterialButton(
-        onPressed: () {
-          function();
-        },
-        child: Text(
-          isUpperCase ? text.toUpperCase() : text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.0,
-          ),
-        ),
-      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           radius,
         ),
         color: Colors.deepOrangeAccent,
         //  color: background,
+      ),
+      child: MaterialButton(
+        onPressed: () {
+          function();
+        },
+        child: Text(
+          isUpperCase ? text.toUpperCase() : text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+          ),
+        ),
       ),
     );
 
@@ -157,7 +156,7 @@ Widget myDivider() => Container(
   color: Colors.grey[300],
 );
 
-void ShowToast({
+void showToast({
   required String text,
   required ToastStates state,
 }) =>
@@ -173,37 +172,37 @@ void ShowToast({
 
 // enum  كذا اختيار من حاجة
 
-enum ToastStates { SUCCESS, ERROR, WARNING }
+enum ToastStates { success, error, warning }
 
 Color chooseToastColor(ToastStates state) {
   Color color;
   switch (state) {
-    case ToastStates.SUCCESS:
+    case ToastStates.success:
       color = Colors.green;
       break;
 
-    case ToastStates.ERROR:
+    case ToastStates.error:
       color = Colors.red;
       break;
 
-    case ToastStates.WARNING:
+    case ToastStates.warning:
       color = Colors.amber;
       break;
   }
   return color;
 }
 
-void navigateTo(context, Widget) => Navigator.push(
+void navigateTo(context, widget) => Navigator.push(
   context,
   MaterialPageRoute(
-    builder: (context) => Widget,
+    builder: (context) => widget,
   ),
 );
 
-void navigateAndFinish(context, Widget) => Navigator.pushAndRemoveUntil(
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(
-      builder: (context) => Widget,
+      builder: (context) => widget,
     ), (route) {
   return false;
 });

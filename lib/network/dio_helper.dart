@@ -1,4 +1,3 @@
-// ignore_for_file: unnecessary_string_interpolations
 
 import 'package:dio/dio.dart';
 
@@ -20,7 +19,7 @@ class DioHelper {
     Map<String, dynamic>? data,
   }) async {
     dio.options.headers = {
-      'lang': '$lang',
+      'lang': lang,
       'Content-Type': 'application/json',
       'Authorization': '$token'
     };
@@ -34,7 +33,7 @@ class DioHelper {
       String lang = 'en',
       String? token}) async {
     dio.options.headers = {
-      'lang': '$lang',
+      'lang': lang,
       'Content-Type': 'application/json',
       'Authorization': '$token'
     };
@@ -52,7 +51,7 @@ class DioHelper {
       String lang = 'en',
       String? token}) async {
     dio.options.headers = {
-      'lang': '$lang',
+      'lang': lang,
       'Content-Type': 'application/json',
       'Authorization': '$token'
     };
@@ -66,7 +65,7 @@ class DioHelper {
   static Future<Response> deleteData(
       {required String url, String lang = 'en', String? token}) async {
     dio.options.headers = {
-      'lang': '$lang',
+      'lang': lang,
       'Content-Type': 'application/json',
       'Authorization': '$token'
     };

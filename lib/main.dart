@@ -33,11 +33,14 @@ void main() async {
 
   if(onBoarding != null)
   {
-    if(token != null) widget = HomeScreen();
-    else widget = LoginScreen();
+    if(token != null) {
+      widget = HomeScreen();
+    } else {
+      widget = LoginScreen();
+    }
   }else
   {
-    widget = onBoardingScreen();
+    widget = OnBoardingScreen();
   }
 
   runApp(Myapp(
@@ -50,7 +53,7 @@ class Myapp extends StatelessWidget {
   final  bool? isDark;
   final Widget startWidget;
 
-  Myapp({Key? key,required this.startWidget, this.isDark});
+  Myapp({Key? key, required this.startWidget, this.isDark}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

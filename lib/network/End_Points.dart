@@ -1,27 +1,25 @@
-// ignore_for_file: constant_identifier_names, file_names
+const login = 'login';
 
-const LOGIN = 'login';
+const register = 'register';
 
-const REGISTER = 'register';
+const profile = 'profile';
 
-const PROFILE = 'profile';
+const update = 'update-profile';
 
-const UPDATE = 'update-profile';
+const home = 'home';
 
-const HOME = 'home';
+const categories = 'categories';
 
-const CATEGORIES = 'categories';
+const favorite = 'favorites';
 
-const FAVORITES = 'favorites';
+const carts = 'carts';
 
-const CARTS = 'carts';
+const productDetails = 'products/1';
 
-const PRODUCT_DETAILS = 'products/1';
+const categoriesDetails = 'products';
 
-const CATEGORIES_DETAIL = 'products';
+const search = 'products/search';
 
-const SEARCH = 'products/search';
+const faqs = 'faqs';
 
-const FAQS = 'faqs';
-
-const NOTIFICATION = 'notifications';
+const notifications = 'notifications';

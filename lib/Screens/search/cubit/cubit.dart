@@ -1,5 +1,5 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/search/cubit/state.dart';
@@ -14,22 +14,24 @@ class SearchCubit extends Cubit<SearchState> {
   static SearchCubit get(context) => BlocProvider.of(context);
 
   SearchModel? searchModel;
-  var SearchController = TextEditingController();
+  var searchController = TextEditingController();
   void getSearch({String? text}) {
     emit(SearchLoadingStates());
-    DioHelper.postData(url: SEARCH, token: token, data: {
+    DioHelper.postData(url: search, token: token, data: {
       'search': text,
     }).then((value) {
       searchModel = SearchModel.fromJson(value.data);
       emit(SearchSuccessStates());
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(SearchErrorStates());
     });
   }
 
   void clearSearchData() {
-    SearchController.clear();
+    searchController.clear();
     searchModel ;
   }
 }

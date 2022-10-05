@@ -35,9 +35,9 @@ class RegisterScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is RegisterSuccessState) {
             if (state.loginModel.status!) {
-              ShowToast(
+              showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.SUCCESS,
+                state: ToastStates.success,
               );
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
@@ -49,9 +49,9 @@ class RegisterScreen extends StatelessWidget {
                 navigateAndFinish(context, HomeScreen());
               });
             } else {
-              ShowToast(
+              showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.ERROR,
+                state: ToastStates.error,
               );
               print(state.loginModel.message);
             }
@@ -124,7 +124,7 @@ class RegisterScreen extends StatelessWidget {
                         suffix: RegisterCubit.get(context).suffix,
                         isPassword: RegisterCubit.get(context).isPassword,
                         suffixPressed: () {
-                          RegisterCubit.get(context).ChangePassword();
+                          RegisterCubit.get(context).changePassword();
                         },
                         validate: (String? value) {
                           if (value!.isEmpty) {
@@ -144,7 +144,7 @@ class RegisterScreen extends StatelessWidget {
                           child: defaultMaterialButton(
                             function: () {
                               if (formKey.currentState!.validate()) {
-                                RegisterCubit.get(context).UserRegister(
+                                RegisterCubit.get(context).userRegister(
                                   email: emailController.text,
                                   password: passwordController.text,
                                   name: nameController.text,

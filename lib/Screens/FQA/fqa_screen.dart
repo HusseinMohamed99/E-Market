@@ -1,4 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +8,8 @@ import 'package:mego_market/shared/componnetns/components.dart';
 
 
 class FqaScreen extends StatelessWidget {
+  const FqaScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
@@ -19,19 +20,19 @@ class FqaScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(),
           body: state is FaqLoadingStates
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         color: Colors.grey,
                         width: double.infinity,
-                        padding: EdgeInsets.all(10),
-                        child: Text(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text(
                           'FAQ',
                           style: TextStyle(
                               fontSize: 20,
@@ -40,7 +41,7 @@ class FqaScreen extends StatelessWidget {
                         ),
                       ),
                       ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) => buildFQA(
                             MainCubit.get(context).faqModel!.data!.data![index],
@@ -63,7 +64,7 @@ class FqaScreen extends StatelessWidget {
           children: [
             Text(
               model!.question!,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.red,
@@ -71,7 +72,7 @@ class FqaScreen extends StatelessWidget {
             ),
             Text(
               model.answer!,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),

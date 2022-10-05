@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:hexcolor/hexcolor.dart';
 import 'package:mego_market/network/cache_helper.dart';
 import 'package:mego_market/shared/mode_cubit/state.dart';

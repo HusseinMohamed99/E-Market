@@ -1,4 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, unnecessary_string_interpolations, unnecessary_string_escapes, prefer_const_constructors_in_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,21 +9,21 @@ import 'package:mego_market/shared/componnetns/components.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   final String categoryName;
-  CategoryProductsScreen(this.categoryName);
+   const CategoryProductsScreen(this.categoryName, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {
         if (state is ChangeFavoritesSuccessStates) {
           if (state.model.status!) {
-            ShowToast(
+            showToast(
               text: state.model.message!,
-              state: ToastStates.SUCCESS,
+              state: ToastStates.success,
             );
           } else {
-            ShowToast(
+            showToast(
               text: state.model.message!,
-              state: ToastStates.ERROR,
+              state: ToastStates.error,
             );
           }
         }
@@ -32,7 +31,7 @@ class CategoryProductsScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: state is CategoryDetailsLoadingStates
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : MainCubit.get(context)
@@ -40,7 +39,7 @@ class CategoryProductsScreen extends StatelessWidget {
                       .data!
                       .productData!
                       .isEmpty
-                  ? Scaffold(
+                  ? const Scaffold(
                       body: Center(
                       child: Text(
                         'Coming Soon',
@@ -48,7 +47,7 @@ class CategoryProductsScreen extends StatelessWidget {
                       ),
                     ))
                   : SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
@@ -59,7 +58,7 @@ class CategoryProductsScreen extends StatelessWidget {
                               crossAxisSpacing: .1,
                               childAspectRatio: 1 / 1.1,
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               children: List.generate(
                                   MainCubit.get(context)
                                       .categoriesDetailModel!
@@ -71,7 +70,7 @@ class CategoryProductsScreen extends StatelessWidget {
                                           .data!
                                           .productData!
                                           .isEmpty
-                                      ? Center(
+                                      ? const Center(
                                           child: Text(
                                             'Soon',
                                             style: TextStyle(
@@ -102,7 +101,7 @@ class CategoryProductsScreen extends StatelessWidget {
               .then((value) => navigateTo(context, ProductDetailsScreen()));
         },
         child: Container(
-          padding: EdgeInsetsDirectional.only(start: 8, bottom: 8),
+          padding: const EdgeInsetsDirectional.only(start: 8, bottom: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -133,11 +132,11 @@ class CategoryProductsScreen extends StatelessWidget {
                 if (model.discount != 0)
                   Positioned.fill(
                     child: Align(
-                      alignment: Alignment(1, -1),
+                      alignment: const Alignment(1, -1),
                       child: ClipRect(
                         child: Banner(
                           message: 'OFFERS',
-                          textStyle: TextStyle(
+                          textStyle: const TextStyle(
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
@@ -153,40 +152,40 @@ class CategoryProductsScreen extends StatelessWidget {
                     ),
                   ),
               ]),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 '${model.name}',
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '${model.price}\ LE',
-                    style: TextStyle(
+                    '${model.price} LE',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   if (model.discount != 0)
                     Text(
-                      '${model.oldPrice}\ LE',
-                      style: TextStyle(
+                      '${model.oldPrice} LE',
+                      style: const TextStyle(
                           fontSize: 12,
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey),
                     ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
-                    '${model.discount}\ % OFF',
-                    style: TextStyle(color: Colors.red, fontSize: 11),
+                    '${model.discount} % OFF',
+                    style: const TextStyle(color: Colors.red, fontSize: 11),
                   )
                 ],
               )

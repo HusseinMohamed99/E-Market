@@ -1,10 +1,9 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print
 
 import 'package:flutter/material.dart';
 
-void printFullText(String Text) {
+void printFullText(String text) {
   final pattern = RegExp('.{1,800}'); //800 is the size of each chunk
-  pattern.allMatches(Text).forEach((match) => print(match.group(0)));
+  pattern.allMatches(text).forEach((match) => debugPrint(match.group(0)));
 }
 
 Widget space(double wide, double high) {

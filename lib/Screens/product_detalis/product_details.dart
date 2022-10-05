@@ -175,8 +175,8 @@ class ProductDetailsScreen extends StatelessWidget {
                           color: Colors.deepOrangeAccent,
                           onPressed: () {
                             if (MainCubit.get(context).cart[model.id]) {
-                              ShowToast(
-                                state: ToastStates.SUCCESS,
+                              showToast(
+                                state: ToastStates.success,
                                 text:
                                     'Already in Your Cart \nCheck your cart To Edit or Delete ',
                               );

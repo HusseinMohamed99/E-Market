@@ -1,4 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, unused_local_variable, prefer_const_constructors
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,8 @@ import 'package:mego_market/shared/mode_cubit/cubit.dart';
 import 'package:mego_market/shared/styles/icon_broken.dart';
 
 class SettingScreen extends StatefulWidget {
+  const SettingScreen({Key? key}) : super(key: key);
+
   @override
   State<SettingScreen> createState() => _SettingScreenState();
 }
@@ -28,7 +29,6 @@ class _SettingScreenState extends State<SettingScreen> {
         if (state is UserLoginSuccessStates) {}
       },
       builder: (context, state) {
-        var model = MainCubit.get(context).UserData;
         return Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -43,7 +43,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     Center(
                       child: InkWell(
                         onTap: () {},
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           radius: 100,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
@@ -61,7 +61,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           onPressed: () {
                             navigateTo(context, EditScreen());
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             IconBroken.Edit_Square,
                             size: 30,
                           )),
@@ -74,16 +74,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           IconBroken.Profile,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'My Profile',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -97,16 +97,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           IconBroken.Notification,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'Notifications',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -120,16 +120,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.shopping_cart_outlined,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'My Orders',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -143,16 +143,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           IconBroken.Document,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'Complaints',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -175,21 +175,21 @@ class _SettingScreenState extends State<SettingScreen> {
                     ).show();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.dark_mode_outlined,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'Theme Mode',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Switch(
                           value: value,
                           onChanged: (value) {
@@ -205,16 +205,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     navigateTo(context, FqaScreen());
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           FontAwesomeIcons.fontAwesome,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'FAQ',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -228,16 +228,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           IconBroken.Info_Circle,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'About us',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -261,16 +261,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     ).show();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           IconBroken.Logout,
                           color: Colors.deepOrange,
                           size: 35,
                         ),
                         space(15, 0),
-                        Text(
+                        const Text(
                           'Log Out',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),

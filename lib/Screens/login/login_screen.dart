@@ -22,14 +22,14 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => loginCubit(),
-      child: BlocConsumer<loginCubit, LoginState>(
+      create: (BuildContext context) => LoginCubit(),
+      child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
             if (state.loginModel.status!) {
-              ShowToast(
+              showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.SUCCESS,
+                state: ToastStates.success,
               );
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
@@ -41,9 +41,9 @@ class LoginScreen extends StatelessWidget {
                 navigateAndFinish(context, HomeScreen());
               });
             } else {
-              ShowToast(
+              showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.ERROR,
+                state: ToastStates.error,
               );
               print(state.loginModel.message);
             }
@@ -100,10 +100,10 @@ class LoginScreen extends StatelessWidget {
                           controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
                           prefix: Icons.key,
-                          suffix: loginCubit.get(context).suffix,
-                          isPassword: loginCubit.get(context).isPassword,
+                          suffix: LoginCubit.get(context).suffix,
+                          isPassword: LoginCubit.get(context).isPassword,
                           suffixPressed: () {
-                            loginCubit.get(context).ChangePassword();
+                            LoginCubit.get(context).ChangePassword();
                           },
                           validate: (String? value) {
                             if (value!.isEmpty) {
@@ -127,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                             child: defaultMaterialButton(
                               function: () {
                                 if (formKey.currentState!.validate()) {
-                                  loginCubit.get(context).UserLogin(
+                                  LoginCubit.get(context).userLogin(
                                       email: emailController.text,
                                       password: passwordController.text);
                                 }

@@ -1,6 +1,4 @@
-// ignore_for_file: unnecessary_import, non_constant_identifier_names
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/register/cubit/state.dart';
@@ -13,7 +11,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   static RegisterCubit get(context) => BlocProvider.of(context);
 
   LoginModel? loginModel;
-  void UserRegister({
+  void userRegister({
     required String email,
     required String password,
     required String name,
@@ -23,7 +21,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(RegisterLoadingState());
 
     DioHelper.postData(
-      url: REGISTER,
+      url: register,
       data: {
         'email': email,
         'password': password,
@@ -42,7 +40,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
-  void ChangePassword() {
+  void changePassword() {
     isPassword = !isPassword;
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;

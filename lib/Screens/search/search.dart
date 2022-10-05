@@ -29,7 +29,7 @@ class SearchScreen extends StatelessWidget {
                   children: [
                     defaultTextFormField(
                       focusNode: FocusNode(),
-                      controller: SearchCubit.get(context).SearchController,
+                      controller: SearchCubit.get(context).searchController,
                       keyboardType: TextInputType.text,
                       validate: (String? value) {
                         if (value!.isEmpty) {
@@ -113,7 +113,7 @@ class SearchScreen extends StatelessWidget {
                         Text(
                           '${model.price.round()}',
                           style: TextStyle(
-                            color: DColor,
+                            color: dColor,
                           ),
                         ),
                         SizedBox(
