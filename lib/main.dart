@@ -21,7 +21,7 @@ void main() async {
         () {},
     blocObserver: MyBlocObserver(),
   );
-  await DioHelper.init();
+   DioHelper.init();
   await CacheHelper.init();
 
   bool? isDark = CacheHelper.getBoolean(key: 'isDark');
