@@ -1,5 +1,5 @@
-// ignore_for_file: non_constant_identifier_names, curly_braces_in_flow_control_structures, avoid_function_literals_in_foreach_calls, avoid_print
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/Categories/category.dart';
@@ -16,7 +16,7 @@ import 'package:mego_market/model/faq/faq_model.dart';
 import 'package:mego_market/model/favorite/favorite_model.dart';
 import 'package:mego_market/model/home/home_model.dart';
 import 'package:mego_market/model/login/login_model.dart';
-import 'package:mego_market/network/End_Points.dart';
+import 'package:mego_market/network/end_points.dart';
 import 'package:mego_market/network/dio_helper.dart';
 import 'package:mego_market/shared/componnetns/components.dart';
 import 'package:mego_market/shared/componnetns/constants.dart';
@@ -33,17 +33,17 @@ class MainCubit extends Cubit<MainStates> {
 
   List<Widget> pages = [
     ProductsScreen(),
-    CategoriesScreen(),
-    FavoritesScreen(),
-    SettingScreen(),
+    const CategoriesScreen(),
+    const FavoritesScreen(),
+    const SettingScreen(),
   ];
 
-  void ChangeNavBar(int index) {
+  void changeNavBar(int index) {
     currentIndex = index;
     emit(ChangeNavBarItem());
   }
 
-  LoginModel? UserData;
+  LoginModel? userData;
 
   void getUserData() {
     emit(UserLoginLoadingStates());
@@ -52,15 +52,17 @@ class MainCubit extends Cubit<MainStates> {
       url: profile,
       token: token,
     ).then((value) {
-      UserData = LoginModel.fromJson(value.data);
-      emit(UserLoginSuccessStates(UserData!));
+      userData = LoginModel.fromJson(value.data);
+      emit(UserLoginSuccessStates(userData!));
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(UserLoginErrorStates(error.toString()));
     });
   }
 
-  void UpdateUserData({
+  void updateUserData({
     required String email,
     required String name,
     required String phone,
@@ -77,10 +79,12 @@ class MainCubit extends Cubit<MainStates> {
         'phone': phone,
       },
     ).then((value) {
-      UserData = LoginModel.fromJson(value.data);
-      emit(UserUpdateSuccessStates(UserData!));
+      userData = LoginModel.fromJson(value.data);
+      emit(UserUpdateSuccessStates(userData!));
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(UserUpdateErrorStates(error.toString()));
     });
   }
@@ -95,21 +99,27 @@ class MainCubit extends Cubit<MainStates> {
     ).then((value) {
       homeModel = HomeModel.fromJson(value.data);
       //printFullText(homeModel.data.banners.toString());
-      print(homeModel!.status);
-      print(token);
-      homeModel!.data!.products.forEach((element) {
+      if (kDebugMode) {
+        print(homeModel!.status);
+      }
+      if (kDebugMode) {
+        print(token);
+      }
+      for (var element in homeModel!.data!.products) {
         favorites.addAll({
           element.id: element.inFavorites,
         });
-      });
-      homeModel!.data!.products.forEach((element) {
+      }
+      for (var element in homeModel!.data!.products) {
         cart.addAll({
           element.id: element.inCart,
         });
-      });
+      }
       emit(HomeSuccessStates());
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(HomeErrorStates());
     });
   }
@@ -124,7 +134,9 @@ class MainCubit extends Cubit<MainStates> {
 
       emit(CategoriesSuccessStates());
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(CategoriesErrorStates());
     });
   }
@@ -136,12 +148,21 @@ class MainCubit extends Cubit<MainStates> {
       'category_id': '$categoryID',
     }).then((value) {
       categoriesDetailModel = CategoryDetailModel.fromJson(value.data);
-      categoriesDetailModel!.data!.productData!.forEach((element) {});
-      print('categories Detail ${categoriesDetailModel!.status}');
+      for (var element in categoriesDetailModel!.data!.productData!)
+      {
+        if (kDebugMode) {
+          print(element.id);
+        }
+      }
+      if (kDebugMode) {
+        print('categories Detail ${categoriesDetailModel!.status}');
+      }
       emit(CategoryDetailsSuccessStates());
     }).catchError((error) {
       emit(CategoryDetailsErrorStates());
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
     });
   }
 
@@ -162,15 +183,18 @@ class MainCubit extends Cubit<MainStates> {
       if (changeCartModel!.status!) {
         getCartData();
         getHomeData();
-      } else
+      } else {
         showToast(
           text: changeCartModel!.message!,
           state: ToastStates.success,
         );
+      }
       emit(ChangeCartSuccessStates(changeCartModel!));
     }).catchError((error) {
       emit(ChangeCartErrorStates());
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
     });
   }
 
@@ -184,7 +208,9 @@ class MainCubit extends Cubit<MainStates> {
       // print('Get Cart'+cartModel.toString());
       emit(GetCartSuccessStates());
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(GetCartErrorStates());
     });
   }
@@ -203,16 +229,19 @@ class MainCubit extends Cubit<MainStates> {
       updateCartModel = UpdateCartModel.fromJson(value.data);
       if (updateCartModel!.status!) {
         getCartData();
-      } else
+      } else {
         showToast(
           text: updateCartModel!.message!,
           state: ToastStates.success,
         );
+      }
       //  print('updateCartModel ' + updateCartModel.status.toString());
       emit(UpdateCartSuccessStates());
     }).catchError((error) {
       emit(UpdateCartErrorStates());
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
     });
   }
 
@@ -226,7 +255,9 @@ class MainCubit extends Cubit<MainStates> {
       'product_id': productID,
     }).then((value) {
       changeFavoritesModel = ChangeFavoritesModel.fromJson(value.data);
-      print(value.data);
+      if (kDebugMode) {
+        print(value.data);
+      }
 
       if (!changeFavoritesModel!.status!) {
         favorites[productID] = !favorites[productID];
@@ -251,7 +282,9 @@ class MainCubit extends Cubit<MainStates> {
       favoritesModel = FavoritesModel.fromJson(value.data);
       emit(GetFavoritesSuccessStates());
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(GetFavoritesErrorStates());
     });
   }
@@ -267,7 +300,9 @@ class MainCubit extends Cubit<MainStates> {
       emit(ProductSuccessStates(productResponse!));
     }).catchError((error) {
       emit(ProductErrorStates());
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
     });
   }
 
@@ -278,14 +313,16 @@ class MainCubit extends Cubit<MainStates> {
       faqModel = FaqModel.fromJson(value.data);
       emit(GetFaqSuccessStates());
     }).catchError((error) {
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
       emit(GetFaqErrorStates());
     });
   }
 
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
-  void ShowPassword() {
+  void showPassword() {
     isPassword = !isPassword;
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;

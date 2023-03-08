@@ -9,10 +9,10 @@ import 'package:mego_market/shared/componnetns/components.dart';
 import 'package:mego_market/shared/componnetns/constants.dart';
 
 class CartScreen extends StatelessWidget {
-  TextEditingController counterController = TextEditingController();
+
 
   CartScreen({Key? key}) : super(key: key);
-
+final  TextEditingController counterController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(

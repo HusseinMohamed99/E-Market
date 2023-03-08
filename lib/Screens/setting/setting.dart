@@ -202,7 +202,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    navigateTo(context, FqaScreen());
+                    navigateTo(context, const FqaScreen());
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15),

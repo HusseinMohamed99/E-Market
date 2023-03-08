@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/search/cubit/state.dart';
 import 'package:mego_market/model/search/search_model.dart';
-import 'package:mego_market/network/End_Points.dart';
+import 'package:mego_market/network/end_points.dart';
 import 'package:mego_market/network/dio_helper.dart';
 import 'package:mego_market/shared/componnetns/constants.dart';
 

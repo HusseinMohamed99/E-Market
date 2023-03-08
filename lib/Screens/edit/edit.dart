@@ -8,10 +8,10 @@ import 'package:mego_market/model/login/login_model.dart';
 import 'package:mego_market/shared/componnetns/components.dart';
 
 class EditScreen extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
-  var nameController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final nameController = TextEditingController();
 
   EditScreen({Key? key}) : super(key: key);
 
@@ -22,13 +22,13 @@ class EditScreen extends StatelessWidget {
         if (state is UserLoginSuccessStates) {}
       },
       builder: (context, state) {
-        LoginModel? model = MainCubit.get(context).UserData;
+        LoginModel? model = MainCubit.get(context).userData;
         emailController.text = model!.data!.email!;
         phoneController.text = model.data!.phone!;
         nameController.text = model.data!.name!;
 
         return ConditionalBuilder(
-          condition: MainCubit.get(context).UserData != null,
+          condition: MainCubit.get(context).userData != null,
           builder: (context) => Scaffold(
             appBar: AppBar(),
             body: Form(
@@ -90,7 +90,7 @@ class EditScreen extends StatelessWidget {
                     defaultMaterialButton(
                       function: () {
                         if (formKey.currentState!.validate()) {
-                          MainCubit.get(context).UpdateUserData(
+                          MainCubit.get(context).updateUserData(
                             name: nameController.text,
                             email: emailController.text,
                             phone: phoneController.text,

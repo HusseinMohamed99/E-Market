@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
             bottomNavigationBar: AnimatedBottomNavigationBar(
               elevation: 50.0,
               onTap: (index) {
-                cubit.ChangeNavBar(index);
+                cubit.changeNavBar(index);
               },
               activeIndex: cubit.currentIndex,
 

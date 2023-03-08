@@ -40,7 +40,7 @@ void main() async {
     }
   }else
   {
-    widget = OnBoardingScreen();
+    widget = const OnBoardingScreen();
   }
 
   runApp(Myapp(
@@ -53,7 +53,7 @@ class Myapp extends StatelessWidget {
   final  bool? isDark;
   final Widget startWidget;
 
-  Myapp({Key? key, required this.startWidget, this.isDark}) : super(key: key);
+  const Myapp({Key? key, required this.startWidget, this.isDark}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

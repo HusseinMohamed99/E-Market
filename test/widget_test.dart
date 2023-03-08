@@ -14,7 +14,7 @@ import 'package:mego_market/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Myapp(
+    await tester.pumpWidget(const Myapp(
       isDark: false,
       startWidget: OnBoardingScreen(),
     ));
