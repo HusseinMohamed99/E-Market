@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mego_market/shared/styles/colors.dart';
@@ -33,47 +32,47 @@ ThemeData darkTheme = ThemeData(
     elevation: 25.0,
   ),
   textTheme: const TextTheme(
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
       color: Colors.white,
       fontSize: 16.0,
       fontWeight: FontWeight.w500,
     ),
-    headline6: TextStyle(
+    titleLarge: TextStyle(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
     ),
-    headline1: TextStyle(
+    displayLarge: TextStyle(
       color: Colors.white,
       fontSize: 30.0,
       fontWeight: FontWeight.bold,
     ),
-    headline2: TextStyle(
+    displayMedium: TextStyle(
       color: Colors.white,
       fontSize: 25.0,
       fontWeight: FontWeight.bold,
     ),
-    headline3: TextStyle(
+    displaySmall: TextStyle(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
     ),
-    headline4: TextStyle(
+    headlineMedium: TextStyle(
       color: Colors.white,
       fontSize: 18.0,
       fontWeight: FontWeight.bold,
     ),
-    headline5: TextStyle(
+    headlineSmall: TextStyle(
       color: Colors.white,
       fontSize: 16.0,
       fontWeight: FontWeight.bold,
     ),
-    subtitle1: TextStyle(
+    titleMedium: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
         color: Colors.white,
         height: 1.0),
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       fontSize: 18.0,
       color: Colors.white,
     ),
@@ -140,11 +139,11 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   textTheme: const TextTheme(
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       fontSize: 18.0,
       color: Colors.black,
     ),
-    subtitle1: TextStyle(
+    titleMedium: TextStyle(
       fontSize: 14.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,

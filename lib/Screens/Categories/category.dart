@@ -6,7 +6,6 @@ import 'package:mego_market/cubit/state.dart';
 import 'package:mego_market/model/category/category_model.dart';
 import 'package:mego_market/shared/componnetns/components.dart';
 
-
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
@@ -18,7 +17,8 @@ class CategoriesScreen extends StatelessWidget {
         return ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => catList(
-              MainCubit.get(context).categoriesModel!.data!.data[index], context),
+              MainCubit.get(context).categoriesModel!.data!.data[index],
+              context),
           separatorBuilder: (context, index) => myDivider(),
           itemCount: MainCubit.get(context).categoriesModel!.data!.data.length,
         );
@@ -54,7 +54,7 @@ class CategoriesScreen extends StatelessWidget {
               ),
               Text(
                 model.name!.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                 maxLines: 1,

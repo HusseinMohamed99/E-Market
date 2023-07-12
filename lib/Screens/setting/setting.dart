@@ -1,4 +1,3 @@
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -165,8 +164,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   onTap: () {
                     AwesomeDialog(
                       context: context,
-                      dialogType: DialogType.QUESTION,
-                      animType: AnimType.TOPSLIDE,
+                      dialogType: DialogType.question,
+                      animType: AnimType.topSlide,
                       title: 'Do you want to change mode?',
                       btnOkOnPress: () {
                         ModeCubit.get(context).changeAppMode();
@@ -250,8 +249,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   onTap: () {
                     AwesomeDialog(
                       context: context,
-                      dialogType: DialogType.QUESTION,
-                      animType: AnimType.RIGHSLIDE,
+                      dialogType: DialogType.question,
+                      animType: AnimType.rightSlide,
                       title: 'Do you want to Logout?',
                       desc: "Please, Login soon 🤚",
                       btnOkOnPress: () {

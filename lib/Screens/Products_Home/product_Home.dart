@@ -89,7 +89,7 @@ class ProductsScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Categories',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -118,7 +118,7 @@ class ProductsScreen extends StatelessWidget {
                   ),
                   Text(
                     'New Products',
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   SizedBox(
                     height: 20.0,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/product_detalis/product_details.dart';
@@ -9,10 +8,9 @@ import 'package:mego_market/shared/componnetns/components.dart';
 import 'package:mego_market/shared/componnetns/constants.dart';
 
 class CartScreen extends StatelessWidget {
-
-
   CartScreen({Key? key}) : super(key: key);
-final  TextEditingController counterController = TextEditingController();
+  final TextEditingController counterController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
@@ -43,11 +41,11 @@ final  TextEditingController counterController = TextEditingController();
         CartModel? cartModel = MainCubit.get(context).cartModel;
         cartLength = MainCubit.get(context).cartModel!.data!.cartItems!.length;
         return MainCubit.get(context).cartModel!.data!.cartItems!.isEmpty
-            ? Scaffold(
+            ? const Scaffold(
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.shopping_bag_outlined,
                         size: 70,
@@ -320,10 +318,11 @@ final  TextEditingController counterController = TextEditingController();
                         ),
                         TextButton(
                           onPressed: () {
-                            MainCubit.get(context).changeCart(model.product!.id!);
+                            MainCubit.get(context)
+                                .changeCart(model.product!.id!);
                           },
-                          child: Row(
-                            children: const [
+                          child: const Row(
+                            children: [
                               Icon(
                                 Icons.delete_forever_outlined,
                                 color: Colors.grey,
