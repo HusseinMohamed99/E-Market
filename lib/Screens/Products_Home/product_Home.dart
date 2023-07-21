@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, unused_import, use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, unnecessary_string_interpolations, non_constant_identifier_names, unnecessary_string_escapes
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +11,8 @@ import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/shared/components/components.dart';
 
 class ProductsScreen extends StatelessWidget {
+  const ProductsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
@@ -39,7 +39,8 @@ class ProductsScreen extends StatelessWidget {
               MainCubit.get(context).homeModel!,
               MainCubit.get(context).categoriesModel!,
               context),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
+          fallback: (context) =>
+              const Center(child: CircularProgressIndicator()),
         );
       },
     );
@@ -48,18 +49,18 @@ class ProductsScreen extends StatelessWidget {
   Widget productsBuilder(
           HomeModel model, CategoriesModel categoriesModel, context) =>
       SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               child: CarouselSlider(
                 items: model.data!.banners
                     .map(
                       (e) => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Container(
+                        child: SizedBox(
                           width: double.infinity,
                           height: 300,
                           child: ClipRRect(
@@ -79,7 +80,7 @@ class ProductsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Padding(
@@ -91,40 +92,40 @@ class ProductsScreen extends StatelessWidget {
                     'Categories',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Container(
                     height: 140.0,
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: Scrollbar(
                       thickness: 1,
                       child: ListView.separated(
-                        padding:
-                            EdgeInsetsDirectional.only(start: 10.0, top: 10),
-                        physics: BouncingScrollPhysics(),
+                        padding: const EdgeInsetsDirectional.only(
+                            start: 10.0, top: 10),
+                        physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => CategoriesItem(
+                        itemBuilder: (context, index) => categoriesItem(
                             categoriesModel.data!.data[index], context),
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                           width: 10.0,
                         ),
                         itemCount: categoriesModel.data!.data.length,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
                   Text(
                     'New Products',
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
                   GridView.count(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.0,
@@ -133,7 +134,7 @@ class ProductsScreen extends StatelessWidget {
                     children: List.generate(
                       model.data!.products.length,
                       (index) =>
-                          GridProducts(model.data!.products[index], context),
+                          gridProducts(model.data!.products[index], context),
                     ),
                   ),
                 ],
@@ -143,12 +144,12 @@ class ProductsScreen extends StatelessWidget {
         ),
       );
 
-  Widget CategoriesItem(DataModel model, context) => InkWell(
+  Widget categoriesItem(DataModel model, context) => InkWell(
         onTap: () {
           MainCubit.get(context).getCategoriesDetailData(model.id!);
           navigateTo(context, CategoryProductsScreen(model.name!));
         },
-        child: Container(
+        child: SizedBox(
           width: 105,
           child: Column(
             children: [
@@ -170,7 +171,7 @@ class ProductsScreen extends StatelessWidget {
                 model.name!.toUpperCase(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
@@ -180,7 +181,7 @@ class ProductsScreen extends StatelessWidget {
         ),
       );
 
-  Widget GridProducts(ProductModel model, context) => InkWell(
+  Widget gridProducts(ProductModel model, context) => InkWell(
         onTap: () {
           MainCubit.get(context)
               .getProductData(model.id)
@@ -219,18 +220,18 @@ class ProductsScreen extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              '${model.price.round()}\ LE',
-                              style: TextStyle(
+                              '${model.price.round()} LE',
+                              style: const TextStyle(
                                 color: Colors.red,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 7.0,
                             ),
                             if (model.discount != 0)
                               Text(
-                                '${model.oldPrice.round()}\LE',
-                                style: TextStyle(
+                                '${model.oldPrice.round()}LE',
+                                style: const TextStyle(
                                   color: Colors.grey,
                                   decoration: TextDecoration.lineThrough,
                                 ),
@@ -264,11 +265,11 @@ class ProductsScreen extends StatelessWidget {
             if (model.discount != 0)
               Positioned.fill(
                 child: Align(
-                  alignment: Alignment(1, -1),
+                  alignment: const Alignment(1, -1),
                   child: ClipRect(
                     child: Banner(
                       message: 'OFFERS',
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
