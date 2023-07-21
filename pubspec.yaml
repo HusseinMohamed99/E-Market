@@ -15,7 +15,6 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  hexcolor: ^3.0.1
   font_awesome_flutter: ^10.1.0
   http: ^1.1.0
   modal_progress_hud_nsn: ^0.4.0
