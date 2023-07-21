@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new
-
 class UpdateCartModel {
   bool? status;
   String? message;
@@ -8,7 +6,7 @@ class UpdateCartModel {
   UpdateCartModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new UpdateData.fromJson(json['data']) : null;
+    data = json['data'] != null ? UpdateData.fromJson(json['data']) : null;
   }
 }
 

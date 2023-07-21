@@ -1,8 +1,6 @@
-// ignore_for_file: unnecessary_new, prefer_void_to_null
-
 class FavoritesModel {
   bool? status;
-  Null message;
+  String? message;
   Data? data;
 
   FavoritesModel({this.status, this.message, this.data});
@@ -10,7 +8,7 @@ class FavoritesModel {
   FavoritesModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 }
 
@@ -21,10 +19,10 @@ class Data {
   int? from;
   int? lastPage;
   String? lastPageUrl;
-  Null nextPageUrl;
+  String? nextPageUrl;
   String? path;
   int? perPage;
-  Null prevPageUrl;
+  String? prevPageUrl;
   int? to;
   int? total;
 
@@ -33,7 +31,7 @@ class Data {
     if (json['data'] != null) {
       data = <FavoritesData>[];
       json['data'].forEach((v) {
-        data!.add(new FavoritesData.fromJson(v));
+        data!.add(FavoritesData.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -56,7 +54,7 @@ class FavoritesData {
   FavoritesData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 }
 

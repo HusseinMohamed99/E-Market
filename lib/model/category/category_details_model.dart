@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_void_to_null
-
 class CategoryDetailModel {
   bool? status;
   Data? data;
@@ -17,10 +15,10 @@ class Data {
   int? from;
   int? lastPage;
   String? lastPageUrl;
-  Null nextPageUrl;
+  String? nextPageUrl;
   String? path;
   int? perPage;
-  Null prevPageUrl;
+  String? prevPageUrl;
   int? to;
   int? total;
 

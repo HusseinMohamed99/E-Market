@@ -1,12 +1,10 @@
-// ignore_for_file: unnecessary_new
-
 class SearchModel {
   bool? status;
   SearchData? data;
 
   SearchModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = json['data'] != null ? new SearchData.fromJson(json['data']) : null;
+    data = json['data'] != null ? SearchData.fromJson(json['data']) : null;
   }
 }
 
