@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mego_market/Screens/login/login_screen.dart';
-import 'package:mego_market/Screens/on_boarding/on_boarding_screen.dart';
-import 'package:mego_market/cubit/cubit.dart';
-import 'package:mego_market/layout/home_screen.dart';
-import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/network/dio_helper.dart';
-import 'package:mego_market/shared/bloc_observer.dart';
-import 'package:mego_market/shared/components/constants.dart';
-import 'package:mego_market/shared/mode_cubit/cubit.dart';
-import 'package:mego_market/shared/mode_cubit/state.dart';
-import 'package:mego_market/shared/styles/themes.dart';
+import 'package:super_marko/Screens/login/login_screen.dart';
+import 'package:super_marko/Screens/on_boarding/on_boarding_screen.dart';
+import 'package:super_marko/cubit/cubit.dart';
+import 'package:super_marko/layout/home_screen.dart';
+import 'package:super_marko/network/cache_helper.dart';
+import 'package:super_marko/network/dio_helper.dart';
+import 'package:super_marko/shared/bloc_observer.dart';
+import 'package:super_marko/shared/components/constants.dart';
+import 'package:super_marko/shared/mode_cubit/cubit.dart';
+import 'package:super_marko/shared/mode_cubit/state.dart';
+import 'package:super_marko/shared/styles/themes.dart';
 import 'package:wakelock/wakelock.dart';
 
 void main() async {

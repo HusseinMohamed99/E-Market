@@ -1,13 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/Screens/login/cubit/state.dart';
-import 'package:mego_market/model/login/login_model.dart';
-import 'package:mego_market/network/end_points.dart';
-import 'package:mego_market/network/dio_helper.dart';
+import 'package:super_marko/Screens/login/cubit/state.dart';
+import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/network/dio_helper.dart';
+import 'package:super_marko/network/end_points.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
+
   static LoginCubit get(context) => BlocProvider.of(context);
 
   LoginModel? loginModel;

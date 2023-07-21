@@ -2,14 +2,14 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mego_market/Screens/FQA/fqa_screen.dart';
-import 'package:mego_market/Screens/edit/edit.dart';
-import 'package:mego_market/cubit/cubit.dart';
-import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/shared/components/components.dart';
-import 'package:mego_market/shared/components/constants.dart';
-import 'package:mego_market/shared/mode_cubit/cubit.dart';
-import 'package:mego_market/shared/styles/icon_broken.dart';
+import 'package:super_marko/Screens/FQA/fqa_screen.dart';
+import 'package:super_marko/Screens/edit/edit.dart';
+import 'package:super_marko/cubit/cubit.dart';
+import 'package:super_marko/cubit/state.dart';
+import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/constants.dart';
+import 'package:super_marko/shared/mode_cubit/cubit.dart';
+import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);

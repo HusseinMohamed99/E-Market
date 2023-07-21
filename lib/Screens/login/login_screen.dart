@@ -3,13 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mego_market/Screens/login/cubit/cubit.dart';
-import 'package:mego_market/Screens/login/cubit/state.dart';
-import 'package:mego_market/Screens/register/register_screen.dart';
-import 'package:mego_market/layout/home_screen.dart';
-import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/shared/components/components.dart';
-import 'package:mego_market/shared/components/constants.dart';
+import 'package:super_marko/Screens/login/cubit/cubit.dart';
+import 'package:super_marko/Screens/login/cubit/state.dart';
+import 'package:super_marko/Screens/register/register_screen.dart';
+import 'package:super_marko/layout/home_screen.dart';
+import 'package:super_marko/network/cache_helper.dart';
+import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/constants.dart';
 
 class LoginScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();

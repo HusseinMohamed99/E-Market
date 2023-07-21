@@ -1,11 +1,11 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/cubit/cubit.dart';
-import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/shared/components/components.dart';
-import 'package:mego_market/shared/styles/colors.dart';
-import 'package:mego_market/shared/styles/icon_broken.dart';
+import 'package:super_marko/cubit/cubit.dart';
+import 'package:super_marko/cubit/state.dart';
+import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/styles/colors.dart';
+import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({Key? key}) : super(key: key);

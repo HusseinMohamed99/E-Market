@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/Screens/product_details/product_details.dart';
-import 'package:mego_market/cubit/cubit.dart';
-import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/model/cart/get_cart_model.dart';
-import 'package:mego_market/shared/components/components.dart';
-import 'package:mego_market/shared/components/constants.dart';
+import 'package:super_marko/Screens/product_details/product_details.dart';
+import 'package:super_marko/cubit/cubit.dart';
+import 'package:super_marko/cubit/state.dart';
+import 'package:super_marko/model/cart/get_cart_model.dart';
+import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/constants.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);

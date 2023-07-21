@@ -1,22 +1,23 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/Screens/register/cubit/state.dart';
-import 'package:mego_market/model/login/login_model.dart';
-import 'package:mego_market/network/end_points.dart';
-import 'package:mego_market/network/dio_helper.dart';
+import 'package:super_marko/Screens/register/cubit/state.dart';
+import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/network/dio_helper.dart';
+import 'package:super_marko/network/end_points.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
+
   static RegisterCubit get(context) => BlocProvider.of(context);
 
   LoginModel? loginModel;
+
   void userRegister({
     required String email,
     required String password,
     required String name,
     required String phone,
-     String? image,
+    String? image,
   }) {
     emit(RegisterLoadingState());
 

@@ -1,10 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/cubit/cubit.dart';
-import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/model/login/login_model.dart';
-import 'package:mego_market/shared/components/components.dart';
+import 'package:super_marko/cubit/cubit.dart';
+import 'package:super_marko/cubit/state.dart';
+import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/shared/components/components.dart';
 
 class EditScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();

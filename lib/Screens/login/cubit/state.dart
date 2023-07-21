@@ -1,4 +1,4 @@
-import 'package:mego_market/model/login/login_model.dart';
+import 'package:super_marko/model/login/login_model.dart';
 
 abstract class LoginState {}
 

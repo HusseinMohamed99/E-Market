@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mego_market/Screens/login/login_screen.dart';
-import 'package:mego_market/network/cache_helper.dart';
+import 'package:super_marko/Screens/login/login_screen.dart';
+import 'package:super_marko/network/cache_helper.dart';
 
 Widget defaultTextFormField({
   FocusNode? focusNode,
@@ -42,14 +41,14 @@ Widget defaultTextFormField({
         ),
         suffixIcon: suffix != null
             ? IconButton(
-          onPressed: () {
-            suffixPressed!();
-          },
-          icon: Icon(
-            suffix,
-            color: Colors.grey,
-          ),
-        )
+                onPressed: () {
+                  suffixPressed!();
+                },
+                icon: Icon(
+                  suffix,
+                  color: Colors.grey,
+                ),
+              )
             : null,
         filled: true,
         isCollapsed: false,
@@ -151,10 +150,10 @@ Widget defaultTextButton({
     );
 
 Widget myDivider() => Container(
-  width: double.infinity,
-  height: 1.0,
-  color: Colors.grey[300],
-);
+      width: double.infinity,
+      height: 1.0,
+      color: Colors.grey[300],
+    );
 
 void showToast({
   required String text,
@@ -193,19 +192,19 @@ Color chooseToastColor(ToastStates state) {
 }
 
 void navigateTo(context, widget) => Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => widget,
-  ),
-);
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    );
 
 void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(
-      builder: (context) => widget,
-    ), (route) {
-  return false;
-});
+        context,
+        MaterialPageRoute(
+          builder: (context) => widget,
+        ), (route) {
+      return false;
+    });
 
 void logOut(context) {
   CacheHelper.removeData(

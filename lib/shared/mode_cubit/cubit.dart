@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/shared/mode_cubit/state.dart';
+import 'package:super_marko/network/cache_helper.dart';
+import 'package:super_marko/shared/mode_cubit/state.dart';
 
 class ModeCubit extends Cubit<ModeStates> {
   ModeCubit() : super(ModeInitialState());
@@ -10,6 +10,7 @@ class ModeCubit extends Cubit<ModeStates> {
 
   bool isDark = false;
   Color backgroundColor = Colors.white;
+
   void changeAppMode({bool? fromShared}) {
     if (fromShared == null) {
       isDark = !isDark;

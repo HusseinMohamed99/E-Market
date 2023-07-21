@@ -7,9 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mego_market/Screens/on_boarding/on_boarding_screen.dart';
-
-import 'package:mego_market/main.dart';
+import 'package:super_marko/Screens/on_boarding/on_boarding_screen.dart';
+import 'package:super_marko/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

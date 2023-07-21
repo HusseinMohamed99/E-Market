@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mego_market/shared/styles/colors.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 ThemeData darkTheme = ThemeData(
   cardColor: const Color(0xFF20123c),

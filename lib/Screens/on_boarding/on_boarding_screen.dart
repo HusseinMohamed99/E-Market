@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mego_market/Screens/login/login_screen.dart';
-import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/shared/components/components.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:super_marko/Screens/login/login_screen.dart';
+import 'package:super_marko/network/cache_helper.dart';
+import 'package:super_marko/shared/components/components.dart';
 
 class BoardingModel {
   final String image;
