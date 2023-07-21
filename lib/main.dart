@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mego_market/Screens/login/login_screen.dart';
 import 'package:mego_market/Screens/on_boarding/on_boarding_screen.dart';
-import 'package:mego_market/Screens/splash/splash_screen.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/layout/home_screen.dart';
 import 'package:mego_market/network/cache_helper.dart';
@@ -93,7 +92,7 @@ class Myapp extends StatelessWidget {
                       ? ThemeMode.dark
                       : ThemeMode.light,
                   debugShowCheckedModeBanner: false,
-                  home: const SplashScreen(),
+                  home: startWidget,
                 );
               },
             );
