@@ -9,7 +9,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.4 <3.0.0"
+  sdk: '>=3.0.5 <4.0.0'
 
 dependencies:
   flutter:
@@ -19,7 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   hexcolor: ^3.0.1
   font_awesome_flutter: ^10.1.0
-  http: ^0.13.4
+  http: ^1.1.0
   modal_progress_hud_nsn: ^0.4.0
   dio: ^5.2.1+1
   bloc: ^8.0.3
@@ -34,7 +34,7 @@ dependencies:
   animated_bottom_navigation_bar: ^1.2.0
   image_picker: ^1.0.1
   smooth_page_indicator: ^1.0.0+2
-  google_fonts: ^4.0.4
+  google_fonts: ^5.1.0
   awesome_dialog: ^3.1.0
 
 
