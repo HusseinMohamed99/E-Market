@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
 import 'package:mego_market/model/faq/faq_model.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
-
+import 'package:mego_market/shared/components/components.dart';
 
 class FqaScreen extends StatelessWidget {
   const FqaScreen({Key? key}) : super(key: key);

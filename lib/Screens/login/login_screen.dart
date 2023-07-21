@@ -1,6 +1,5 @@
-// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, prefer_const_constructors, avoid_print
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,15 +8,17 @@ import 'package:mego_market/Screens/login/cubit/state.dart';
 import 'package:mego_market/Screens/register/register_screen.dart';
 import 'package:mego_market/layout/home_screen.dart';
 import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
-import 'package:mego_market/shared/componnetns/constants.dart';
+import 'package:mego_market/shared/components/components.dart';
+import 'package:mego_market/shared/components/constants.dart';
 
 class LoginScreen extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
-  var emailController = TextEditingController();
+  final emailController = TextEditingController();
 
-  var passwordController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +32,27 @@ class LoginScreen extends StatelessWidget {
                 text: state.loginModel.message!,
                 state: ToastStates.success,
               );
-              print(state.loginModel.message);
-              print(state.loginModel.data!.token);
+              if (kDebugMode) {
+                print(state.loginModel.message);
+              }
+              if (kDebugMode) {
+                print(state.loginModel.data!.token);
+              }
 
               CacheHelper.saveData(
                       key: "token", value: state.loginModel.data!.token)
                   .then((value) {
                 token = state.loginModel.data!.token!;
-                navigateAndFinish(context, HomeScreen());
+                navigateAndFinish(context, const HomeScreen());
               });
             } else {
               showToast(
                 text: state.loginModel.message!,
                 state: ToastStates.error,
               );
-              print(state.loginModel.message);
+              if (kDebugMode) {
+                print(state.loginModel.message);
+              }
             }
           }
         },
@@ -63,21 +70,21 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Login",
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
+                        const Text(
                           "Login Now to get our hot offers!",
                           style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defaultTextFormField(
@@ -93,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                           label: 'Email',
                           hint: 'Enter your email',
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defaultTextFormField(
@@ -118,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                           function: () {},
                           text: "Forgotten password?",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         ConditionalBuilder(
@@ -137,19 +144,19 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           fallback: (context) =>
-                              Center(child: CircularProgressIndicator()),
+                              const Center(child: CircularProgressIndicator()),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               'Don\'t have an account?',
                               style:
                                   TextStyle(fontSize: 16, color: Colors.grey),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             defaultTextButton(
@@ -167,7 +174,7 @@ class LoginScreen extends StatelessWidget {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20.0),
                                     topRight: Radius.circular(20.0),
                                     bottomLeft: Radius.circular(20.0),
@@ -183,7 +190,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20.0,
                             ),
                             Expanded(
@@ -191,7 +198,7 @@ class LoginScreen extends StatelessWidget {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20.0),
                                     topRight: Radius.circular(20.0),
                                     bottomLeft: Radius.circular(20.0),
@@ -207,7 +214,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20.0,
                             ),
                             Expanded(
@@ -215,7 +222,7 @@ class LoginScreen extends StatelessWidget {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20.0),
                                     topRight: Radius.circular(20.0),
                                     bottomLeft: Radius.circular(20.0),

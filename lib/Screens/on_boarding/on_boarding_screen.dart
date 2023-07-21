@@ -1,26 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
-// import 'package:flutter/material.dart';
-//
-// class ONBoardingScreen extends StatelessWidget {
-//   const ONBoardingScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('OnBoarding Screen'),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mego_market/Screens/login/login_screen.dart';
 import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingModel {
@@ -29,18 +12,16 @@ class BoardingModel {
   final String body;
   final String text;
 
-  BoardingModel ({
+  BoardingModel({
     required this.image,
     required this.title,
     required this.body,
     required this.text,
   });
-
 }
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
-
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -49,8 +30,7 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var pageController = PageController();
 
-
-  List <BoardingModel> boarding = [
+  List<BoardingModel> boarding = [
     BoardingModel(
       image: 'assets/images/cart.png',
       text: 'Online Shopping',
@@ -72,15 +52,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   ];
   bool isLast = false;
 
-  void submit(){
+  void submit() {
     CacheHelper.saveData(
       key: 'onBoarding',
       value: true,
-    ).then((value)
-    {
-      if(value)
-      {
-        navigateAndFinish(context, LoginScreen(),);
+    ).then((value) {
+      if (value) {
+        navigateAndFinish(
+          context,
+          LoginScreen(),
+        );
       }
     });
   }
@@ -90,7 +71,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.white,
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
@@ -98,8 +79,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         backgroundColor: Colors.white,
         actions: [
           defaultTextButton(
-            function:submit,
-            text:'Skip',
+            function: submit,
+            text: 'Skip',
           ),
         ],
       ),
@@ -110,26 +91,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
-                physics: BouncingScrollPhysics(),
-                onPageChanged: (int index)
-                {
-                  if (index == boarding.length - 1 )
-                  {
+                physics: const BouncingScrollPhysics(),
+                onPageChanged: (int index) {
+                  if (index == boarding.length - 1) {
                     setState(() {
                       isLast = true;
                     });
-                  }else {
+                  } else {
                     setState(() {
-                    isLast = false;
-                  });
+                      isLast = false;
+                    });
                   }
                 },
                 controller: pageController,
-                itemBuilder: (context, index) => buildBoardingItem(boarding[index]),
+                itemBuilder: (context, index) =>
+                    buildBoardingItem(boarding[index]),
                 itemCount: boarding.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50.0,
             ),
             Row(
@@ -137,7 +117,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SmoothPageIndicator(
                   controller: pageController,
                   count: boarding.length,
-                  effect: ExpandingDotsEffect(
+                  effect: const ExpandingDotsEffect(
                     dotWidth: 10.0,
                     dotHeight: 10.0,
                     dotColor: Colors.grey,
@@ -147,21 +127,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     expansionFactor: 4.0,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 FloatingActionButton(
-                  child: Icon(
+                  child: const Icon(
                     Icons.play_arrow_outlined,
                     size: 35.0,
                   ),
-                  onPressed: ()
-                  {
-                    if (isLast)
-                    {
+                  onPressed: () {
+                    if (isLast) {
                       submit();
-                    }else
-                    {
+                    } else {
                       pageController.nextPage(
-                        duration: Duration(
+                        duration: const Duration(
                           milliseconds: 780,
                         ),
                         curve: Curves.bounceInOut,
@@ -174,57 +151,51 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ],
         ),
       ),
-
-
-
     );
   }
 
-  Widget buildBoardingItem(BoardingModel model)=> Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Expanded(
-        child: Image(
-          image: AssetImage(
-            model.image,
-
-          ),
-        ),
-      ),
-      Center(
-        child: Text(model.text,
-          style:GoogleFonts.lobster(
-             fontSize: 40.0,
-             fontWeight: FontWeight.w900,
-            color: Colors.deepOrange,
-           ),
-          ),
-      ),
-      SizedBox(
-        height: 30.0,
-      ),
-
-
-      Column(
+  Widget buildBoardingItem(BoardingModel model) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            model.title,
-            style:GoogleFonts.lobster(
-              fontSize: 30.0,
-              color: Colors.black,
+          Expanded(
+            child: Image(
+              image: AssetImage(
+                model.image,
+              ),
             ),
           ),
-
-          Text(
-            model.body,
-            style:GoogleFonts.lobster(
-              fontSize: 30.0,
-              color: Colors.black,
+          Center(
+            child: Text(
+              model.text,
+              style: GoogleFonts.lobster(
+                fontSize: 40.0,
+                fontWeight: FontWeight.w900,
+                color: Colors.deepOrange,
+              ),
             ),
+          ),
+          const SizedBox(
+            height: 30.0,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                model.title,
+                style: GoogleFonts.lobster(
+                  fontSize: 30.0,
+                  color: Colors.black,
+                ),
+              ),
+              Text(
+                model.body,
+                style: GoogleFonts.lobster(
+                  fontSize: 30.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
         ],
-      ),
-    ],
-  );
+      );
 }

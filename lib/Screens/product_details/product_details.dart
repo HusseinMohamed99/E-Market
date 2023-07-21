@@ -1,17 +1,18 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_adjacent_string_concatenation, unnecessary_string_interpolations, must_be_immutable, sized_box_for_whitespace, unnecessary_string_escapes, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/cart/cart.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  PageController productImages = PageController();
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  final PageController productImages = PageController();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  ProductDetailsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
@@ -35,10 +36,10 @@ class ProductDetailsScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Text('${model!.name}'),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             height: 300,
                             width: double.infinity,
                             child: Stack(
@@ -46,7 +47,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                 PageView.builder(
                                   controller: productImages,
                                   itemBuilder: (context, index) =>
-                                      Image.network('${model.images![index]}'),
+                                      Image.network(model.images![index]),
                                   itemCount: model.images!.length,
                                 ),
                                 Positioned(
@@ -72,7 +73,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           SmoothPageIndicator(
@@ -86,11 +87,11 @@ class ProductDetailsScreen extends StatelessWidget {
                                 dotWidth: 15,
                                 spacing: 12),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.deepOrangeAccent,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
@@ -99,18 +100,18 @@ class ProductDetailsScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    '\Price:  ${model.price}\  LE',
-                                    style: TextStyle(
+                                    'Price:  ${model.price}  LE',
+                                    style: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         height: 1),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   if (model.discount != 0)
                                     Text(
-                                      '${model.discount}' + '% OFF',
-                                      style: TextStyle(
+                                      '${model.discount}' '% OFF',
+                                      style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -120,11 +121,11 @@ class ProductDetailsScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           myDivider(),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Padding(
@@ -133,23 +134,23 @@ class ProductDetailsScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Description',
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 myDivider(),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Text(
                                   '${model.description}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -157,14 +158,14 @@ class ProductDetailsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          const SizedBox(
                             height: 60,
                             width: double.infinity,
                           ),
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       height: 60,
                       child: Padding(
@@ -184,18 +185,18 @@ class ProductDetailsScreen extends StatelessWidget {
                               MainCubit.get(context).changeCart(model.id!);
                               scaffoldKey.currentState!.showBottomSheet(
                                 (context) => Container(
-                                  padding: EdgeInsets.all(15),
+                                  padding: const EdgeInsets.all(15),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.check_circle,
                                             color: Colors.green,
                                             size: 30,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Expanded(
@@ -208,14 +209,14 @@ class ProductDetailsScreen extends StatelessWidget {
                                                   maxLines: 2,
                                                   overflow:
                                                       TextOverflow.ellipsis,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 5,
                                                 ),
-                                                Text(
+                                                const Text(
                                                   'Added to Cart',
                                                   style: TextStyle(
                                                       color: Colors.grey,
@@ -226,7 +227,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       Row(
@@ -237,8 +238,9 @@ class ProductDetailsScreen extends StatelessWidget {
                                               onPressed: () {
                                                 Navigator.pop(context);
                                               },
-                                              child: Text('CONTINUE SHOPPING')),
-                                          SizedBox(
+                                              child: const Text(
+                                                  'CONTINUE SHOPPING')),
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           ElevatedButton(
@@ -247,7 +249,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                               MainCubit.get(context)
                                                   .getCartData();
                                             },
-                                            child: Text('CHECKOUT'),
+                                            child: const Text('CHECKOUT'),
                                           ),
                                         ],
                                       ),
@@ -258,7 +260,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               );
                             }
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
@@ -283,7 +285,7 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          fallback: (context) => Center(
+          fallback: (context) => const Center(
             child: CircularProgressIndicator(),
           ),
         );

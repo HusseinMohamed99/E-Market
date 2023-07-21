@@ -6,8 +6,8 @@ import 'package:mego_market/Screens/FQA/fqa_screen.dart';
 import 'package:mego_market/Screens/edit/edit.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
-import 'package:mego_market/shared/componnetns/constants.dart';
+import 'package:mego_market/shared/components/components.dart';
+import 'package:mego_market/shared/components/constants.dart';
 import 'package:mego_market/shared/mode_cubit/cubit.dart';
 import 'package:mego_market/shared/styles/icon_broken.dart';
 

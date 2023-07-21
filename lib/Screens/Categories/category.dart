@@ -4,7 +4,7 @@ import 'package:mego_market/Screens/category_details/category_details.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
 import 'package:mego_market/model/category/category_model.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);

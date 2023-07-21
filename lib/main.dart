@@ -9,7 +9,7 @@ import 'package:mego_market/layout/home_screen.dart';
 import 'package:mego_market/network/cache_helper.dart';
 import 'package:mego_market/network/dio_helper.dart';
 import 'package:mego_market/shared/bloc_observer.dart';
-import 'package:mego_market/shared/componnetns/constants.dart';
+import 'package:mego_market/shared/components/constants.dart';
 import 'package:mego_market/shared/mode_cubit/cubit.dart';
 import 'package:mego_market/shared/mode_cubit/state.dart';
 import 'package:mego_market/shared/styles/themes.dart';
@@ -32,7 +32,7 @@ void main() async {
 
   if (onBoarding != null) {
     if (token != null) {
-      widget = HomeScreen();
+      widget = const HomeScreen();
     } else {
       widget = LoginScreen();
     }

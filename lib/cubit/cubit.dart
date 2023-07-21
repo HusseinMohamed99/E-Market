@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,14 +15,14 @@ import 'package:mego_market/model/faq/faq_model.dart';
 import 'package:mego_market/model/favorite/favorite_model.dart';
 import 'package:mego_market/model/home/home_model.dart';
 import 'package:mego_market/model/login/login_model.dart';
-import 'package:mego_market/network/end_points.dart';
 import 'package:mego_market/network/dio_helper.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
-import 'package:mego_market/shared/componnetns/constants.dart';
-
+import 'package:mego_market/network/end_points.dart';
+import 'package:mego_market/shared/components/components.dart';
+import 'package:mego_market/shared/components/constants.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainInitialStates());
+
   static MainCubit get(context) => BlocProvider.of(context);
 
   Map<dynamic, dynamic> favorites = {};
@@ -148,8 +147,7 @@ class MainCubit extends Cubit<MainStates> {
       'category_id': '$categoryID',
     }).then((value) {
       categoriesDetailModel = CategoryDetailModel.fromJson(value.data);
-      for (var element in categoriesDetailModel!.data!.productData!)
-      {
+      for (var element in categoriesDetailModel!.data!.productData!) {
         if (kDebugMode) {
           print(element.id);
         }
@@ -291,7 +289,7 @@ class MainCubit extends Cubit<MainStates> {
 
   ProductResponse? productResponse;
   Future getProductData(productId) async {
-    productResponse ;
+    productResponse;
     emit(ProductLoadingStates());
     return await DioHelper.getData(url: 'products/$productId', token: token)
         .then((value) {

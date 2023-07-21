@@ -1,7 +1,7 @@
-// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, missing_required_param, prefer_const_constructors, avoid_print
-
 import 'dart:io';
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,22 +10,24 @@ import 'package:mego_market/Screens/register/cubit/cubit.dart';
 import 'package:mego_market/Screens/register/cubit/state.dart';
 import 'package:mego_market/layout/home_screen.dart';
 import 'package:mego_market/network/cache_helper.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
-import 'package:mego_market/shared/componnetns/constants.dart';
+import 'package:mego_market/shared/components/components.dart';
+import 'package:mego_market/shared/components/constants.dart';
 
 class RegisterScreen extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
-  var emailController = TextEditingController();
+  final emailController = TextEditingController();
 
-  var passwordController = TextEditingController();
+  final passwordController = TextEditingController();
 
-  var nameController = TextEditingController();
+  final nameController = TextEditingController();
 
-  var phoneController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  File? profileImage;
-  var pickerController = ImagePicker();
+  final File? profileImage;
+  final pickerController = ImagePicker();
+
+  RegisterScreen({super.key, this.profileImage});
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +41,34 @@ class RegisterScreen extends StatelessWidget {
                 text: state.loginModel.message!,
                 state: ToastStates.success,
               );
-              print(state.loginModel.message);
-              print(state.loginModel.data!.token);
+              if (kDebugMode) {
+                print(state.loginModel.message);
+              }
+              if (kDebugMode) {
+                print(state.loginModel.data!.token);
+              }
 
               CacheHelper.saveData(
                       key: "token", value: state.loginModel.data!.token)
                   .then((value) {
                 token = state.loginModel.data!.token!;
-                navigateAndFinish(context, HomeScreen());
+                navigateAndFinish(context, const HomeScreen());
               });
             } else {
               showToast(
                 text: state.loginModel.message!,
                 state: ToastStates.error,
               );
-              print(state.loginModel.message);
+              if (kDebugMode) {
+                print(state.loginModel.message);
+              }
             }
           }
         },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Register'),
+              title: const Text('Register'),
             ),
             body: Center(
               child: SingleChildScrollView(
@@ -82,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
                         label: 'Name',
                         hint: 'Enter your name',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       defaultTextFormField(
@@ -98,7 +106,7 @@ class RegisterScreen extends StatelessWidget {
                         label: 'Email',
                         hint: 'Enter your email',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       defaultTextFormField(
@@ -114,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                         label: 'Phone',
                         hint: 'Enter your phone',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       defaultTextFormField(
@@ -135,7 +143,7 @@ class RegisterScreen extends StatelessWidget {
                         label: 'Password',
                         hint: 'Enter your password',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       ConditionalBuilder(
@@ -157,9 +165,9 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         fallback: (context) =>
-                            Center(child: CircularProgressIndicator()),
+                            const Center(child: CircularProgressIndicator()),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
@@ -169,7 +177,7 @@ class RegisterScreen extends StatelessWidget {
                               height: 60.0,
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.1),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
                                   bottomLeft: Radius.circular(20.0),
@@ -185,7 +193,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20.0,
                           ),
                           Expanded(
@@ -193,7 +201,7 @@ class RegisterScreen extends StatelessWidget {
                               height: 60.0,
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.1),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
                                   bottomLeft: Radius.circular(20.0),
@@ -209,7 +217,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20.0,
                           ),
                           Expanded(
@@ -217,8 +225,8 @@ class RegisterScreen extends StatelessWidget {
                               height: 60.0,
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
                               ),
                               child: InkWell(
                                 child: SvgPicture.asset(

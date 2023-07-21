@@ -1,15 +1,16 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mego_market/Screens/product_detalis/product_details.dart';
+import 'package:mego_market/Screens/product_details/product_details.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
 import 'package:mego_market/model/category/category_details_model.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   final String categoryName;
-   const CategoryProductsScreen(this.categoryName, {Key? key}) : super(key: key);
+
+  const CategoryProductsScreen(this.categoryName, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(

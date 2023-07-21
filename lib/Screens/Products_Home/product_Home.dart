@@ -5,12 +5,12 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/category_details/category_details.dart';
-import 'package:mego_market/Screens/product_detalis/product_details.dart';
+import 'package:mego_market/Screens/product_details/product_details.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
 import 'package:mego_market/model/category/category_model.dart';
 import 'package:mego_market/model/home/home_model.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 
 class ProductsScreen extends StatelessWidget {
   @override

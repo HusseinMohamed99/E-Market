@@ -1,16 +1,16 @@
-// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, missing_required_param, sized_box_for_whitespace, prefer_const_constructors, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mego_market/Screens/search/cubit/cubit.dart';
 import 'package:mego_market/Screens/search/cubit/state.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/model/search/search_model.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 import 'package:mego_market/shared/styles/colors.dart';
 
 class SearchScreen extends StatelessWidget {
-  var formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+
+  SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SearchScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(),
             body: Form(
-              key: formkey,
+              key: formKey,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -43,19 +43,20 @@ class SearchScreen extends StatelessWidget {
                       label: 'Search',
                       prefix: Icons.search,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
-                    if (state is SearchLoadingStates) LinearProgressIndicator(),
-                    SizedBox(
+                    if (state is SearchLoadingStates)
+                      const LinearProgressIndicator(),
+                    const SizedBox(
                       height: 20.0,
                     ),
                     if (state is SearchSuccessStates)
                       Expanded(
                         child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => BuildListProduct(
+                          itemBuilder: (context, index) => buildListProduct(
                               SearchCubit.get(context)
                                   .searchModel!
                                   .data!
@@ -76,9 +77,9 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-  Widget BuildListProduct(SearchProductModel model, context) => Padding(
+  Widget buildListProduct(SearchProductModel model, context) => Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Container(
+        child: SizedBox(
           height: 120.0,
           child: Row(
             children: [
@@ -94,7 +95,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20.0,
               ),
               Expanded(
@@ -105,21 +106,21 @@ class SearchScreen extends StatelessWidget {
                       model.name!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(height: 1.5),
+                      style: const TextStyle(height: 1.5),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         Text(
                           '${model.price.round()}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: dColor,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10.0,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         CircleAvatar(
                           backgroundColor:
                               MainCubit.get(context).favorites[model.id]
@@ -129,7 +130,7 @@ class SearchScreen extends StatelessWidget {
                             onPressed: () {
                               MainCubit.get(context).changeFavorites(model.id!);
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.star_border,
                               color: Colors.white,
                             ),

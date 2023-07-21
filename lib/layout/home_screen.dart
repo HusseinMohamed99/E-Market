@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,28 +5,28 @@ import 'package:mego_market/Screens/cart/cart.dart';
 import 'package:mego_market/Screens/search/search.dart';
 import 'package:mego_market/cubit/cubit.dart';
 import 'package:mego_market/cubit/state.dart';
-import 'package:mego_market/model/home/home_model.dart';
-import 'package:mego_market/shared/componnetns/components.dart';
+import 'package:mego_market/shared/components/components.dart';
 import 'package:mego_market/shared/mode_cubit/cubit.dart';
 import 'package:mego_market/shared/styles/icon_broken.dart';
 
-
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        ProductModel model;
+        // ProductModel model;
         var cubit = MainCubit.get(context);
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              leading: Icon(Icons.add_shopping_cart_sharp),
-              title: Text("E_Commerce"),
+              leading: const Icon(Icons.add_shopping_cart_sharp),
+              title: const Text("E_Commerce"),
               actions: [
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     IconBroken.Search,
                     color: Colors.deepOrangeAccent,
                   ),
@@ -40,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     ModeCubit.get(context).changeAppMode();
                   },
-                  icon: Icon(Icons.dark_mode_outlined),
+                  icon: const Icon(Icons.dark_mode_outlined),
                 )
               ],
             ),
@@ -51,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CartScreen()));
               },
-              child: Icon(
+              child: const Icon(
                 Icons.add_shopping_cart,
               ),
             ),
@@ -64,7 +62,7 @@ class HomeScreen extends StatelessWidget {
               },
               activeIndex: cubit.currentIndex,
 
-              icons: [
+              icons: const [
                 IconBroken.Home,
                 IconBroken.Category,
                 IconBroken.Heart,
