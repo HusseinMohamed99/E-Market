@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:label="mego_market"
+        android:label="Super Marko"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

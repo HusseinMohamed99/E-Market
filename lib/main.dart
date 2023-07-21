@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mego_market/Screens/login/login_screen.dart';
 import 'package:mego_market/Screens/on_boarding/on_boarding_screen.dart';
 import 'package:mego_market/Screens/splash/splash_screen.dart';
@@ -12,9 +14,12 @@ import 'package:mego_market/shared/componnetns/constants.dart';
 import 'package:mego_market/shared/mode_cubit/cubit.dart';
 import 'package:mego_market/shared/mode_cubit/state.dart';
 import 'package:mego_market/shared/styles/themes.dart';
+import 'package:wakelock/wakelock.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Wakelock.enable();
+  ScreenUtil.ensureScreenSize();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
@@ -69,19 +74,30 @@ class Myapp extends StatelessWidget {
         ),
       ],
       child: BlocConsumer<ModeCubit, ModeStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return MaterialApp(
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode: ModeCubit.get(context).isDark
-                ? ThemeMode.dark
-                : ThemeMode.light,
-            debugShowCheckedModeBanner: false,
-            home: const SplashScreen(),
-          );
-        },
-      ),
+          listener: (context, state) {},
+          builder: (context, state) {
+            SystemChrome.setPreferredOrientations([
+              DeviceOrientation.portraitUp,
+              DeviceOrientation.portraitDown,
+            ]);
+            return ScreenUtilInit(
+              designSize: const Size(360, 690),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              builder: (context, child) {
+                return MaterialApp(
+                  title: 'Super Marko',
+                  theme: lightTheme,
+                  darkTheme: darkTheme,
+                  themeMode: ModeCubit.get(context).isDark
+                      ? ThemeMode.dark
+                      : ThemeMode.light,
+                  debugShowCheckedModeBanner: false,
+                  home: const SplashScreen(),
+                );
+              },
+            );
+          }),
     );
   }
 }

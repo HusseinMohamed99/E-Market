@@ -34,6 +34,9 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   google_fonts: ^5.1.0
   awesome_dialog: ^3.1.0
+  shimmer: ^3.0.0
+  flutter_screenutil: ^5.8.4
+  wakelock: ^0.6.2
 
 
 dev_dependencies:
