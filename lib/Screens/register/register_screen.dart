@@ -12,6 +12,9 @@ import 'package:super_marko/layout/home_screen.dart';
 import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/shared/components/components.dart';
 import 'package:super_marko/shared/components/constants.dart';
+import 'package:super_marko/shared/components/navigator.dart';
+import 'package:super_marko/shared/components/show_toast.dart';
+import 'package:super_marko/shared/components/text_form_field.dart';
 
 class RegisterScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -77,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                   child: Form(
                     key: formKey,
                     child: Column(children: [
-                      defaultTextFormField(
+                      DefaultTextFormField(
                         controller: nameController,
                         keyboardType: TextInputType.name,
                         prefix: Icons.person,
@@ -93,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      defaultTextFormField(
+                      DefaultTextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         prefix: Icons.email,
@@ -109,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      defaultTextFormField(
+                      DefaultTextFormField(
                         controller: phoneController,
                         keyboardType: TextInputType.phone,
                         prefix: Icons.phone,
@@ -125,7 +128,7 @@ class RegisterScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      defaultTextFormField(
+                      DefaultTextFormField(
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         prefix: Icons.key,

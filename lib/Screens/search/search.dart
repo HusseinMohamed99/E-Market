@@ -4,7 +4,8 @@ import 'package:super_marko/Screens/search/cubit/cubit.dart';
 import 'package:super_marko/Screens/search/cubit/state.dart';
 import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/model/search/search_model.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/my_divider.dart';
+import 'package:super_marko/shared/components/text_form_field.dart';
 
 class SearchScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -26,7 +27,7 @@ class SearchScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    defaultTextFormField(
+                    DefaultTextFormField(
                       focusNode: FocusNode(),
                       controller: SearchCubit.get(context).searchController,
                       keyboardType: TextInputType.text,
@@ -61,7 +62,8 @@ class SearchScreen extends StatelessWidget {
                                   .data!
                                   .products[index],
                               context),
-                          separatorBuilder: (context, index) => myDivider(),
+                          separatorBuilder: (context, index) =>
+                              const MyDivider(),
                           itemCount:
                               SearchCubit.get(context).searchModel!.data!.total,
                         ),

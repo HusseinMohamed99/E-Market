@@ -8,7 +8,8 @@ import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/cubit/state.dart';
 import 'package:super_marko/model/category/category_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/navigator.dart';
+import 'package:super_marko/shared/components/show_toast.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});

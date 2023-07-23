@@ -6,8 +6,9 @@ import 'package:super_marko/Screens/FQA/fqa_screen.dart';
 import 'package:super_marko/Screens/edit/edit.dart';
 import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/cubit/state.dart';
-import 'package:super_marko/shared/components/components.dart';
 import 'package:super_marko/shared/components/constants.dart';
+import 'package:super_marko/shared/components/logout.dart';
+import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/mode_cubit/cubit.dart';
 import 'package:super_marko/shared/styles/icon_broken.dart';
 

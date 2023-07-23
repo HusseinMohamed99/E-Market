@@ -5,7 +5,7 @@ import 'package:super_marko/Screens/cart/cart.dart';
 import 'package:super_marko/Screens/search/search.dart';
 import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/cubit/state.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/mode_cubit/cubit.dart';
 import 'package:super_marko/shared/styles/icon_broken.dart';
 

@@ -5,7 +5,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:super_marko/Screens/cart/cart.dart';
 import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/cubit/state.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/my_divider.dart';
+import 'package:super_marko/shared/components/navigator.dart';
+import 'package:super_marko/shared/components/show_toast.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final PageController productImages = PageController();
@@ -124,7 +126,7 @@ class ProductDetailsScreen extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          myDivider(),
+                          const MyDivider(),
                           const SizedBox(
                             height: 20,
                           ),
@@ -144,7 +146,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                myDivider(),
+                                const MyDivider(),
                                 const SizedBox(
                                   height: 10,
                                 ),

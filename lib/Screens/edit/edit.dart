@@ -5,6 +5,7 @@ import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/cubit/state.dart';
 import 'package:super_marko/model/login/login_model.dart';
 import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/text_form_field.dart';
 
 class EditScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -41,7 +42,7 @@ class EditScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    defaultTextFormField(
+                    DefaultTextFormField(
                       controller: nameController,
                       keyboardType: TextInputType.name,
                       validate: (String? value) {
@@ -56,7 +57,7 @@ class EditScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    defaultTextFormField(
+                    DefaultTextFormField(
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       validate: (String? value) {
@@ -71,7 +72,7 @@ class EditScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    defaultTextFormField(
+                    DefaultTextFormField(
                       controller: phoneController,
                       keyboardType: TextInputType.phone,
                       validate: (String? value) {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/cubit/state.dart';
 import 'package:super_marko/model/faq/faq_model.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/my_divider.dart';
 
 class FqaScreen extends StatelessWidget {
   const FqaScreen({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class FqaScreen extends StatelessWidget {
                         itemBuilder: (context, index) => buildFQA(
                             MainCubit.get(context).faqModel!.data!.data![index],
                             context),
-                        separatorBuilder: (context, index) => myDivider(),
+                        separatorBuilder: (context, index) => const MyDivider(),
                         itemCount: cubit.faqModel!.data!.data!.length,
                       ),
                     ],
