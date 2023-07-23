@@ -42,46 +42,30 @@ final getThemeData = {
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 16.0,
         fontWeight: FontWeight.w500,
       ),
       titleLarge: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
       ),
       displayLarge: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 30.0,
-        fontWeight: FontWeight.bold,
       ),
       displayMedium: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 25.0,
-        fontWeight: FontWeight.bold,
       ),
       displaySmall: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
       ),
       headlineMedium: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
       ),
       headlineSmall: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 16.0,
-        fontWeight: FontWeight.bold,
       ),
       titleMedium: GoogleFonts.poppins(
-          fontSize: 16.0,
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-          height: 1.0),
+        color: Colors.white,
+      ),
       bodyLarge: GoogleFonts.poppins(
-        fontSize: 18.0,
         color: Colors.white,
       ),
     ),
@@ -118,46 +102,30 @@ final getThemeData = {
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 16.0,
         fontWeight: FontWeight.w500,
       ),
       titleLarge: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
       ),
       displayLarge: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 30.0,
-        fontWeight: FontWeight.bold,
       ),
       displayMedium: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 25.0,
-        fontWeight: FontWeight.bold,
       ),
       displaySmall: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
       ),
       headlineMedium: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
       ),
       headlineSmall: GoogleFonts.poppins(
         color: Colors.white,
-        fontSize: 16.0,
-        fontWeight: FontWeight.bold,
       ),
       titleMedium: GoogleFonts.poppins(
-          fontSize: 16.0,
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-          height: 1.0),
+        color: Colors.white,
+      ),
       bodyLarge: GoogleFonts.poppins(
-        fontSize: 18.0,
         color: Colors.white,
       ),
     ),
