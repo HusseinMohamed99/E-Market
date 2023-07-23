@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:super_marko/shared/enum/enum.dart';
 import 'package:super_marko/shared/styles/colors.dart';
 
 final getThemeData = {
   AppTheme.lightTheme: ThemeData(
-    primarySwatch: Colors.deepOrange,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       titleSpacing: 20.0,
@@ -17,7 +17,7 @@ final getThemeData = {
       ),
       backgroundColor: Colors.white,
       elevation: 0.0,
-      titleTextStyle: GoogleFonts.poppins(
+      titleTextStyle: GoogleFonts.roboto(
         color: Colors.black,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
@@ -40,32 +40,43 @@ final getThemeData = {
       ),
     ),
     textTheme: TextTheme(
-      bodyMedium: GoogleFonts.poppins(
+      titleLarge: GoogleFonts.roboto(
+        color: Colors.white,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      labelLarge: GoogleFonts.roboto(
+        color: Colors.black,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: GoogleFonts.roboto(
         color: Colors.white,
         fontWeight: FontWeight.w500,
       ),
-      titleLarge: GoogleFonts.poppins(
+      displayLarge: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      displayLarge: GoogleFonts.poppins(
+      displayMedium: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      displayMedium: GoogleFonts.poppins(
+      displaySmall: GoogleFonts.roboto(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 40.sp,
+      ),
+      headlineMedium: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      displaySmall: GoogleFonts.poppins(
+      headlineSmall: GoogleFonts.roboto(
+        color: Colors.white,
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      titleMedium: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      headlineMedium: GoogleFonts.poppins(
-        color: Colors.white,
-      ),
-      headlineSmall: GoogleFonts.poppins(
-        color: Colors.white,
-      ),
-      titleMedium: GoogleFonts.poppins(
-        color: Colors.white,
-      ),
-      bodyLarge: GoogleFonts.poppins(
+      bodyLarge: GoogleFonts.roboto(
         color: Colors.white,
       ),
     ),
@@ -100,32 +111,34 @@ final getThemeData = {
       elevation: 25.0,
     ),
     textTheme: TextTheme(
-      bodyMedium: GoogleFonts.poppins(
+      bodyMedium: GoogleFonts.roboto(
         color: Colors.white,
         fontWeight: FontWeight.w500,
       ),
-      titleLarge: GoogleFonts.poppins(
+      titleLarge: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      displayLarge: GoogleFonts.poppins(
+      displayLarge: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      displayMedium: GoogleFonts.poppins(
+      displayMedium: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      displaySmall: GoogleFonts.poppins(
+      displaySmall: GoogleFonts.roboto(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 40.sp,
+      ),
+      headlineMedium: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      headlineMedium: GoogleFonts.poppins(
+      headlineSmall: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      headlineSmall: GoogleFonts.poppins(
+      titleMedium: GoogleFonts.roboto(
         color: Colors.white,
       ),
-      titleMedium: GoogleFonts.poppins(
-        color: Colors.white,
-      ),
-      bodyLarge: GoogleFonts.poppins(
+      bodyLarge: GoogleFonts.roboto(
         color: Colors.white,
       ),
     ),
@@ -133,12 +146,12 @@ final getThemeData = {
       color: Colors.white,
     ),
     inputDecorationTheme: InputDecorationTheme(
-      labelStyle: GoogleFonts.poppins(
+      labelStyle: GoogleFonts.roboto(
         color: Colors.white,
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
       ),
-      hintStyle: GoogleFonts.poppins(
+      hintStyle: GoogleFonts.roboto(
         color: Colors.white,
         fontSize: 16.0,
         fontWeight: FontWeight.w600,

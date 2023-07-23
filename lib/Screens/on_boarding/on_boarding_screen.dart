@@ -82,6 +82,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           defaultTextButton(
             function: submit,
             text: 'Skip',
+            context: context,
           ),
         ],
       ),

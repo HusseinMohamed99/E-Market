@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 class DefaultTextFormField extends StatelessWidget {
   const DefaultTextFormField({
@@ -40,7 +43,6 @@ class DefaultTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: FocusNode(),
-      style: const TextStyle(),
       maxLines: 1,
       minLines: 1,
       controller: controller,
@@ -51,7 +53,6 @@ class DefaultTextFormField extends StatelessWidget {
       onChanged: onChanged,
       obscureText: isPassword,
       keyboardType: keyboardType,
-      autofocus: false,
       decoration: InputDecoration(
         prefixIcon: Icon(
           prefix,
@@ -68,54 +69,34 @@ class DefaultTextFormField extends StatelessWidget {
                 ),
               )
             : null,
-        filled: true,
-        isCollapsed: false,
-        fillColor: Colors.deepOrange.withOpacity(0.2),
-        hoverColor: Colors.red.withOpacity(0.2),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20.0),
-          ),
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.green,
+            color: AppMainColors.blueColor,
           ),
         ),
-        focusedErrorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20.0),
+        labelText: label,
+        labelStyle: GoogleFonts.roboto(
+          color: AppMainColors.greyColor,
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w400,
+        ),
+        hintText: hint,
+        disabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppMainColors.greyColor,
           ),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppMainColors.greyColor,
+          ),
+        ),
+        errorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.red,
           ),
         ),
-        labelText: label,
-        labelStyle: const TextStyle(
-          fontStyle: FontStyle.italic,
-          color: Colors.deepOrangeAccent,
-        ),
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.white),
-        focusColor: Colors.white,
-        disabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20.0),
-          ),
-          borderSide: BorderSide(
-            color: Colors.green,
-          ),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20.0),
-          ),
-          borderSide: BorderSide(
-            color: Colors.black,
-          ),
-        ),
-        errorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20.0),
-          ),
+        focusedErrorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.red,
           ),

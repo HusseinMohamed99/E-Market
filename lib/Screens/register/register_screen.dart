@@ -165,6 +165,7 @@ class RegisterScreen extends StatelessWidget {
                             },
                             text: 'Register',
                             radius: 20,
+                            context: context,
                           ),
                         ),
                         fallback: (context) =>

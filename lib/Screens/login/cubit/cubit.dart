@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_marko/Screens/login/cubit/state.dart';
 import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/network/dio_helper.dart';
 import 'package:super_marko/network/end_points.dart';
 
@@ -31,12 +33,27 @@ class LoginCubit extends Cubit<LoginState> {
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
-  // ignore: non_constant_identifier_names
-  void ChangePassword() {
+  void changePassword() {
     isPassword = !isPassword;
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(ChangePasswordState());
+  }
+
+  bool isCheck = false;
+
+  void boxCheck(bool newCheck) async {
+    emit(ChangeValueLoadingState());
+    if (isCheck == newCheck) return;
+    isCheck = newCheck;
+    CacheHelper.saveData(key: 'check', value: isCheck).then((value) {
+      emit(ChangeValueSuccessState());
+      if (kDebugMode) {
+        print('isCheck === $isCheck');
+      }
+    }).catchError((error) {
+      emit(ChangeValueErrorState());
+    });
   }
 }

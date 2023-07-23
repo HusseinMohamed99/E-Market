@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 Widget defaultMaterialButton({
   required Function function,
   required String text,
-  double width = 200,
-  double height = 40.0,
-  double radius = 3.0,
+  double? width,
+  double? height,
+  double? radius,
   bool isUpperCase = true,
   Function? onTap,
+  required BuildContext context,
 }) {
   return Container(
-    width: width,
-    height: height,
+    width: width ?? double.infinity,
+    height: height ?? 48.h,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(
-        radius,
-      ),
-      color: Colors.deepOrangeAccent,
-      //  color: background,
+        radius ?? 3,
+      ).r,
+      color: AppColorsLight.mainColor,
     ),
     child: MaterialButton(
       onPressed: () {
@@ -25,10 +27,7 @@ Widget defaultMaterialButton({
       },
       child: Text(
         isUpperCase ? text.toUpperCase() : text,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 20.0,
-        ),
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
     ),
   );
@@ -37,11 +36,21 @@ Widget defaultMaterialButton({
 Widget defaultTextButton({
   required Function function,
   required String text,
+  Color? color,
+  double? fontSize,
+  FontWeight? fontWeight,
+  required BuildContext context,
 }) {
   return TextButton(
     onPressed: () {
       function();
     },
-    child: Text(text),
+    child: Text(
+      text,
+      style: Theme.of(context)
+          .textTheme
+          .titleLarge!
+          .copyWith(color: color, fontSize: fontSize, fontWeight: fontWeight),
+    ),
   );
 }

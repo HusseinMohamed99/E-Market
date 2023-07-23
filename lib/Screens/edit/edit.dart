@@ -99,6 +99,7 @@ class EditScreen extends StatelessWidget {
                         return null;
                       },
                       text: 'Update',
+                      context: context,
                     )
                   ]),
                 ),
