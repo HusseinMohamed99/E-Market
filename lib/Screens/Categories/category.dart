@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_marko/Screens/category_details/category_details.dart';
-import 'package:super_marko/cubit/cubit.dart';
-import 'package:super_marko/cubit/state.dart';
 import 'package:super_marko/model/category/category_model.dart';
 import 'package:super_marko/shared/components/my_divider.dart';
 import 'package:super_marko/shared/components/navigator.dart';
+import 'package:super_marko/shared/cubit/cubit.dart';
+import 'package:super_marko/shared/cubit/state.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);

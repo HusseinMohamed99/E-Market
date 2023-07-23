@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:super_marko/Screens/login/login_screen.dart';
 import 'package:super_marko/network/cache_helper.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 
 class BoardingModel {

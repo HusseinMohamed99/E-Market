@@ -5,7 +5,6 @@ import 'package:super_marko/Screens/Categories/category.dart';
 import 'package:super_marko/Screens/Favorites/favorite.dart';
 import 'package:super_marko/Screens/Products_home/product_home.dart';
 import 'package:super_marko/Screens/setting/setting.dart';
-import 'package:super_marko/cubit/state.dart';
 import 'package:super_marko/model/cart/add_cart_model.dart';
 import 'package:super_marko/model/cart/get_cart_model.dart';
 import 'package:super_marko/model/cart/update_cart_model.dart';
@@ -15,10 +14,12 @@ import 'package:super_marko/model/faq/faq_model.dart';
 import 'package:super_marko/model/favorite/favorite_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/network/dio_helper.dart';
 import 'package:super_marko/network/end_points.dart';
 import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
+import 'package:super_marko/shared/cubit/state.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainInitialStates());
@@ -40,6 +41,27 @@ class MainCubit extends Cubit<MainStates> {
   void changeNavBar(int index) {
     currentIndex = index;
     emit(ChangeNavBarItem());
+  }
+
+  bool isDark = false;
+  Color backgroundColor = Colors.white;
+
+  void changeAppMode({bool? fromShared}) {
+    if (fromShared == null) {
+      isDark = !isDark;
+    } else {
+      isDark = fromShared;
+    }
+    CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value) {
+      if (isDark) {
+        backgroundColor = const Color(0xff212121).withOpacity(0.8);
+        emit(AppChangeModeState());
+      } else {
+        backgroundColor = Colors.white;
+        emit(AppChangeModeState());
+      }
+      emit(AppChangeModeState());
+    });
   }
 
   LoginModel? userData;

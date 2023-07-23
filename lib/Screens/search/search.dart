@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_marko/Screens/search/cubit/cubit.dart';
 import 'package:super_marko/Screens/search/cubit/state.dart';
-import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/model/search/search_model.dart';
 import 'package:super_marko/shared/components/my_divider.dart';
 import 'package:super_marko/shared/components/text_form_field.dart';
+import 'package:super_marko/shared/cubit/cubit.dart';
 
 class SearchScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();

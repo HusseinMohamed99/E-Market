@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:super_marko/Screens/cart/cart.dart';
-import 'package:super_marko/cubit/cubit.dart';
-import 'package:super_marko/cubit/state.dart';
 import 'package:super_marko/shared/components/my_divider.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
+import 'package:super_marko/shared/cubit/cubit.dart';
+import 'package:super_marko/shared/cubit/state.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final PageController productImages = PageController();

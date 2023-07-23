@@ -7,6 +7,8 @@ abstract class MainStates {}
 
 class MainInitialStates extends MainStates {}
 
+class AppChangeModeState extends MainStates {}
+
 class UserLoginLoadingStates extends MainStates {}
 
 class UserLoginSuccessStates extends MainStates {

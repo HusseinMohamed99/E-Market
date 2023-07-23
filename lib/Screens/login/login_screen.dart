@@ -8,7 +8,7 @@ import 'package:super_marko/Screens/login/cubit/state.dart';
 import 'package:super_marko/Screens/register/register_screen.dart';
 import 'package:super_marko/layout/home_screen.dart';
 import 'package:super_marko/network/cache_helper.dart';
-import 'package:super_marko/shared/components/components.dart';
+import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
