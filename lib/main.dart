@@ -10,6 +10,7 @@ import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/network/dio_helper.dart';
 import 'package:super_marko/shared/bloc_observer.dart';
 import 'package:super_marko/shared/components/constants.dart';
+import 'package:super_marko/shared/enum/enum.dart';
 import 'package:super_marko/shared/mode_cubit/cubit.dart';
 import 'package:super_marko/shared/mode_cubit/state.dart';
 import 'package:super_marko/shared/styles/themes.dart';
@@ -86,8 +87,8 @@ class Myapp extends StatelessWidget {
               builder: (context, child) {
                 return MaterialApp(
                   title: 'Super Marko',
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
+                  theme: getThemeData[AppTheme.lightTheme],
+                  darkTheme: getThemeData[AppTheme.darkTheme],
                   themeMode: ModeCubit.get(context).isDark
                       ? ThemeMode.dark
                       : ThemeMode.light,

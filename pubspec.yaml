@@ -36,6 +36,7 @@ dependencies:
   shimmer: ^3.0.0
   flutter_screenutil: ^5.8.4
   wakelock: ^0.6.2
+  cached_network_image: ^3.2.3
 
 
 dev_dependencies:

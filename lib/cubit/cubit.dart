@@ -31,7 +31,7 @@ class MainCubit extends Cubit<MainStates> {
   int currentIndex = 0;
 
   List<Widget> pages = [
-    ProductsScreen(),
+    const ProductsScreen(),
     const CategoriesScreen(),
     const FavoritesScreen(),
     const SettingScreen(),
@@ -164,10 +164,8 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-// changeCart
   ChangeCartModel? changeCartModel;
   void changeCart(int productId) {
-    // cart[productId] = !cart[productId];
     emit(ChangeCartStates());
     DioHelper.postData(
       url: carts,
@@ -177,7 +175,6 @@ class MainCubit extends Cubit<MainStates> {
       token: token,
     ).then((value) {
       changeCartModel = ChangeCartModel.fromJson(value.data);
-      // print('changeCartModel ' + changeCartModel.status.toString());
       if (changeCartModel!.status!) {
         getCartData();
         getHomeData();
@@ -196,7 +193,6 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-  // get cart data
   CartModel? cartModel;
 
   void getCartData() {
@@ -213,7 +209,6 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-// update cart
   UpdateCartModel? updateCartModel;
   void updateCartData(int id, int quantity) {
     emit(UpdateCartLoadingStates());
@@ -233,7 +228,6 @@ class MainCubit extends Cubit<MainStates> {
           state: ToastStates.success,
         );
       }
-      //  print('updateCartModel ' + updateCartModel.status.toString());
       emit(UpdateCartSuccessStates());
     }).catchError((error) {
       emit(UpdateCartErrorStates());
@@ -294,7 +288,6 @@ class MainCubit extends Cubit<MainStates> {
     return await DioHelper.getData(url: 'products/$productId', token: token)
         .then((value) {
       productResponse = ProductResponse.fromJson(value.data);
-      //print('Product Detail '+productsModel.status.toString());
       emit(ProductSuccessStates(productResponse!));
     }).catchError((error) {
       emit(ProductErrorStates());

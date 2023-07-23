@@ -7,8 +7,6 @@ abstract class MainStates {}
 
 class MainInitialStates extends MainStates {}
 
-////////////////////// User ///////////////////////////////
-
 class UserLoginLoadingStates extends MainStates {}
 
 class UserLoginSuccessStates extends MainStates {
@@ -37,15 +35,11 @@ class UserUpdateErrorStates extends MainStates {
   UserUpdateErrorStates(this.error);
 }
 
-////////////////////// Home ///////////////////////////////
-
 class HomeLoadingStates extends MainStates {}
 
 class HomeSuccessStates extends MainStates {}
 
 class HomeErrorStates extends MainStates {}
-
-////////////////////// Favorites ///////////////////////////////
 
 class FavoritesLoadingStates extends MainStates {}
 
@@ -63,8 +57,6 @@ class ChangeFavoritesSuccessStates extends MainStates {
 
 class ChangeFavoritesErrorStates extends MainStates {}
 
-////////////////////// Products_Details ///////////////////////////////
-
 class ProductLoadingStates extends MainStates {}
 
 class ProductSuccessStates extends MainStates {
@@ -75,8 +67,6 @@ class ProductSuccessStates extends MainStates {
 
 class ProductErrorStates extends MainStates {}
 
-////////////////////// Category  ///////////////////////////////
-
 class CategoriesSuccessStates extends MainStates {}
 
 class CategoriesErrorStates extends MainStates {}
@@ -86,8 +76,6 @@ class CategoryDetailsLoadingStates extends MainStates {}
 class CategoryDetailsSuccessStates extends MainStates {}
 
 class CategoryDetailsErrorStates extends MainStates {}
-
-////////////////////// Cart  ///////////////////////////////
 
 class CartLoadingStates extends MainStates {}
 
@@ -110,8 +98,6 @@ class UpdateCartLoadingStates extends MainStates {}
 class UpdateCartSuccessStates extends MainStates {}
 
 class UpdateCartErrorStates extends MainStates {}
-
-//////////////////////   ///////////////////////////////
 
 class ShowPasswordStates extends MainStates {}
 
