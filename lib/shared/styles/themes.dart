@@ -5,9 +5,9 @@ import 'package:super_marko/shared/styles/colors.dart';
 
 final getThemeData = {
   AppTheme.darkTheme: ThemeData(
-    cardColor: const Color(0xFF20123c),
-    scaffoldBackgroundColor: const Color(0xFF20123c),
-    primarySwatch: dColor,
+    cardColor: AppColorsDark.primaryDarkColor,
+    scaffoldBackgroundColor: AppColorsDark.primaryDarkColor,
+    primarySwatch: Colors.deepOrange,
     appBarTheme: const AppBarTheme(
       titleSpacing: 20.0,
       systemOverlayStyle: SystemUiOverlayStyle(
@@ -106,7 +106,7 @@ final getThemeData = {
     ),
   ),
   AppTheme.lightTheme: ThemeData(
-    primarySwatch: dColor,
+    primarySwatch: Colors.deepOrange,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
       titleSpacing: 20.0,
@@ -131,7 +131,7 @@ final getThemeData = {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: dColor,
+      selectedItemColor: Colors.deepOrange,
       unselectedItemColor: Colors.black,
       backgroundColor: Colors.white,
       elevation: 25.0,

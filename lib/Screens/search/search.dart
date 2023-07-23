@@ -5,7 +5,6 @@ import 'package:super_marko/Screens/search/cubit/state.dart';
 import 'package:super_marko/cubit/cubit.dart';
 import 'package:super_marko/model/search/search_model.dart';
 import 'package:super_marko/shared/components/components.dart';
-import 'package:super_marko/shared/styles/colors.dart';
 
 class SearchScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -114,7 +113,7 @@ class SearchScreen extends StatelessWidget {
                         Text(
                           '${model.price.round()}',
                           style: const TextStyle(
-                            color: dColor,
+                            color: Colors.deepOrange,
                           ),
                         ),
                         const SizedBox(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-const dColor = Colors.deepOrange;
-
 class AppColorsDark {
-  static const Color primaryDarkColor = Color(0xff333739);
+  static const Color primaryDarkColor = Color(0xFF20123c);
   static const Color textColor = Color(0xffffffff);
 }
 
