@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:super_marko/Screens/login/login_screen.dart';
 import 'package:super_marko/Screens/register/cubit/cubit.dart';
 import 'package:super_marko/Screens/register/cubit/state.dart';
 import 'package:super_marko/layout/home_screen.dart';
@@ -15,6 +15,7 @@ import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/components/text_form_field.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 class RegisterScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -70,187 +71,234 @@ class RegisterScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('Register'),
-            ),
-            body: Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Form(
-                    key: formKey,
-                    child: Column(children: [
-                      DefaultTextFormField(
-                        controller: nameController,
-                        keyboardType: TextInputType.name,
-                        prefix: Icons.person,
-                        validate: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter name';
-                          }
-                          return null;
-                        },
-                        label: 'Name',
-                        hint: 'Enter your name',
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      DefaultTextFormField(
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        prefix: Icons.email,
-                        validate: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter email';
-                          }
-                          return null;
-                        },
-                        label: 'Email',
-                        hint: 'Enter your email',
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      DefaultTextFormField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.phone,
-                        prefix: Icons.phone,
-                        validate: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter phone';
-                          }
-                          return null;
-                        },
-                        label: 'Phone',
-                        hint: 'Enter your phone',
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      DefaultTextFormField(
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        prefix: Icons.key,
-                        suffix: RegisterCubit.get(context).suffix,
-                        isPassword: RegisterCubit.get(context).isPassword,
-                        suffixPressed: () {
-                          RegisterCubit.get(context).changePassword();
-                        },
-                        validate: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter password';
-                          }
-                          return null;
-                        },
-                        label: 'Password',
-                        hint: 'Enter your password',
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ConditionalBuilder(
-                        condition: state is! RegisterLoadingState,
-                        builder: (context) => Center(
-                          child: defaultMaterialButton(
-                            function: () {
-                              if (formKey.currentState!.validate()) {
-                                RegisterCubit.get(context).userRegister(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  name: nameController.text,
-                                  phone: phoneController.text,
-                                );
-                              }
-                            },
-                            text: 'Register',
-                            radius: 20,
-                            context: context,
+            backgroundColor: AppColorsLight.mainColor,
+            body: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 214.w,
+                          top: -47.h,
+                          child: Container(
+                            width: 280.w,
+                            height: 220.h,
+                            decoration: const ShapeDecoration(
+                              color: AppColorsLight.orangeColor,
+                              shape: OvalBorder(),
+                            ),
                           ),
                         ),
-                        fallback: (context) =>
-                            const Center(child: CircularProgressIndicator()),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 60.0,
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.1),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
-                                  bottomLeft: Radius.circular(20.0),
-                                  bottomRight: Radius.circular(20.0),
-                                ),
-                              ),
-                              child: InkWell(
-                                child: SvgPicture.asset(
-                                  'assets/icon/google.svg',
-                                  fit: BoxFit.none,
-                                ),
-                                onTap: () {},
-                              ),
+                        Positioned(
+                          left: 20.w,
+                          top: 120.h,
+                          child: Container(
+                            width: 200.w,
+                            decoration: const ShapeDecoration(
+                              shape: OvalBorder(),
+                            ),
+                            child: Text(
+                              'Create\nAccount',
+                              style: Theme.of(context).textTheme.displaySmall,
                             ),
                           ),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 60.0,
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.1),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
-                                  bottomLeft: Radius.circular(20.0),
-                                  bottomRight: Radius.circular(20.0),
-                                ),
-                              ),
-                              child: InkWell(
-                                child: SvgPicture.asset(
-                                  'assets/icon/facebook.svg',
-                                  fit: BoxFit.none,
-                                ),
-                                onTap: () {},
-                              ),
+                        ),
+                        Positioned(
+                          left: 20.w,
+                          top: 40.h,
+                          child: IconButton(
+                            onPressed: () {
+                              pop(context);
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 24.sp,
+                              color: AppColorsLight.secondaryColor,
                             ),
                           ),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 60.0,
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.1),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20.0)),
-                              ),
-                              child: InkWell(
-                                child: SvgPicture.asset(
-                                  'assets/icon/twitter.svg',
-                                  fit: BoxFit.none,
-                                ),
-                                onTap: () {},
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ]),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 2,
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
+                        child: Column(children: [
+                          DefaultTextFormField(
+                            controller: nameController,
+                            keyboardType: TextInputType.name,
+                            prefix: Icons.person,
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter name';
+                              }
+                              return null;
+                            },
+                            label: 'Name',
+                            hint: 'Enter your name',
+                          ),
+                          SizedBox(height: 15.h),
+                          DefaultTextFormField(
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            prefix: Icons.email,
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter email';
+                              }
+                              return null;
+                            },
+                            label: 'Email',
+                            hint: 'Enter your email',
+                          ),
+                          SizedBox(height: 15.h),
+                          DefaultTextFormField(
+                            controller: phoneController,
+                            keyboardType: TextInputType.phone,
+                            prefix: Icons.phone,
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter phone';
+                              }
+                              return null;
+                            },
+                            label: 'Phone',
+                            hint: 'Enter your phone',
+                          ),
+                          SizedBox(height: 15.h),
+                          DefaultTextFormField(
+                            controller: passwordController,
+                            keyboardType: TextInputType.visiblePassword,
+                            prefix: Icons.key,
+                            suffix: RegisterCubit.get(context).suffix,
+                            isPassword: RegisterCubit.get(context).isPassword,
+                            suffixPressed: () {
+                              RegisterCubit.get(context).changePassword();
+                            },
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter password';
+                              }
+                              return null;
+                            },
+                            label: 'Password',
+                            hint: 'Enter your password',
+                          ),
+                          SizedBox(height: 40.h),
+                          RegisterCubit.get(context).isCheck
+                              ? defaultMaterialButton(
+                                  color: AppColorsLight.orangeColor,
+                                  function: () {
+                                    if (formKey.currentState!.validate()) {
+                                      RegisterCubit.get(context).userRegister(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                        name: nameController.text,
+                                        phone: phoneController.text,
+                                      );
+                                    }
+                                  },
+                                  text: 'Sign UP',
+                                  radius: 20,
+                                  context: context,
+                                )
+                              : Container(
+                                  alignment: Alignment.center,
+                                  width: double.infinity,
+                                  height: 48.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15).r,
+                                    color: AppColorsLight.orangeColor
+                                        .withOpacity(0.5),
+                                  ),
+                                  child: Text(
+                                    'Sign UP'.toUpperCase(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineSmall,
+                                  ),
+                                ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  checkBox(context),
+                                  Text(
+                                    'By creating an account, you agree to our',
+                                    style:
+                                        Theme.of(context).textTheme.labelLarge,
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 45.0).r,
+                                child: Text(
+                                  'Term and Conditions',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(
+                                        height: 0.2,
+                                        color: const Color(0xFF5FD068),
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 15.h),
+                        ]),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 43.h,
+                    decoration: const BoxDecoration(color: Color(0xFFFF7A2F)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'have an account ?',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        defaultTextButton(
+                          function: () {
+                            navigateTo(context, LoginScreen());
+                          },
+                          text: 'Sign In'.toUpperCase(),
+                          color: AppColorsLight.mainColor,
+                          context: context,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           );
         },
       ),
+    );
+  }
+
+  Widget checkBox(BuildContext context) {
+    var cubit = RegisterCubit.get(context);
+    return Checkbox.adaptive(
+      side: const BorderSide(
+        color: AppColorsLight.primaryColor,
+      ),
+      activeColor: AppColorsLight.orangeColor,
+      value: cubit.isCheck,
+      onChanged: (e) {
+        cubit.boxCheck(e!);
+      },
     );
   }
 }

@@ -11,6 +11,7 @@ Widget defaultMaterialButton({
   bool isUpperCase = true,
   Function? onTap,
   required BuildContext context,
+  Color? color,
 }) {
   return Container(
     width: width ?? double.infinity,
@@ -19,7 +20,7 @@ Widget defaultMaterialButton({
       borderRadius: BorderRadius.circular(
         radius ?? 3,
       ).r,
-      color: AppColorsLight.mainColor,
+      color: color ?? AppColorsLight.mainColor,
     ),
     child: MaterialButton(
       onPressed: () {

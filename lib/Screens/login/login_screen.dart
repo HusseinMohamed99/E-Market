@@ -74,9 +74,9 @@ class LoginScreen extends StatelessWidget {
                           top: -113.h,
                           child: Container(
                             width: 510.w,
-                            height: 420.h,
+                            height: 380.h,
                             decoration: const ShapeDecoration(
-                              color: Color(0xFFFF7A2F),
+                              color: AppColorsLight.orangeColor,
                               shape: OvalBorder(),
                             ),
                           ),
@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                           top: -47.h,
                           child: Container(
                             width: 458.w,
-                            height: 350.h,
+                            height: 310.h,
                             decoration: const ShapeDecoration(
                               color: Color(0xFF07625D),
                               shape: OvalBorder(),
@@ -98,7 +98,6 @@ class LoginScreen extends StatelessWidget {
                             top: 150.h,
                             child: Container(
                               width: 200.w,
-                              height: 300.h,
                               decoration: const ShapeDecoration(
                                 shape: OvalBorder(),
                               ),
@@ -118,6 +117,7 @@ class LoginScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             DefaultTextFormField(
+                              color: AppMainColors.greyColor,
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
                               prefix: Icons.email,
@@ -133,6 +133,7 @@ class LoginScreen extends StatelessWidget {
                               height: 15.h,
                             ),
                             DefaultTextFormField(
+                              color: AppMainColors.greyColor,
                               controller: passwordController,
                               keyboardType: TextInputType.visiblePassword,
                               prefix: Icons.key,

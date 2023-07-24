@@ -10,7 +10,7 @@ class AppColorsLight {
   static const Color mainColor = Color(0xFF07635D);
   static const Color secondaryColor = Color(0xFFFFFFFF);
   static const Color thirdColor = Color(0xFFFFB917);
-  static const Color tealColor = Color(0xff009688);
+  static const Color orangeColor = Color(0xFFFF7A2F);
 }
 
 class AppMainColors {

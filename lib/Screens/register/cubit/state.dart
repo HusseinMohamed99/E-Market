@@ -19,3 +19,9 @@ class RegisterErrorState extends RegisterState {
 }
 
 class ChangePasswordRegisterState extends RegisterState {}
+
+class ChangeValueLoadingState extends RegisterState {}
+
+class ChangeValueSuccessState extends RegisterState {}
+
+class ChangeValueErrorState extends RegisterState {}

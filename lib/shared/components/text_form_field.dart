@@ -21,6 +21,7 @@ class DefaultTextFormField extends StatelessWidget {
     this.decoration,
     this.onFieldSubmitted,
     this.focusNode,
+    this.color,
   });
 
   final TextEditingController controller;
@@ -38,6 +39,7 @@ class DefaultTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final Function(String)? onFieldSubmitted;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,7 @@ class DefaultTextFormField extends StatelessWidget {
         ),
         labelText: label,
         labelStyle: GoogleFonts.roboto(
-          color: AppMainColors.greyColor,
+          color: color ?? AppColorsLight.secondaryColor,
           fontSize: 18.sp,
           fontWeight: FontWeight.w400,
         ),

@@ -14,3 +14,5 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
         ), (route) {
       return false;
     });
+
+void pop(context) => Navigator.pop(context);
