@@ -20,7 +20,7 @@ Widget defaultMaterialButton({
       borderRadius: BorderRadius.circular(
         radius ?? 3,
       ).r,
-      color: color ?? AppColorsLight.mainColor,
+      color: color ?? AppMainColors.mainColor,
     ),
     child: MaterialButton(
       onPressed: () {

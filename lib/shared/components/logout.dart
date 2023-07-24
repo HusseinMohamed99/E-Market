@@ -7,7 +7,7 @@ void logOut(context) {
     key: 'token',
   ).then((value) {
     if (value) {
-      navigateAndFinish(context, LoginScreen());
+      navigateAndFinish(context, const LoginScreen());
     }
   });
 }

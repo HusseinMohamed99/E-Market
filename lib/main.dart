@@ -34,7 +34,7 @@ void main() async {
     if (token != null) {
       widget = const HomeScreen();
     } else {
-      widget = LoginScreen();
+      widget = const LoginScreen();
     }
   } else {
     widget = const OnBoardingScreen();

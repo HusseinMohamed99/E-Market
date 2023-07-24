@@ -88,11 +88,11 @@ final getThemeData = {
     appBarTheme: const AppBarTheme(
       titleSpacing: 20.0,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF241056),
+        statusBarColor: AppColorsDark.primaryDarkColor,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
-      backgroundColor: Color(0xFF20123c),
+      backgroundColor: AppColorsDark.primaryDarkColor,
       elevation: 0.0,
       titleTextStyle: TextStyle(
         color: Colors.white,

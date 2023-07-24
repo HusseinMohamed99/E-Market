@@ -73,7 +73,7 @@ class RegisterScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: MainCubit.get(context).isDark
-                ? AppColorsLight.mainColor
+                ? AppMainColors.mainColor
                 : AppColorsDark.primaryDarkColor,
             body: Form(
               key: formKey,
@@ -90,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
                             width: 280.w,
                             height: 220.h,
                             decoration: const ShapeDecoration(
-                              color: AppColorsLight.orangeColor,
+                              color: AppMainColors.orangeColor,
                               shape: OvalBorder(),
                             ),
                           ),
@@ -195,7 +195,7 @@ class RegisterScreen extends StatelessWidget {
                           SizedBox(height: 40.h),
                           RegisterCubit.get(context).isCheck
                               ? defaultMaterialButton(
-                                  color: AppColorsLight.orangeColor,
+                                  color: AppMainColors.orangeColor,
                                   function: () {
                                     if (formKey.currentState!.validate()) {
                                       RegisterCubit.get(context).userRegister(
@@ -216,7 +216,7 @@ class RegisterScreen extends StatelessWidget {
                                   height: 48.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15).r,
-                                    color: AppColorsLight.orangeColor
+                                    color: AppMainColors.orangeColor
                                         .withOpacity(0.5),
                                   ),
                                   child: Text(
@@ -273,10 +273,10 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         defaultTextButton(
                           function: () {
-                            navigateTo(context, LoginScreen());
+                            navigateTo(context, const LoginScreen());
                           },
                           text: 'Sign In'.toUpperCase(),
-                          color: AppColorsLight.mainColor,
+                          color: AppMainColors.mainColor,
                           context: context,
                         ),
                       ],
@@ -297,7 +297,7 @@ class RegisterScreen extends StatelessWidget {
       side: const BorderSide(
         color: AppColorsLight.primaryColor,
       ),
-      activeColor: AppColorsLight.orangeColor,
+      activeColor: AppMainColors.orangeColor,
       value: cubit.isCheck,
       onChanged: (e) {
         cubit.boxCheck(e!);

@@ -16,16 +16,15 @@ import 'package:super_marko/shared/components/text_form_field.dart';
 import 'package:super_marko/shared/styles/colors.dart';
 
 class LoginScreen extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
-
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
+    final emailController = TextEditingController();
+
+    final passwordController = TextEditingController();
     return BlocProvider(
       create: (BuildContext context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -42,7 +41,6 @@ class LoginScreen extends StatelessWidget {
               if (kDebugMode) {
                 print(state.loginModel.data!.token);
               }
-
               CacheHelper.saveData(
                       key: "token", value: state.loginModel.data!.token)
                   .then((value) {
@@ -76,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                             width: 510.w,
                             height: 380.h,
                             decoration: const ShapeDecoration(
-                              color: AppColorsLight.orangeColor,
+                              color: AppMainColors.orangeColor,
                               shape: OvalBorder(),
                             ),
                           ),
@@ -88,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                             width: 458.w,
                             height: 310.h,
                             decoration: const ShapeDecoration(
-                              color: Color(0xFF07625D),
+                              color: AppMainColors.mainColor,
                               shape: OvalBorder(),
                             ),
                           ),
@@ -154,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                               function: () {},
                               text: "Forgot Password ?",
                               context: context,
-                              color: const Color(0xFF303030),
+                              color: AppMainColors.greyDarkColor,
                               fontWeight: FontWeight.w400,
                               fontSize: 14.sp,
                             ),
@@ -166,8 +164,9 @@ class LoginScreen extends StatelessWidget {
                                     function: () {
                                       if (formKey.currentState!.validate()) {
                                         LoginCubit.get(context).userLogin(
-                                            email: emailController.text,
-                                            password: passwordController.text);
+                                          email: emailController.text,
+                                          password: passwordController.text,
+                                        );
                                       }
                                     },
                                     text: 'Sign In',
@@ -180,7 +179,7 @@ class LoginScreen extends StatelessWidget {
                                     height: 48.h,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15).r,
-                                      color: AppColorsLight.mainColor
+                                      color: AppMainColors.mainColor
                                           .withOpacity(0.4),
                                     ),
                                     child: Text(
@@ -213,7 +212,7 @@ class LoginScreen extends StatelessWidget {
                                         .labelLarge!
                                         .copyWith(
                                           height: 0.2,
-                                          color: const Color(0xFF5FD068),
+                                          color: AppMainColors.greenColor,
                                           fontWeight: FontWeight.w700,
                                         ),
                                   ),
@@ -228,12 +227,13 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 43.h,
-                    decoration: const BoxDecoration(color: Color(0xFFFF7A2F)),
+                    decoration:
+                        const BoxDecoration(color: AppMainColors.orangeColor),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Don\'t have an account?',
+                          'Don\'t have an account ?',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         defaultTextButton(
@@ -241,7 +241,7 @@ class LoginScreen extends StatelessWidget {
                             navigateTo(context, RegisterScreen());
                           },
                           text: 'Sign Up'.toUpperCase(),
-                          color: AppColorsLight.mainColor,
+                          color: AppMainColors.mainColor,
                           context: context,
                         ),
                       ],

@@ -6,9 +6,8 @@ class LoginModel {
   LoginModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data =  UserData.fromJson(json['data']) ;
+    data = json['data'] != null ? UserData.fromJson(json['data']) : null;
   }
-
 }
 
 class UserData {
@@ -21,8 +20,6 @@ class UserData {
   int? credit;
   String? token;
 
-
-
   UserData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -33,5 +30,4 @@ class UserData {
     credit = json['credit'];
     token = json['token'];
   }
-
 }

@@ -8,7 +8,7 @@ Widget checkBox(BuildContext context) {
     side: const BorderSide(
       color: AppColorsLight.primaryColor,
     ),
-    activeColor: AppColorsLight.mainColor,
+    activeColor: AppMainColors.mainColor,
     value: cubit.isCheck,
     onChanged: (e) {
       cubit.boxCheck(e!);
