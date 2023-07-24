@@ -1,11 +1,13 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:super_marko/Screens/cart/cart.dart';
 import 'package:super_marko/Screens/search/search.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,9 +28,10 @@ class HomeScreen extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     IconBroken.Search,
-                    color: Colors.deepOrangeAccent,
+                    size: 24.sp,
+                    color: AppMainColors.orangeColor,
                   ),
                   onPressed: () {
                     navigateTo(context, SearchScreen());
@@ -38,45 +41,47 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     MainCubit.get(context).changeAppMode();
                   },
-                  icon: const Icon(Icons.dark_mode_outlined),
+                  icon: Icon(
+                    Icons.dark_mode_outlined,
+                    size: 24.sp,
+                  ),
                 )
               ],
             ),
             body: cubit.pages[cubit.currentIndex],
             floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.deepOrangeAccent,
+              backgroundColor: AppMainColors.orangeColor,
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CartScreen()));
               },
-              child: const Icon(
+              child: Icon(
                 Icons.add_shopping_cart,
+                size: 24.sp,
               ),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: AnimatedBottomNavigationBar(
-              elevation: 50.0,
+              elevation: 50,
               onTap: (index) {
                 cubit.changeNavBar(index);
               },
               activeIndex: cubit.currentIndex,
-
               icons: const [
                 IconBroken.Home,
                 IconBroken.Category,
                 IconBroken.Heart,
                 IconBroken.Setting,
               ],
-              activeColor: Colors.deepOrangeAccent,
-              splashColor: Colors.red,
-              inactiveColor: Colors.black,
-              iconSize: 30.0,
-              //backgroundColor: Colors.grey[200],
+              activeColor: AppMainColors.orangeColor,
+              splashColor: AppMainColors.redColor,
+              inactiveColor: AppMainColors.greyColor,
+              iconSize: 30.sp,
               gapLocation: GapLocation.center,
               notchSmoothness: NotchSmoothness.smoothEdge,
-              leftCornerRadius: 32,
-              rightCornerRadius: 32,
+              leftCornerRadius: 32.r,
+              rightCornerRadius: 32.r,
             ),
           ),
         );
