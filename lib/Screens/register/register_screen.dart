@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:super_marko/Screens/login/login_screen.dart';
 import 'package:super_marko/Screens/register/cubit/cubit.dart';
 import 'package:super_marko/Screens/register/cubit/state.dart';
@@ -19,23 +16,19 @@ import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/styles/colors.dart';
 
 class RegisterScreen extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
-
-  final nameController = TextEditingController();
-
-  final phoneController = TextEditingController();
-
-  final File? profileImage;
-  final pickerController = ImagePicker();
-
-  RegisterScreen({super.key, this.profileImage});
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
+    final emailController = TextEditingController();
+
+    final passwordController = TextEditingController();
+
+    final nameController = TextEditingController();
+
+    final phoneController = TextEditingController();
     return BlocProvider(
       create: (BuildContext context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -52,7 +45,6 @@ class RegisterScreen extends StatelessWidget {
               if (kDebugMode) {
                 print(state.loginModel.data!.token);
               }
-
               CacheHelper.saveData(
                       key: "token", value: state.loginModel.data!.token)
                   .then((value) {
@@ -143,7 +135,6 @@ class RegisterScreen extends StatelessWidget {
                               return null;
                             },
                             label: 'Name',
-                            hint: 'Enter your name',
                           ),
                           SizedBox(height: 15.h),
                           DefaultTextFormField(
@@ -157,7 +148,6 @@ class RegisterScreen extends StatelessWidget {
                               return null;
                             },
                             label: 'Email',
-                            hint: 'Enter your email',
                           ),
                           SizedBox(height: 15.h),
                           DefaultTextFormField(
@@ -171,7 +161,6 @@ class RegisterScreen extends StatelessWidget {
                               return null;
                             },
                             label: 'Phone',
-                            hint: 'Enter your phone',
                           ),
                           SizedBox(height: 15.h),
                           DefaultTextFormField(
@@ -190,7 +179,6 @@ class RegisterScreen extends StatelessWidget {
                               return null;
                             },
                             label: 'Password',
-                            hint: 'Enter your password',
                           ),
                           SizedBox(height: 40.h),
                           RegisterCubit.get(context).isCheck
@@ -248,7 +236,7 @@ class RegisterScreen extends StatelessWidget {
                                       .labelLarge!
                                       .copyWith(
                                         height: 0.2,
-                                        color: const Color(0xFF5FD068),
+                                        color: AppMainColors.greenColor,
                                         fontWeight: FontWeight.w700,
                                       ),
                                 ),
@@ -263,12 +251,13 @@ class RegisterScreen extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 43.h,
-                    decoration: const BoxDecoration(color: Color(0xFFFF7A2F)),
+                    decoration:
+                        const BoxDecoration(color: AppMainColors.orangeColor),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'have an account ?',
+                          'Have an account ?',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         defaultTextButton(
@@ -295,7 +284,7 @@ class RegisterScreen extends StatelessWidget {
     var cubit = RegisterCubit.get(context);
     return Checkbox.adaptive(
       side: const BorderSide(
-        color: AppColorsLight.primaryColor,
+        color: AppMainColors.whiteColor,
       ),
       activeColor: AppMainColors.orangeColor,
       value: cubit.isCheck,

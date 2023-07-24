@@ -238,7 +238,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         defaultTextButton(
                           function: () {
-                            navigateTo(context, RegisterScreen());
+                            navigateTo(context, const RegisterScreen());
                           },
                           text: 'Sign Up'.toUpperCase(),
                           color: AppMainColors.mainColor,

@@ -6,7 +6,7 @@ Widget checkBox(BuildContext context) {
   var cubit = LoginCubit.get(context);
   return Checkbox.adaptive(
     side: const BorderSide(
-      color: AppColorsLight.primaryColor,
+      color: AppMainColors.whiteColor,
     ),
     activeColor: AppMainColors.mainColor,
     value: cubit.isCheck,
