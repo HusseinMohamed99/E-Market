@@ -188,6 +188,11 @@ class CartScreen extends StatelessWidget {
       child: Card(
         margin: const EdgeInsets.all(8).r,
         shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: MainCubit.get(context).isDark
+                ? AppMainColors.greyDarkColor
+                : AppMainColors.whiteColor,
+          ),
           borderRadius: BorderRadius.circular(20).r,
         ),
         clipBehavior: Clip.none,
@@ -201,6 +206,7 @@ class CartScreen extends StatelessWidget {
                 imageUrl: '${model.product!.image}',
                 width: double.infinity,
                 height: 250.h,
+                boxFit: BoxFit.fill,
               ),
               Text(
                 '${model.product!.name}',
@@ -233,10 +239,17 @@ class CartScreen extends StatelessWidget {
                                     color: AppMainColors.orangeColor,
                                   ),
                         ),
+                        SizedBox(width: 20.w),
                         if (model.product!.discount != 0)
                           Text(
                             '${model.product!.oldPrice}  LE',
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: AppMainColors.greyColor,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
                           ),
                       ],
                     ),
