@@ -62,7 +62,7 @@ class ProductData {
     name = json['name'];
     description = json['description'];
     images = json['images'].cast<String>();
-    inFavorites = json['in_favorites'];
-    inCart = json['in_cart'];
+    inFavorites = json['in_favorites'] ?? '';
+    inCart = json['in_cart'] ?? '';
   }
 }

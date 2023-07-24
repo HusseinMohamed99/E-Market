@@ -111,12 +111,19 @@ final getThemeData = {
       elevation: 25.0,
     ),
     textTheme: TextTheme(
+      titleLarge: GoogleFonts.roboto(
+        color: Colors.white,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      labelLarge: GoogleFonts.roboto(
+        color: Colors.white,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+      ),
       bodyMedium: GoogleFonts.roboto(
         color: Colors.white,
         fontWeight: FontWeight.w500,
-      ),
-      titleLarge: GoogleFonts.roboto(
-        color: Colors.white,
       ),
       displayLarge: GoogleFonts.roboto(
         color: Colors.white,
@@ -134,6 +141,8 @@ final getThemeData = {
       ),
       headlineSmall: GoogleFonts.roboto(
         color: Colors.white,
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w700,
       ),
       titleMedium: GoogleFonts.roboto(
         color: Colors.white,

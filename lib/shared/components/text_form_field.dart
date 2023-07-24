@@ -44,6 +44,7 @@ class DefaultTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.labelLarge,
       focusNode: FocusNode(),
       maxLines: 1,
       minLines: 1,
@@ -78,7 +79,7 @@ class DefaultTextFormField extends StatelessWidget {
         ),
         labelText: label,
         labelStyle: GoogleFonts.roboto(
-          color: color ?? AppColorsLight.secondaryColor,
+          color: color ?? AppMainColors.whiteColor,
           fontSize: 18.sp,
           fontWeight: FontWeight.w400,
         ),

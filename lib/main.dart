@@ -64,13 +64,10 @@ class Myapp extends StatelessWidget {
               ..getFavoritesData()
               ..getUserData()
               ..getCartData()
-              ..getFaqData()),
-        BlocProvider(
-          create: (context) => MainCubit()
-            ..changeAppMode(
-              fromShared: isDark,
-            ),
-        ),
+              ..getFaqData()
+              ..changeAppMode(
+                fromShared: isDark,
+              )),
       ],
       child: BlocConsumer<MainCubit, MainStates>(
           listener: (context, state) {},

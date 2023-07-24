@@ -15,6 +15,7 @@ import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/components/text_form_field.dart';
+import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/styles/colors.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -71,7 +72,9 @@ class RegisterScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: AppColorsLight.mainColor,
+            backgroundColor: MainCubit.get(context).isDark
+                ? AppColorsLight.mainColor
+                : AppColorsDark.primaryDarkColor,
             body: Form(
               key: formKey,
               child: Column(
@@ -116,7 +119,7 @@ class RegisterScreen extends StatelessWidget {
                             icon: Icon(
                               Icons.arrow_back_ios_new,
                               size: 24.sp,
-                              color: AppColorsLight.secondaryColor,
+                              color: AppMainColors.whiteColor,
                             ),
                           ),
                         ),

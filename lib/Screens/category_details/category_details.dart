@@ -43,11 +43,12 @@ class CategoryProductsScreen extends StatelessWidget {
                       .isEmpty
                   ? const Scaffold(
                       body: Center(
-                      child: Text(
-                        'Coming Soon',
-                        style: TextStyle(fontSize: 50),
+                        child: Text(
+                          'Coming Soon',
+                          style: TextStyle(fontSize: 50),
+                        ),
                       ),
-                    ))
+                    )
                   : SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Padding(
@@ -62,30 +63,18 @@ class CategoryProductsScreen extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               children: List.generate(
-                                  MainCubit.get(context)
+                                MainCubit.get(context)
+                                    .categoriesDetailModel!
+                                    .data!
+                                    .productData!
+                                    .length,
+                                (index) => ProductItemBuilder(
+                                  productData: MainCubit.get(context)
                                       .categoriesDetailModel!
                                       .data!
-                                      .productData!
-                                      .length,
-                                  (index) => MainCubit.get(context)
-                                          .categoriesDetailModel!
-                                          .data!
-                                          .productData!
-                                          .isEmpty
-                                      ? const Center(
-                                          child: Text(
-                                            'Soon',
-                                            style: TextStyle(
-                                                fontSize: 40,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      : productItemBuilder(
-                                          MainCubit.get(context)
-                                              .categoriesDetailModel!
-                                              .data!
-                                              .productData![index],
-                                          context)),
+                                      .productData![index],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -95,104 +84,116 @@ class CategoryProductsScreen extends StatelessWidget {
       },
     );
   }
+}
 
-  Widget productItemBuilder(ProductData model, context) => InkWell(
-        onTap: () {
-          MainCubit.get(context)
-              .getProductData(model.id)
-              .then((value) => navigateTo(context, ProductDetailsScreen()));
-        },
-        child: Container(
-          padding: const EdgeInsetsDirectional.only(start: 8, bottom: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(children: [
-                Image(
-                  image: NetworkImage('${model.image}'),
-                  height: 250,
-                  width: double.infinity,
-                ),
-                Positioned(
-                  top: 10,
-                  right: 0,
-                  child: IconButton(
-                    onPressed: () {
-                      MainCubit.get(context).changeFavorites(model.id!);
-                    },
-                    icon: Icon(
-                      MainCubit.get(context).favorites[model.id]
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: MainCubit.get(context).favorites[model.id]
-                          ? Colors.red
-                          : Colors.grey,
-                      size: 35,
-                    ),
+class ProductItemBuilder extends StatelessWidget {
+  const ProductItemBuilder({super.key, required this.productData});
+
+  final ProductData productData;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        MainCubit.get(context).getProductData(productData.id).then(
+              (value) => navigateTo(
+                context,
+                ProductDetailsScreen(),
+              ),
+            );
+      },
+      child: Container(
+        padding: const EdgeInsetsDirectional.only(start: 8, bottom: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(children: [
+              Image(
+                image: NetworkImage('${productData.image}'),
+                height: 250,
+                width: double.infinity,
+              ),
+              Positioned(
+                top: 10,
+                right: 0,
+                child: IconButton(
+                  onPressed: () {
+                    MainCubit.get(context).changeFavorites(productData.id!);
+                  },
+                  icon: Icon(
+                    MainCubit.get(context).favorites[productData.id]
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: MainCubit.get(context).favorites[productData.id]
+                        ? Colors.red
+                        : Colors.grey,
+                    size: 26,
                   ),
                 ),
-                if (model.discount != 0)
-                  Positioned.fill(
-                    child: Align(
-                      alignment: const Alignment(1, -1),
-                      child: ClipRect(
-                        child: Banner(
-                          message: 'OFFERS',
-                          textStyle: const TextStyle(
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            letterSpacing: 0.5,
-                          ),
-                          location: BannerLocation.topStart,
-                          color: Colors.red,
-                          child: Container(
-                            height: 100.0,
-                          ),
+              ),
+              if (productData.discount != 0)
+                Positioned.fill(
+                  child: Align(
+                    alignment: const Alignment(1, -1),
+                    child: ClipRect(
+                      child: Banner(
+                        message: 'OFFERS',
+                        textStyle: const TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          letterSpacing: 0.5,
+                        ),
+                        location: BannerLocation.topStart,
+                        color: Colors.red,
+                        child: Container(
+                          height: 100.0,
                         ),
                       ),
                     ),
                   ),
-              ]),
-              const SizedBox(height: 10),
-              Text(
-                '${model.name}',
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
+                ),
+            ]),
+            const SizedBox(height: 10),
+            Text(
+              '${productData.name}',
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${productData.price} LE',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                if (productData.discount != 0)
                   Text(
-                    '${model.price} LE',
+                    '${productData.oldPrice} LE',
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                        fontSize: 12,
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  if (model.discount != 0)
-                    Text(
-                      '${model.oldPrice} LE',
-                      style: const TextStyle(
-                          fontSize: 12,
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey),
-                    ),
-                  const Spacer(),
-                  Text(
-                    '${model.discount} % OFF',
-                    style: const TextStyle(color: Colors.red, fontSize: 11),
-                  )
-                ],
-              )
-            ],
-          ),
+                const Spacer(),
+                Text(
+                  '${productData.discount} % OFF',
+                  style: const TextStyle(color: Colors.red, fontSize: 11),
+                )
+              ],
+            )
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
