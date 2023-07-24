@@ -16,13 +16,14 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        // ProductModel model;
         var cubit = MainCubit.get(context);
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              leading: const Icon(Icons.add_shopping_cart_sharp),
-              title: const Text("E_Commerce"),
+              title: Text(
+                "Super Marko 🛒",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
               actions: [
                 IconButton(
                   icon: const Icon(

@@ -7,84 +7,84 @@ import 'package:super_marko/shared/styles/colors.dart';
 
 final getThemeData = {
   AppTheme.lightTheme: ThemeData(
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: AppMainColors.whiteColor,
     appBarTheme: AppBarTheme(
       titleSpacing: 20.0,
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
+        statusBarColor: AppMainColors.whiteColor,
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppMainColors.whiteColor,
       elevation: 0.0,
       titleTextStyle: GoogleFonts.roboto(
-        color: Colors.black,
+        color: AppMainColors.greyDarkColor,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
       iconTheme: const IconThemeData(
-        color: Colors.black,
+        color: AppMainColors.greyDarkColor,
       ),
       actionsIconTheme: const IconThemeData(
-        color: Colors.black,
+        color: AppMainColors.greyDarkColor,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.deepOrange,
-      unselectedItemColor: Colors.black,
-      backgroundColor: Colors.white,
+      selectedItemColor: AppMainColors.orangeColor,
+      unselectedItemColor: AppMainColors.greyDarkColor,
+      backgroundColor: AppMainColors.greyDarkColor,
       elevation: 25.0,
       unselectedIconTheme: IconThemeData(
-        color: Colors.black,
+        color: AppMainColors.greyDarkColor,
       ),
     ),
     textTheme: TextTheme(
       titleLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
         fontSize: 18.sp,
         fontWeight: FontWeight.w700,
       ),
       labelLarge: GoogleFonts.roboto(
-        color: Colors.black,
+        color: AppMainColors.greyDarkColor,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
       bodyMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
         fontWeight: FontWeight.w500,
       ),
       displayLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
       ),
       displayMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
       ),
       displaySmall: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
         fontWeight: FontWeight.bold,
         fontSize: 40.sp,
       ),
       headlineMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
       ),
       headlineSmall: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
         fontSize: 22.sp,
         fontWeight: FontWeight.w700,
       ),
       titleMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
       ),
       bodyLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.greyDarkColor,
       ),
     ),
   ),
   AppTheme.darkTheme: ThemeData(
     cardColor: AppColorsDark.primaryDarkColor,
     scaffoldBackgroundColor: AppColorsDark.primaryDarkColor,
-    primarySwatch: Colors.deepOrange,
+    primarySwatch: Colors.orange,
     appBarTheme: const AppBarTheme(
       titleSpacing: 20.0,
       systemOverlayStyle: SystemUiOverlayStyle(
@@ -95,84 +95,84 @@ final getThemeData = {
       backgroundColor: AppColorsDark.primaryDarkColor,
       elevation: 0.0,
       titleTextStyle: TextStyle(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
       actionsIconTheme: IconThemeData(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.deepOrangeAccent,
-      unselectedItemColor: Colors.white,
-      backgroundColor: Color(0xFF121212),
+      selectedItemColor: AppMainColors.orangeColor,
+      unselectedItemColor: AppMainColors.whiteColor,
+      backgroundColor: AppMainColors.greyDarkColor,
       elevation: 25.0,
     ),
     textTheme: TextTheme(
       titleLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontSize: 18.sp,
         fontWeight: FontWeight.w700,
       ),
       labelLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
       bodyMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontWeight: FontWeight.w500,
       ),
       displayLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
       ),
       displayMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
       ),
       displaySmall: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontWeight: FontWeight.bold,
         fontSize: 40.sp,
       ),
       headlineMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
       ),
       headlineSmall: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontSize: 22.sp,
         fontWeight: FontWeight.w700,
       ),
       titleMedium: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
       ),
       bodyLarge: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
       ),
     ),
     iconTheme: const IconThemeData(
-      color: Colors.white,
+      color: AppMainColors.whiteColor,
     ),
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
       ),
       hintStyle: GoogleFonts.roboto(
-        color: Colors.white,
+        color: AppMainColors.whiteColor,
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
       ),
       enabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.white,
+          color: AppMainColors.whiteColor,
         ),
       ),
       focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.white,
+          color: AppMainColors.whiteColor,
         ),
       ),
     ),
