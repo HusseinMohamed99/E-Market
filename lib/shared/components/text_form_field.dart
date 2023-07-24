@@ -60,6 +60,7 @@ class DefaultTextFormField extends StatelessWidget {
         prefixIcon: Icon(
           prefix,
           color: Colors.grey,
+          size: 24.sp,
         ),
         suffixIcon: suffix != null
             ? IconButton(
@@ -69,6 +70,7 @@ class DefaultTextFormField extends StatelessWidget {
                 icon: Icon(
                   suffix,
                   color: Colors.grey,
+                  size: 24.sp,
                 ),
               )
             : null,

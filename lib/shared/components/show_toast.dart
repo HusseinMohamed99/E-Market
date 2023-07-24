@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void showToast({
@@ -9,13 +10,11 @@ void showToast({
       msg: text,
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 10,
+      timeInSecForIosWeb: 5,
       backgroundColor: chooseToastColor(state),
       textColor: Colors.white,
-      fontSize: 16.0,
+      fontSize: 16.sp,
     );
-
-// enum  كذا اختيار من حاجة
 
 enum ToastStates { success, error, warning }
 
