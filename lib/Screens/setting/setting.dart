@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:super_marko/Screens/FQA/fqa_screen.dart';
 import 'package:super_marko/Screens/edit/edit.dart';
-import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/logout.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
@@ -67,7 +66,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                   ],
                 ),
-                space(0, 20),
+                //space(0, 20),
                 InkWell(
                   onTap: () {
                     navigateTo(context, EditScreen());
@@ -81,7 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //  space(15, 0),
                         const Text(
                           'My Profile',
                           style: TextStyle(
@@ -104,7 +103,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //space(15, 0),
                         const Text(
                           'Notifications',
                           style: TextStyle(
@@ -127,7 +126,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //  space(15, 0),
                         const Text(
                           'My Orders',
                           style: TextStyle(
@@ -150,7 +149,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //   space(15, 0),
                         const Text(
                           'Complaints',
                           style: TextStyle(
@@ -182,7 +181,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //  space(15, 0),
                         const Text(
                           'Theme Mode',
                           style: TextStyle(
@@ -212,7 +211,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //  space(15, 0),
                         const Text(
                           'FAQ',
                           style: TextStyle(
@@ -235,7 +234,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        // space(15, 0),
                         const Text(
                           'About us',
                           style: TextStyle(
@@ -268,7 +267,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: Colors.deepOrange,
                           size: 35,
                         ),
-                        space(15, 0),
+                        //   space(15, 0),
                         const Text(
                           'Log Out',
                           style: TextStyle(

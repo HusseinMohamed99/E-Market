@@ -5,13 +5,6 @@ void printFullText(String text) {
   pattern.allMatches(text).forEach((match) => debugPrint(match.group(0)));
 }
 
-Widget space(double wide, double high) {
-  return SizedBox(
-    width: wide,
-    height: high,
-  );
-}
-
 String? token = '';
 
 String uId = '';

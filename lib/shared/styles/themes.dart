@@ -22,11 +22,13 @@ final getThemeData = {
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
-      iconTheme: const IconThemeData(
+      iconTheme: IconThemeData(
         color: AppMainColors.greyDarkColor,
+        size: 24.sp,
       ),
-      actionsIconTheme: const IconThemeData(
+      actionsIconTheme: IconThemeData(
         color: AppMainColors.greyDarkColor,
+        size: 24.sp,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
