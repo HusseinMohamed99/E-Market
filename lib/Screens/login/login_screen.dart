@@ -240,7 +240,7 @@ class LoginScreen extends StatelessWidget {
                           function: () {
                             navigateTo(context, RegisterScreen());
                           },
-                          text: 'Sign Up'.toUpperCase(),
+                          text: 'Sign Up '.toUpperCase(),
                           color: AppMainColors.mainColor,
                           context: context,
                         ),
