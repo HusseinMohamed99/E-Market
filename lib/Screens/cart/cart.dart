@@ -47,129 +47,114 @@ class CartScreen extends StatelessWidget {
       builder: (context, state) {
         CartModel? cartModel = MainCubit.get(context).cartModel;
         cartLength = MainCubit.get(context).cartModel!.data!.cartItems!.length;
-        return MainCubit.get(context).cartModel!.data!.cartItems!.isEmpty
-            ? Scaffold(
-                appBar: AppBar(
-                  leading: IconButton(
-                    onPressed: () {
-                      pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 24.sp,
-                      color: MainCubit.get(context).isDark
-                          ? AppMainColors.orangeColor
-                          : AppMainColors.whiteColor,
-                    ),
-                  ),
+        return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 24.sp,
+                  color: MainCubit.get(context).isDark
+                      ? AppMainColors.orangeColor
+                      : AppMainColors.whiteColor,
                 ),
-                body: Column(
-                  children: [
-                    SvgPicture.asset(Assets.imagesNodata),
-                    Text(
-                      'Your Cart is empty',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    Text(
-                      'Be Sure to fill your cart with something you like',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    )
-                  ],
-                ),
-              )
-            : Scaffold(
-                appBar: AppBar(
-                  leading: IconButton(
-                    onPressed: () {
-                      pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 24.sp,
-                      color: MainCubit.get(context).isDark
-                          ? AppMainColors.orangeColor
-                          : AppMainColors.whiteColor,
-                    ),
-                  ),
-                ),
-                body: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(children: [
-                    ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => cartProducts(
-                          MainCubit.get(context)
-                              .cartModel!
-                              .data!
-                              .cartItems![index],
-                          context),
-                      separatorBuilder: (context, index) => const MyDivider(),
-                      itemCount: cartLength,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0).r,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50.h,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        decoration: BoxDecoration(
-                          color: AppMainColors.orangeColor,
-                          shape: BoxShape.rectangle,
-                          border: Border.all(width: 2),
-                          borderRadius: BorderRadius.circular(15).r,
-                        ),
-                        padding: const EdgeInsets.all(8).r,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'The number of pieces :',
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const Spacer(),
-                                Text(
-                                  '$cartLength Items',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        color: AppMainColors.whiteColor,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'TOTAL :',
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const Spacer(),
-                                Text(
-                                  '${cartModel!.data!.total} LE',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        color: AppMainColors.whiteColor,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ],
+              ),
+            ),
+            body: MainCubit.get(context).cartModel!.data!.cartItems!.isEmpty
+                ? Column(
+                    children: [
+                      SvgPicture.asset(Assets.imagesNodata),
+                      Text(
+                        'Your Cart is empty',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                      Text(
+                        'Be Sure to fill your cart with something you like',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      )
+                    ],
+                  )
+                : SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(children: [
+                      ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => cartProducts(
+                            MainCubit.get(context)
+                                .cartModel!
+                                .data!
+                                .cartItems![index],
+                            context),
+                        separatorBuilder: (context, index) => const MyDivider(),
+                        itemCount: cartLength,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0).r,
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50.h,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          decoration: BoxDecoration(
+                            color: AppMainColors.orangeColor,
+                            shape: BoxShape.rectangle,
+                            border: Border.all(width: 2),
+                            borderRadius: BorderRadius.circular(15).r,
+                          ),
+                          padding: const EdgeInsets.all(8).r,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'The number of pieces :',
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '$cartLength Items',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                          color: AppMainColors.whiteColor,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'TOTAL :',
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${cartModel!.data!.total} LE',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                          color: AppMainColors.whiteColor,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 60.h,
-                    ),
-                  ]),
-                ),
-              );
+                      SizedBox(
+                        width: double.infinity,
+                        height: 60.h,
+                      ),
+                    ]),
+                  ));
       },
     );
   }

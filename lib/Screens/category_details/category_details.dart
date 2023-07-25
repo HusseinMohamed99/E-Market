@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:super_marko/Screens/product_details/product_details.dart';
+import 'package:super_marko/generated/assets.dart';
 import 'package:super_marko/model/category/category_details_model.dart';
+import 'package:super_marko/shared/components/image_with_shimmer.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   final String categoryName;
@@ -32,6 +38,20 @@ class CategoryProductsScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                size: 24.sp,
+                color: MainCubit.get(context).isDark
+                    ? AppMainColors.orangeColor
+                    : AppMainColors.whiteColor,
+              ),
+            ),
+          ),
           body: state is CategoryDetailsLoadingStates
               ? const Center(
                   child: CircularProgressIndicator(),
@@ -41,18 +61,19 @@ class CategoryProductsScreen extends StatelessWidget {
                       .data!
                       .productData!
                       .isEmpty
-                  ? const Scaffold(
-                      body: Center(
-                        child: Text(
+                  ? Column(
+                      children: [
+                        SvgPicture.asset(Assets.imagesNodata),
+                        Text(
                           'Coming Soon',
-                          style: TextStyle(fontSize: 50),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
-                      ),
+                      ],
                     )
                   : SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(20.0).r,
                         child: Column(
                           children: [
                             GridView.count(
@@ -102,97 +123,94 @@ class ProductItemBuilder extends StatelessWidget {
               ),
             );
       },
-      child: Container(
-        padding: const EdgeInsetsDirectional.only(start: 8, bottom: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(children: [
-              Image(
-                image: NetworkImage('${productData.image}'),
-                height: 250,
-                width: double.infinity,
-              ),
-              Positioned(
-                top: 10,
-                right: 0,
-                child: IconButton(
-                  onPressed: () {
-                    MainCubit.get(context).changeFavorites(productData.id!);
-                  },
-                  icon: Icon(
-                    MainCubit.get(context).favorites[productData.id]
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: MainCubit.get(context).favorites[productData.id]
-                        ? Colors.red
-                        : Colors.grey,
-                    size: 26,
-                  ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(children: [
+            ImageWithShimmer(
+              imageUrl: '${productData.image}',
+              width: double.infinity,
+              height: 200.h,
+              boxFit: BoxFit.fill,
+            ),
+            Positioned(
+              top: 1.h,
+              right: 0.w,
+              child: IconButton(
+                onPressed: () {
+                  MainCubit.get(context).changeFavorites(productData.id!);
+                },
+                icon: Icon(
+                  MainCubit.get(context).favorites[productData.id]
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: MainCubit.get(context).favorites[productData.id]
+                      ? Colors.red
+                      : Colors.grey,
+                  size: 26.sp,
                 ),
               ),
-              if (productData.discount != 0)
-                Positioned.fill(
-                  child: Align(
-                    alignment: const Alignment(1, -1),
-                    child: ClipRect(
-                      child: Banner(
-                        message: 'OFFERS',
-                        textStyle: const TextStyle(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          letterSpacing: 0.5,
-                        ),
-                        location: BannerLocation.topStart,
-                        color: Colors.red,
-                        child: Container(
-                          height: 100.0,
-                        ),
+            ),
+            if (productData.discount != 0)
+              Positioned.fill(
+                child: Align(
+                  alignment: const Alignment(1, -1),
+                  child: ClipRect(
+                    child: Banner(
+                      message: 'OFFERS',
+                      textStyle: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.sp,
+                        letterSpacing: 0.5,
+                      ),
+                      location: BannerLocation.topStart,
+                      color: Colors.red,
+                      child: Container(
+                        height: 100.h,
                       ),
                     ),
                   ),
                 ),
-            ]),
-            const SizedBox(height: 10),
-            Text(
-              '${productData.name}',
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
+              ),
+          ]),
+          SizedBox(height: 10.h),
+          Text(
+            '${productData.name}',
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          SizedBox(
+            height: 5.h,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '${productData.price} LE',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
+              if (productData.discount != 0)
                 Text(
-                  '${productData.price} LE',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                if (productData.discount != 0)
-                  Text(
-                    '${productData.oldPrice} LE',
-                    style: const TextStyle(
-                        fontSize: 12,
+                  '${productData.oldPrice} LE',
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         decoration: TextDecoration.lineThrough,
-                        color: Colors.grey),
-                  ),
-                const Spacer(),
-                Text(
-                  '${productData.discount} % OFF',
-                  style: const TextStyle(color: Colors.red, fontSize: 11),
-                )
-              ],
-            )
-          ],
-        ),
+                        color: AppMainColors.greyColor,
+                      ),
+                ),
+              const Spacer(),
+              Text(
+                '${productData.discount} % OFF',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: AppMainColors.redColor,
+                    ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
