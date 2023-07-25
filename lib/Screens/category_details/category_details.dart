@@ -70,36 +70,27 @@ class CategoryProductsScreen extends StatelessWidget {
                         ),
                       ],
                     )
-                  : SingleChildScrollView(
+                  : ListView.separated(
                       physics: const BouncingScrollPhysics(),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0).r,
-                        child: Column(
-                          children: [
-                            GridView.count(
-                              crossAxisCount: 1,
-                              mainAxisSpacing: 0.1,
-                              crossAxisSpacing: .1,
-                              childAspectRatio: 1 / 1.1,
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              children: List.generate(
-                                MainCubit.get(context)
-                                    .categoriesDetailModel!
-                                    .data!
-                                    .productData!
-                                    .length,
-                                (index) => ProductItemBuilder(
-                                  productData: MainCubit.get(context)
-                                      .categoriesDetailModel!
-                                      .data!
-                                      .productData![index],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      padding: const EdgeInsets.all(20.0).r,
+                      itemBuilder: (context, index) {
+                        return ProductItemBuilder(
+                          productData: MainCubit.get(context)
+                              .categoriesDetailModel!
+                              .data!
+                              .productData![index],
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          height: 10.h,
+                        );
+                      },
+                      itemCount: MainCubit.get(context)
+                          .categoriesDetailModel!
+                          .data!
+                          .productData!
+                          .length,
                     ),
         );
       },
@@ -123,94 +114,88 @@ class ProductItemBuilder extends StatelessWidget {
               ),
             );
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(children: [
-            ImageWithShimmer(
-              imageUrl: '${productData.image}',
-              width: double.infinity,
-              height: 200.h,
-              boxFit: BoxFit.fill,
-            ),
-            Positioned(
-              top: 1.h,
-              right: 0.w,
-              child: IconButton(
-                onPressed: () {
-                  MainCubit.get(context).changeFavorites(productData.id!);
-                },
-                icon: Icon(
-                  MainCubit.get(context).favorites[productData.id]
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                  color: MainCubit.get(context).favorites[productData.id]
-                      ? Colors.red
-                      : Colors.grey,
-                  size: 26.sp,
-                ),
+      child: Card(
+        elevation: 5,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(children: [
+              ImageWithShimmer(
+                imageUrl: '${productData.image}',
+                width: double.infinity,
+                height: 200.h,
+                boxFit: BoxFit.fill,
               ),
-            ),
-            if (productData.discount != 0)
-              Positioned.fill(
-                child: Align(
-                  alignment: const Alignment(1, -1),
-                  child: ClipRect(
-                    child: Banner(
-                      message: 'OFFERS',
-                      textStyle: GoogleFonts.roboto(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.sp,
-                        letterSpacing: 0.5,
-                      ),
-                      location: BannerLocation.topStart,
-                      color: Colors.red,
-                      child: Container(
-                        height: 100.h,
+              if (productData.discount != 0)
+                Positioned.fill(
+                  child: Align(
+                    alignment: const Alignment(1, -1),
+                    child: ClipRect(
+                      child: Banner(
+                        message: 'OFFERS',
+                        textStyle: GoogleFonts.roboto(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          letterSpacing: 0.5,
+                        ),
+                        location: BannerLocation.topStart,
+                        color: Colors.red,
+                        child: Container(
+                          height: 100.h,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-          ]),
-          SizedBox(height: 10.h),
-          Text(
-            '${productData.name}',
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                '${productData.price} LE',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              SizedBox(
-                width: 20.w,
-              ),
-              if (productData.discount != 0)
-                Text(
-                  '${productData.oldPrice} LE',
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        decoration: TextDecoration.lineThrough,
-                        color: AppMainColors.greyColor,
+            ]),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6).r,
+              child: Column(
+                children: [
+                  SizedBox(height: 10.h),
+                  Text(
+                    '${productData.name}',
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${productData.price} LE',
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
-                ),
-              const Spacer(),
-              Text(
-                '${productData.discount} % OFF',
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: AppMainColors.redColor,
-                    ),
-              )
-            ],
-          )
-        ],
+                      SizedBox(
+                        width: 20.w,
+                      ),
+                      if (productData.discount != 0)
+                        Text(
+                          '${productData.oldPrice} LE',
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: AppMainColors.greyColor,
+                                  ),
+                        ),
+                      const Spacer(),
+                      Text(
+                        '${productData.discount} % OFF',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: AppMainColors.redColor,
+                            ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
