@@ -24,7 +24,7 @@ class FaqModel {
 
 class Data {
   int? currentPage;
-  List<FqaData>? data;
+  List<FaqData>? data;
   String? firstPageUrl;
   int? from;
   int? lastPage;
@@ -39,9 +39,9 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      data = <FqaData>[];
+      data = <FaqData>[];
       json['data'].forEach((v) {
-        data!.add(FqaData.fromJson(v));
+        data!.add(FaqData.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -76,12 +76,12 @@ class Data {
   }
 }
 
-class FqaData {
+class FaqData {
   int? id;
   String? question;
   String? answer;
 
-  FqaData.fromJson(Map<String, dynamic> json) {
+  FaqData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     question = json['question'];
     answer = json['answer'];
