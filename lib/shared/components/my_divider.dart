@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({super.key});
@@ -9,7 +10,7 @@ class MyDivider extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 1.h,
-      color: Colors.grey[300],
+      color: AppMainColors.dividerColor,
     );
   }
 }
