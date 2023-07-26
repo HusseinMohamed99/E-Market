@@ -7,6 +7,7 @@ import 'package:super_marko/Screens/Complaints/complaints_screen.dart';
 import 'package:super_marko/Screens/FAQS/faqs_screen.dart';
 import 'package:super_marko/Screens/Notifications/notifications_screen.dart';
 import 'package:super_marko/Screens/Orders/order_screen.dart';
+import 'package:super_marko/Screens/Password/change_password.dart';
 import 'package:super_marko/Screens/ProfileScreen/profile_screen.dart';
 import 'package:super_marko/shared/components/logout.dart';
 import 'package:super_marko/shared/components/navigator.dart';
@@ -96,7 +97,7 @@ class SettingScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  navigateTo(context, const OrderScreen());
+                  navigateTo(context, const ChangePasswordScreen());
                 },
                 child: Container(
                   padding: const EdgeInsets.all(15).r,
