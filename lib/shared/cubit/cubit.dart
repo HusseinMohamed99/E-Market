@@ -24,6 +24,7 @@ import 'package:super_marko/network/end_points.dart';
 import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/cubit/state.dart';
+import 'package:super_marko/shared/styles/colors.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainInitialStates());
@@ -64,7 +65,7 @@ class MainCubit extends Cubit<MainStates> {
     }
     CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value) {
       if (isDark) {
-        backgroundColor = const Color(0xff212121).withOpacity(0.8);
+        backgroundColor = AppColorsDark.primaryDarkColor;
         emit(AppChangeModeState());
       } else {
         backgroundColor = Colors.white;
@@ -130,7 +131,6 @@ class MainCubit extends Cubit<MainStates> {
       token: token,
     ).then((value) {
       homeModel = HomeModel.fromJson(value.data);
-      //printFullText(homeModel.data.banners.toString());
       if (kDebugMode) {
         print(homeModel!.status);
       }
@@ -164,7 +164,6 @@ class MainCubit extends Cubit<MainStates> {
       token: token,
     ).then((value) {
       categoriesModel = CategoriesModel.fromJson(value.data);
-
       emit(CategoriesSuccessStates());
     }).catchError((error) {
       if (kDebugMode) {
@@ -235,7 +234,6 @@ class MainCubit extends Cubit<MainStates> {
     emit(CartLoadingStates());
     DioHelper.getData(url: carts, token: token).then((value) {
       cartModel = CartModel.fromJson(value.data);
-      // print('Get Cart'+cartModel.toString());
       emit(GetCartSuccessStates());
     }).catchError((error) {
       if (kDebugMode) {
@@ -362,50 +360,16 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   File? profileImage;
-
   var picker = ImagePicker();
 
-  // Implementing the image picker
-  Future<void> getImageFromGallery(ImageSource source) async {
+  Future<void> getImagePicker(ImageSource source) async {
     final pickedImage = await picker.pickImage(source: source);
     if (pickedImage != null) {
       profileImage = File(pickedImage.path);
       List<int> imageBytes = profileImage!.readAsBytesSync();
       base64Image = base64Encode(imageBytes);
       if (kDebugMode) {
-        print('***************************');
-      }
-      if (kDebugMode) {
-        print(base64Image);
-      }
-      if (kDebugMode) {
-        print('***************************');
-      }
-      emit(ProfileImagePickedSuccessState());
-    } else {
-      if (kDebugMode) {
-        print('No image selected');
-      }
-      emit(ProfileImagePickedErrorState());
-    }
-  }
-
-  Future<void> getImageFromCamera(ImageSource source) async {
-    final pickedImage =
-        await picker.pickImage(source: source, maxHeight: 1800, maxWidth: 1800);
-
-    if (pickedImage != null) {
-      profileImage = File(pickedImage.path);
-      List<int> imageBytes = profileImage!.readAsBytesSync();
-      base64Image = base64Encode(imageBytes);
-      if (kDebugMode) {
-        print('***************************');
-      }
-      if (kDebugMode) {
-        print(base64Image);
-      }
-      if (kDebugMode) {
-        print('***************************');
+        print('base64Image== $base64Image');
       }
       emit(ProfileImagePickedSuccessState());
     } else {

@@ -2,10 +2,8 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_marko/Screens/cart/cart_screen.dart';
 import 'package:super_marko/Screens/search/search_screen.dart';
-import 'package:super_marko/generated/assets.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
@@ -24,7 +22,6 @@ class LayoutScreen extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              leading: SvgPicture.asset(Assets.imagesLogo),
               title: Text(
                 cubit.titles[cubit.currentIndex],
                 style: Theme.of(context).textTheme.headlineSmall,

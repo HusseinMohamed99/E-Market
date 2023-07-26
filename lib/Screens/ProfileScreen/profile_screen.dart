@@ -144,9 +144,9 @@ class ProfileScreen extends StatelessWidget {
                     function: () {
                       if (formKey.currentState!.validate()) {
                         MainCubit.get(context).updateUserData(
-                          name: nameController.text,
-                          email: emailController.text,
-                          phone: phoneController.text,
+                          name: nameController.text.trim(),
+                          email: emailController.text.trim(),
+                          phone: phoneController.text.trim(),
                           image: base64Image,
                         );
                       }

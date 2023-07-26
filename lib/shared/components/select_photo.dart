@@ -40,7 +40,7 @@ class SelectPhotoOptions extends StatelessWidget {
           Column(children: [
             SelectPhoto(
               onTap: () {
-                cubit.getImageFromGallery(ImageSource.gallery);
+                cubit.getImagePicker(ImageSource.gallery);
               },
               icon: Icons.image,
               textLabel: 'Browse Gallery',
@@ -55,7 +55,7 @@ class SelectPhotoOptions extends StatelessWidget {
             SizedBox(height: 10.h),
             SelectPhoto(
               onTap: () {
-                cubit.getImageFromCamera(ImageSource.camera);
+                cubit.getImagePicker(ImageSource.camera);
               },
               icon: Icons.camera_alt_outlined,
               textLabel: 'Use a Camera',
