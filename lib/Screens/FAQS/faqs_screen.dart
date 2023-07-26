@@ -50,9 +50,12 @@ class FaqScreen extends StatelessWidget {
                       ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => buildFQA(
-                            MainCubit.get(context).faqModel!.data!.data![index],
-                            context),
+                        itemBuilder: (context, index) => BuildFAQS(
+                          faqData: MainCubit.get(context)
+                              .faqModel!
+                              .data!
+                              .data![index],
+                        ),
                         separatorBuilder: (context, index) => const MyDivider(),
                         itemCount: cubit.faqModel!.data!.data!.length,
                       ),
@@ -63,29 +66,6 @@ class FaqScreen extends StatelessWidget {
       },
     );
   }
-
-  Widget buildFQA(FaqData? model, context) => Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              model!.question!,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ),
-            ),
-            Text(
-              model.answer!,
-              style: const TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          ],
-        ),
-      );
 }
 
 class BuildFAQS extends StatelessWidget {
@@ -102,17 +82,14 @@ class BuildFAQS extends StatelessWidget {
         children: [
           Text(
             faqData.question!,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.red,
-            ),
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: AppMainColors.orangeColor),
           ),
           Text(
             faqData.answer!,
-            style: const TextStyle(
-              fontSize: 20,
-            ),
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
         ],
       ),
