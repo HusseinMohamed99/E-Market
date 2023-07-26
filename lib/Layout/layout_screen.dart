@@ -2,16 +2,16 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:super_marko/Screens/cart/cart.dart';
-import 'package:super_marko/Screens/search/search.dart';
+import 'package:super_marko/Screens/cart/cart_screen.dart';
+import 'package:super_marko/Screens/search/search_screen.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
 import 'package:super_marko/shared/styles/colors.dart';
 import 'package:super_marko/shared/styles/icon_broken.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class LayoutScreen extends StatelessWidget {
+  const LayoutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               title: Text(
-                "Super Marko 🛒",
+                cubit.titles[cubit.currentIndex],
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               actions: [
@@ -52,12 +52,15 @@ class HomeScreen extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               backgroundColor: AppMainColors.orangeColor,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CartScreen()));
               },
               child: Icon(
                 Icons.add_shopping_cart,
                 size: 24.sp,
+                color: AppMainColors.whiteColor,
               ),
             ),
             floatingActionButtonLocation:

@@ -12,6 +12,7 @@ Widget defaultMaterialButton({
   Function? onTap,
   required BuildContext context,
   Color? color,
+  Color? textColor,
 }) {
   return Container(
     width: width ?? double.infinity,
@@ -28,7 +29,10 @@ Widget defaultMaterialButton({
       },
       child: Text(
         isUpperCase ? text.toUpperCase() : text,
-        style: Theme.of(context).textTheme.headlineSmall,
+        style: Theme.of(context)
+            .textTheme
+            .headlineSmall!
+            .copyWith(color: textColor),
       ),
     ),
   );

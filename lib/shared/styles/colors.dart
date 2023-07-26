@@ -19,5 +19,5 @@ class AppMainColors {
   static const Color dividerColor = Color(0xffFFC107);
   static const Color whiteColor = Color(0xffffffff);
   static const Color greyDarkColor = Color(0xFF303030);
-  static const Color orangeColor = Color(0xFFFF7A2F);
+  static const Color orangeColor = Color(0xffff5722);
 }

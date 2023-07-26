@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:super_marko/Layout/layout_screen.dart';
+import 'package:super_marko/Screens/OnBoarding/on_boarding_screen.dart';
 import 'package:super_marko/Screens/login/login_screen.dart';
-import 'package:super_marko/Screens/on_boarding/on_boarding_screen.dart';
-import 'package:super_marko/layout/home_screen.dart';
 import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/network/dio_helper.dart';
 import 'package:super_marko/shared/bloc_observer.dart';
@@ -32,7 +32,7 @@ void main() async {
 
   if (onBoarding != null) {
     if (token != null) {
-      widget = const HomeScreen();
+      widget = const LayoutScreen();
     } else {
       widget = const LoginScreen();
     }

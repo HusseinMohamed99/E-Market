@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:super_marko/Layout/layout_screen.dart';
 import 'package:super_marko/Screens/login/cubit/cubit.dart';
 import 'package:super_marko/Screens/login/cubit/state.dart';
 import 'package:super_marko/Screens/register/register_screen.dart';
-import 'package:super_marko/layout/home_screen.dart';
 import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/check_box.dart';
@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                       key: "token", value: state.loginModel.data!.token)
                   .then((value) {
                 token = state.loginModel.data!.token!;
-                navigateAndFinish(context, const HomeScreen());
+                navigateAndFinish(context, const LayoutScreen());
               });
             } else {
               showToast(

@@ -2,7 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:super_marko/Screens/cart/cart.dart';
+import 'package:super_marko/Screens/cart/cart_screen.dart';
 import 'package:super_marko/shared/components/my_divider.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
@@ -52,26 +52,26 @@ class ProductDetailsScreen extends StatelessWidget {
                                       Image.network(model.images![index]),
                                   itemCount: model.images!.length,
                                 ),
-                                Positioned(
-                                  top: 10,
-                                  left: 20,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      MainCubit.get(context)
-                                          .changeFavorites(model.id!);
-                                    },
-                                    icon: Icon(
-                                      MainCubit.get(context).favorites[model.id]
-                                          ? Icons.favorite
-                                          : Icons.favorite_border,
-                                      color: MainCubit.get(context)
-                                              .favorites[model.id]
-                                          ? Colors.red
-                                          : Colors.grey,
-                                      size: 35,
-                                    ),
-                                  ),
-                                ),
+                                // Positioned(
+                                //   top: 10,
+                                //   left: 20,
+                                //   child: IconButton(
+                                //     onPressed: () {
+                                //       MainCubit.get(context)
+                                //           .changeFavorites(model.id!);
+                                //     },
+                                //     icon: Icon(
+                                //       MainCubit.get(context).favorites[model.id]
+                                //           ? Icons.favorite
+                                //           : Icons.favorite_border,
+                                //       color: MainCubit.get(context)
+                                //               .favorites[model.id]
+                                //           ? Colors.red
+                                //           : Colors.grey,
+                                //       size: 35,
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -247,7 +247,8 @@ class ProductDetailsScreen extends StatelessWidget {
                                           ),
                                           ElevatedButton(
                                             onPressed: () {
-                                              navigateTo(context, CartScreen());
+                                              navigateTo(
+                                                  context, const CartScreen());
                                               MainCubit.get(context)
                                                   .getCartData();
                                             },

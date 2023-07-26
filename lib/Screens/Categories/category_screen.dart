@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:super_marko/Screens/category_details/category_details.dart';
+import 'package:super_marko/Screens/CategoryDetails/category_details_screen.dart';
 import 'package:super_marko/model/category/category_model.dart';
 import 'package:super_marko/shared/components/my_divider.dart';
 import 'package:super_marko/shared/components/navigator.dart';
@@ -20,7 +20,8 @@ class CategoriesScreen extends StatelessWidget {
         return ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => CategoryList(
-            model: MainCubit.get(context).categoriesModel!.data!.data[index],
+            dataModel:
+                MainCubit.get(context).categoriesModel!.data!.data[index],
           ),
           separatorBuilder: (context, index) => const MyDivider(),
           itemCount: MainCubit.get(context).categoriesModel!.data!.data.length,
@@ -31,16 +32,16 @@ class CategoriesScreen extends StatelessWidget {
 }
 
 class CategoryList extends StatelessWidget {
-  const CategoryList({super.key, required this.model});
+  const CategoryList({super.key, required this.dataModel});
 
-  final DataModel model;
+  final DataModel dataModel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        MainCubit.get(context).getCategoriesDetailData(model.id!);
-        navigateTo(context, CategoryProductsScreen(model.name!));
+        MainCubit.get(context).getCategoriesDetailData(dataModel.id!);
+        navigateTo(context, CategoryProductsScreen(dataModel.name!));
       },
       child: Padding(
         padding: const EdgeInsets.all(20.0).r,
@@ -54,7 +55,7 @@ class CategoryList extends StatelessWidget {
                 border: Border.all(color: AppMainColors.orangeColor, width: 2),
                 image: DecorationImage(
                   image: NetworkImage(
-                    model.image!,
+                    dataModel.image!,
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -64,7 +65,7 @@ class CategoryList extends StatelessWidget {
               width: 20.w,
             ),
             Text(
-              model.name!.toUpperCase(),
+              dataModel.name!.toUpperCase(),
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

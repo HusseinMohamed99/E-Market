@@ -16,7 +16,7 @@ final getThemeData = {
         statusBarBrightness: Brightness.light,
       ),
       backgroundColor: AppMainColors.whiteColor,
-      elevation: 0.0,
+      elevation: 1,
       titleTextStyle: GoogleFonts.roboto(
         color: AppMainColors.greyDarkColor,
         fontSize: 20.0,

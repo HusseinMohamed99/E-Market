@@ -10,3 +10,5 @@ String? token = '';
 String uId = '';
 
 int cartLength = 0;
+
+String? base64Image;

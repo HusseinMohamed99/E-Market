@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:super_marko/Screens/product_details/product_details.dart';
+import 'package:super_marko/Screens/ProductDetails/product_details_screen.dart';
 import 'package:super_marko/generated/assets.dart';
 import 'package:super_marko/model/category/category_details_model.dart';
 import 'package:super_marko/shared/components/image_with_shimmer.dart';

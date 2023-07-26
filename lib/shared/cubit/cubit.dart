@@ -1,10 +1,14 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:super_marko/Screens/Categories/category.dart';
-import 'package:super_marko/Screens/Favorites/favorite.dart';
-import 'package:super_marko/Screens/Products_home/product_home.dart';
-import 'package:super_marko/Screens/setting/setting.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:super_marko/Screens/Categories/category_screen.dart';
+import 'package:super_marko/Screens/Favorites/favorite_screen.dart';
+import 'package:super_marko/Screens/ProductsHome/product_home_screen.dart';
+import 'package:super_marko/Screens/setting/setting_screen.dart';
 import 'package:super_marko/model/cart/add_cart_model.dart';
 import 'package:super_marko/model/cart/get_cart_model.dart';
 import 'package:super_marko/model/cart/update_cart_model.dart';
@@ -36,6 +40,12 @@ class MainCubit extends Cubit<MainStates> {
     const CategoriesScreen(),
     const FavoritesScreen(),
     const SettingScreen(),
+  ];
+  List<String> titles = [
+    'Super Marko 🛒',
+    'Category 💼',
+    'Favorite ❤',
+    'Settings ⚙',
   ];
 
   void changeNavBar(int index) {
@@ -87,7 +97,7 @@ class MainCubit extends Cubit<MainStates> {
     required String email,
     required String name,
     required String phone,
-    String? image,
+    required image,
   }) {
     emit(UserUpdateLoadingStates());
 
@@ -98,6 +108,7 @@ class MainCubit extends Cubit<MainStates> {
         'email': email,
         'name': name,
         'phone': phone,
+        'image': image,
       },
     ).then((value) {
       userData = LoginModel.fromJson(value.data);
@@ -146,6 +157,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   CategoriesModel? categoriesModel;
+
   void getCategoriesData() {
     DioHelper.getData(
       url: categories,
@@ -163,6 +175,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   CategoryDetailModel? categoriesDetailModel;
+
   void getCategoriesDetailData(int categoryID) {
     emit(CategoryDetailsLoadingStates());
     DioHelper.getData(url: "categories/$categoryID", query: {
@@ -187,6 +200,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   ChangeCartModel? changeCartModel;
+
   void changeCart(int productId) {
     emit(ChangeCartStates());
     DioHelper.postData(
@@ -232,6 +246,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   UpdateCartModel? updateCartModel;
+
   void updateCartData(int id, int quantity) {
     emit(UpdateCartLoadingStates());
     DioHelper.putData(
@@ -304,6 +319,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   ProductResponse? productResponse;
+
   Future getProductData(productId) async {
     productResponse;
     emit(ProductLoadingStates());
@@ -320,6 +336,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   FaqModel? faqModel;
+
   void getFaqData() {
     emit(FaqLoadingStates());
     DioHelper.getData(url: faqs, token: token).then((value) {
@@ -335,11 +352,67 @@ class MainCubit extends Cubit<MainStates> {
 
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
+
   void showPassword() {
     isPassword = !isPassword;
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(ShowPasswordStates());
+  }
+
+  File? profileImage;
+
+  var picker = ImagePicker();
+
+  // Implementing the image picker
+  Future<void> getImageFromGallery(ImageSource source) async {
+    final pickedImage = await picker.pickImage(source: source);
+    if (pickedImage != null) {
+      profileImage = File(pickedImage.path);
+      List<int> imageBytes = profileImage!.readAsBytesSync();
+      base64Image = base64Encode(imageBytes);
+      if (kDebugMode) {
+        print('***************************');
+      }
+      if (kDebugMode) {
+        print(base64Image);
+      }
+      if (kDebugMode) {
+        print('***************************');
+      }
+      emit(ProfileImagePickedSuccessState());
+    } else {
+      if (kDebugMode) {
+        print('No image selected');
+      }
+      emit(ProfileImagePickedErrorState());
+    }
+  }
+
+  Future<void> getImageFromCamera(ImageSource source) async {
+    final pickedImage =
+        await picker.pickImage(source: source, maxHeight: 1800, maxWidth: 1800);
+
+    if (pickedImage != null) {
+      profileImage = File(pickedImage.path);
+      List<int> imageBytes = profileImage!.readAsBytesSync();
+      base64Image = base64Encode(imageBytes);
+      if (kDebugMode) {
+        print('***************************');
+      }
+      if (kDebugMode) {
+        print(base64Image);
+      }
+      if (kDebugMode) {
+        print('***************************');
+      }
+      emit(ProfileImagePickedSuccessState());
+    } else {
+      if (kDebugMode) {
+        print('No image selected');
+      }
+      emit(ProfileImagePickedErrorState());
+    }
   }
 }

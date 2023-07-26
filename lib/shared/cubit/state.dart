@@ -116,3 +116,7 @@ class NotificationLoadingStates extends MainStates {}
 class GetNotificationSuccessStates extends MainStates {}
 
 class GetNotificationErrorStates extends MainStates {}
+
+class ProfileImagePickedSuccessState extends MainStates {}
+
+class ProfileImagePickedErrorState extends MainStates {}
