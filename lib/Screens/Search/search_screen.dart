@@ -1,78 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:super_marko/Screens/search/cubit/cubit.dart';
-import 'package:super_marko/Screens/search/cubit/state.dart';
 import 'package:super_marko/model/search/search_model.dart';
 import 'package:super_marko/shared/components/image_with_shimmer.dart';
 import 'package:super_marko/shared/components/my_divider.dart';
 import 'package:super_marko/shared/components/text_form_field.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
+import 'package:super_marko/shared/cubit/state.dart';
 import 'package:super_marko/shared/styles/colors.dart';
 import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class SearchScreen extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-
-  SearchScreen({super.key});
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SearchCubit(),
-      child: BlocConsumer<SearchCubit, SearchState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          SearchCubit cubit = SearchCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(),
-            body: Form(
-              key: formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    DefaultTextFormField(
-                      focusNode: FocusNode(),
-                      controller: cubit.searchController,
-                      keyboardType: TextInputType.text,
-                      validate: (String? value) {
-                        if (value!.trim().isEmpty) {
-                          return 'Enter Text to get Search';
-                        }
-                        return null;
-                      },
-                      onFieldSubmitted: (text) {
-                        cubit.getSearch(text: text);
-                      },
-                      label: 'Search',
-                      prefix: IconBroken.Search,
-                    ),
-                    SizedBox(height: 20.h),
-                    if (state is SearchLoadingStates)
-                      const LinearProgressIndicator(),
-                    SizedBox(height: 20.h),
-                    if (state is SearchSuccessStates)
-                      Expanded(
-                        child: ListView.separated(
-                          physics: const BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) => ProductList(
-                            searchProductModel:
-                                cubit.searchModel!.data!.products[index],
-                          ),
-                          separatorBuilder: (context, index) =>
-                              const MyDivider(),
-                          itemCount: cubit.searchModel!.data!.total,
+    return BlocConsumer<MainCubit, MainStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        TextEditingController searchController = TextEditingController();
+        final formKey = GlobalKey<FormState>();
+        MainCubit cubit = MainCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(),
+          body: Form(
+            key: formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  DefaultTextFormField(
+                    focusNode: FocusNode(),
+                    controller: searchController,
+                    keyboardType: TextInputType.text,
+                    validate: (String? value) {
+                      if (value!.trim().isEmpty) {
+                        return 'Enter Text to get Search';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (text) {
+                      cubit.getSearch(text: text);
+                    },
+                    label: 'Search',
+                    prefix: IconBroken.Search,
+                  ),
+                  SizedBox(height: 20.h),
+                  if (state is SearchLoadingStates)
+                    const LinearProgressIndicator(),
+                  SizedBox(height: 20.h),
+                  if (state is SearchSuccessStates)
+                    Expanded(
+                      child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => ProductList(
+                          searchProductModel:
+                              cubit.searchModel!.data!.products[index],
                         ),
+                        separatorBuilder: (context, index) => const MyDivider(),
+                        itemCount: cubit.searchModel!.data!.total,
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -98,13 +93,6 @@ class ProductList extends StatelessWidget {
                   width: 120.w,
                   height: 120.h,
                 ),
-                // Image(
-                //   image: NetworkImage(
-                //     searchProductModel.image!,
-                //   ),
-                //   width: 120.0,
-                //   height: 120.0,
-                // ),
               ],
             ),
             SizedBox(width: 20.w),
@@ -126,25 +114,6 @@ class ProductList extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: AppMainColors.orangeColor,
                             ),
-                      ),
-                      SizedBox(width: 10.w),
-                      const Spacer(),
-                      CircleAvatar(
-                        backgroundColor: MainCubit.get(context)
-                                .favorites[searchProductModel.id]
-                            ? Colors.red
-                            : Colors.grey[300],
-                        child: IconButton(
-                          onPressed: () {
-                            MainCubit.get(context)
-                                .changeFavorites(searchProductModel.id!);
-                          },
-                          icon: Icon(
-                            IconBroken.Star,
-                            color: AppMainColors.whiteColor,
-                            size: 24.sp,
-                          ),
-                        ),
                       ),
                     ],
                   ),

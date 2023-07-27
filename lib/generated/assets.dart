@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assetsImagesNodata = 'assets/images/Nodata.svg';
   static const String assetsTest = 'assets/test.json';
   static const String fontsIcons = 'assets/fonts/icons.ttf';
   static const String fontsJannaBold = 'assets/fonts/Janna_Bold.ttf';
@@ -12,8 +13,9 @@ class Assets {
   static const String imagesBackground = 'assets/images/background.svg';
   static const String imagesCart = 'assets/images/cart.png';
   static const String imagesLogin = 'assets/images/login.png';
-  static const String imagesNodata = 'assets/images/Nodata.svg';
+  static const String imagesNodata = 'assets/images/nodata.png';
   static const String imagesOnlinePana = 'assets/images/Online_pana.png';
   static const String imagesOnlineShopping =
       'assets/images/Online_shopping.png';
+  static const String imagesSearch = 'assets/images/search.png';
 }

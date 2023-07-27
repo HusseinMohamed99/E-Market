@@ -22,6 +22,7 @@ class DefaultTextFormField extends StatelessWidget {
     this.onFieldSubmitted,
     this.focusNode,
     this.color,
+    this.onEditingComplete,
   });
 
   final TextEditingController controller;
@@ -39,11 +40,13 @@ class DefaultTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final Function(String)? onFieldSubmitted;
+  final Function()? onEditingComplete;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onEditingComplete: onEditingComplete,
       style: Theme.of(context).textTheme.titleLarge,
       focusNode: FocusNode(),
       maxLines: 1,

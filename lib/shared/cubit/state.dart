@@ -120,3 +120,9 @@ class GetNotificationErrorStates extends MainStates {}
 class ProfileImagePickedSuccessState extends MainStates {}
 
 class ProfileImagePickedErrorState extends MainStates {}
+
+class SearchLoadingStates extends MainStates {}
+
+class SearchSuccessStates extends MainStates {}
+
+class SearchErrorStates extends MainStates {}

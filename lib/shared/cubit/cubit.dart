@@ -18,6 +18,7 @@ import 'package:super_marko/model/faq/faq_model.dart';
 import 'package:super_marko/model/favorite/favorite_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/model/search/search_model.dart';
 import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/network/dio_helper.dart';
 import 'package:super_marko/network/end_points.dart';
@@ -378,5 +379,22 @@ class MainCubit extends Cubit<MainStates> {
       }
       emit(ProfileImagePickedErrorState());
     }
+  }
+
+  SearchModel? searchModel;
+
+  void getSearch({required String text}) {
+    emit(SearchLoadingStates());
+    DioHelper.postData(url: search, token: token, data: {
+      'search': text,
+    }).then((value) {
+      searchModel = SearchModel.fromJson(value.data);
+      emit(SearchSuccessStates());
+    }).catchError((error) {
+      if (kDebugMode) {
+        print(error.toString());
+      }
+      emit(SearchErrorStates());
+    });
   }
 }
