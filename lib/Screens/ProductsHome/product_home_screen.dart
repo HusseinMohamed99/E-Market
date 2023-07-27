@@ -207,7 +207,7 @@ class GridProducts extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8).r,
           color: cubit.isDark
-              ? AppMainColors.whiteColor
+              ? AppMainColors.greyColor.withOpacity(0.1)
               : AppColorsDark.primaryDarkColor,
         ),
         child: Padding(
