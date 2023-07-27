@@ -72,95 +72,95 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MainCubit cubit = MainCubit.get(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20).r,
-      child: SizedBox(
-        height: 320.h,
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                ImageWithShimmer(
+      padding: const EdgeInsets.all(15).r,
+      child: Container(
+        width: double.infinity,
+        height: 105.h,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0).r,
+          color: cubit.isDark
+              ? AppMainColors.mainColor
+              : AppMainColors.orangeColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0).r,
+          child: Row(
+            children: [
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  color: AppMainColors.whiteColor,
+                  borderRadius: BorderRadius.circular(8.0).r,
+                ),
+                width: 90.w,
+                height: double.infinity,
+                child: ImageWithShimmer(
                   imageUrl: favoritesModel.product!.image!,
-                  height: 250.h,
-                  width: double.infinity,
+                  width: 90.w,
+                  height: double.infinity,
+                  boxFit: BoxFit.fill,
                 ),
-                if (favoritesModel.product!.discount != 0 && isOldPrice)
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
-                      ).r,
-                      color: AppMainColors.redColor,
-                      child: Text(
-                        'OFFERS',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: AppMainColors.whiteColor),
-                      ),
-                    ),
-                  ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: CircleAvatar(
-                    radius: 20.r,
-                    backgroundColor: MainCubit.get(context)
-                            .favorites[favoritesModel.product!.id]
-                        ? Colors.red
-                        : Colors.grey[300],
-                    child: IconButton(
-                      onPressed: () {
-                        MainCubit.get(context)
-                            .changeFavorites(favoritesModel.product!.id!);
-                      },
-                      icon: Icon(
-                        IconBroken.Heart,
-                        color: AppMainColors.whiteColor,
-                        size: 24.sp,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    favoritesModel.product!.name!,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  SizedBox(height: 20.h),
-                  Row(
-                    children: [
-                      Text(
-                        '${favoritesModel.product!.price.round()}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(color: AppMainColors.redColor),
-                      ),
-                      SizedBox(width: 20.w),
-                      if (favoritesModel.product!.discount != 0 && isOldPrice)
-                        Text(
-                          '${favoritesModel.product!.oldPrice.round()}',
-                          style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: AppMainColors.greyColor,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                        ),
-                    ],
-                  ),
-                ],
               ),
-            ),
-          ],
+              SizedBox(width: 10.w),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      favoritesModel.product!.name!,
+                      style: Theme.of(context).textTheme.titleMedium,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${favoritesModel.product!.price.round()} EGP',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(color: AppMainColors.whiteColor),
+                        ),
+                        if (favoritesModel.product!.discount != 0 && isOldPrice)
+                          Text(
+                            '${favoritesModel.product!.oldPrice.round()} EGP',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                  color: AppMainColors.greyColor,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                          ),
+                        CircleAvatar(
+                          radius: 20.r,
+                          backgroundColor: AppMainColors.whiteColor,
+                          child: IconButton(
+                            icon: Icon(
+                              IconBroken.Heart,
+                              color: cubit.favorites[favoritesModel.product!.id]
+                                  ? AppMainColors.redColor
+                                  : Colors.grey,
+                              size: 24.sp,
+                            ),
+                            onPressed: () {
+                              cubit
+                                  .changeFavorites(favoritesModel.product!.id!);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
