@@ -2,14 +2,19 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:super_marko/Screens/CategoryDetails/category_details_screen.dart';
 import 'package:super_marko/Screens/ProductDetails/product_details_screen.dart';
 import 'package:super_marko/model/category/category_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
+import 'package:super_marko/shared/components/image_with_shimmer.dart';
 import 'package:super_marko/shared/components/navigator.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
+import 'package:super_marko/shared/styles/colors.dart';
+import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -122,21 +127,22 @@ class ProductsScreen extends StatelessWidget {
                     'New Products',
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
+                  SizedBox(height: 20.h),
+                  StaggeredGridView.countBuilder(
+                    padding: const EdgeInsets.symmetric(vertical: 15).r,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 1 / 1.5,
-                    children: List.generate(
-                      model.data!.products.length,
-                      (index) =>
-                          gridProducts(model.data!.products[index], context),
-                    ),
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 3,
+                    itemCount: model.data!.products.length,
+                    staggeredTileBuilder: (index) {
+                      return StaggeredTile.count(1, index.isEven ? 1.8 : 1.4);
+                    },
+                    itemBuilder: (context, index) {
+                      return GridProducts(
+                          productModel: model.data!.products[index]);
+                    },
                   ),
                 ],
               ),
@@ -181,111 +187,109 @@ class ProductsScreen extends StatelessWidget {
           ),
         ),
       );
+}
 
-  Widget gridProducts(ProductModel model, context) => InkWell(
-        onTap: () {
-          MainCubit.get(context)
-              .getProductData(model.id)
-              .then((value) => navigateTo(context, ProductDetailsScreen()));
-        },
-        child: Stack(
-          children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              clipBehavior: Clip.none,
-              elevation: 20,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 16,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+class GridProducts extends StatelessWidget {
+  const GridProducts({super.key, required this.productModel});
+
+  final ProductModel productModel;
+
+  @override
+  Widget build(BuildContext context) {
+    MainCubit cubit = MainCubit.get(context);
+    return InkWell(
+      onTap: () {
+        MainCubit.get(context)
+            .getProductData(productModel.id)
+            .then((value) => navigateTo(context, const ProductDetailsScreen()));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8).r,
+          color: cubit.isDark
+              ? AppMainColors.whiteColor
+              : AppColorsDark.primaryDarkColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8).r,
+          child: Column(
+            children: [
+              Expanded(
+                child: Stack(
                   children: [
-                    Image(
-                      image: NetworkImage(
-                        model.image!,
-                      ),
+                    Container(
                       width: double.infinity,
-                      height: 150.0,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8).r,
+                      ),
+                      child: ImageWithShimmer(
+                        imageUrl: productModel.image!,
+                        width: double.infinity,
+                        height: double.infinity,
+                        boxFit: BoxFit.fill,
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          model.name!,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '${model.price.round()} LE',
-                              style: const TextStyle(
-                                color: Colors.red,
+                    if (productModel.discount != 0)
+                      Positioned.fill(
+                        child: Align(
+                          alignment: const Alignment(1, -1),
+                          child: ClipRect(
+                            child: Banner(
+                              message: 'Offers'.toUpperCase(),
+                              textStyle: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.sp,
+                                letterSpacing: 0.5,
+                              ),
+                              location: BannerLocation.topStart,
+                              color: AppMainColors.redColor,
+                              child: Container(
+                                height: 60.h,
                               ),
                             ),
-                            const SizedBox(
-                              width: 7.0,
-                            ),
-                            if (model.discount != 0)
-                              Text(
-                                '${model.oldPrice.round()}LE',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
-                              ),
-                          ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
                   ],
                 ),
               ),
-            ),
-            Positioned(
-              top: 10,
-              right: 0,
-              child: IconButton(
-                onPressed: () {
-                  MainCubit.get(context).changeFavorites(model.id!);
-                },
-                icon: Icon(
-                  MainCubit.get(context).favorites[model.id]
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                  color: MainCubit.get(context).favorites[model.id]
-                      ? Colors.red
-                      : Colors.grey,
-                  size: 26,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5).r,
+                child: Text(
+                  productModel.name!,
+                  maxLines: 2,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-            ),
-            if (model.discount != 0)
-              Positioned.fill(
-                child: Align(
-                  alignment: const Alignment(1, -1),
-                  child: ClipRect(
-                    child: Banner(
-                      message: 'OFFERS',
-                      textStyle: const TextStyle(
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        letterSpacing: 0.5,
-                      ),
-                      location: BannerLocation.topStart,
-                      color: Colors.red,
-                      child: Container(
-                        height: 100.0,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${productModel.price} EGP',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: AppMainColors.redColor),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      cubit.changeFavorites(productModel.id!);
+                    },
+                    child: Icon(
+                      IconBroken.Heart,
+                      color: cubit.favorites[productModel.id]
+                          ? AppMainColors.redColor
+                          : AppMainColors.greyColor,
                     ),
                   ),
-                ),
+                ],
               ),
-          ],
+            ],
+          ),
         ),
-      );
+      ),
+    );
+  }
 }
