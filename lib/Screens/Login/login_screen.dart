@@ -68,11 +68,11 @@ class LoginScreen extends StatelessWidget {
                     child: Stack(
                       children: [
                         Positioned(
-                          left: -156.w,
-                          top: -113.h,
+                          left: -156,
+                          top: -113,
                           child: Container(
-                            width: 510.w,
-                            height: 380.h,
+                            width: 510,
+                            height: 478,
                             decoration: const ShapeDecoration(
                               color: AppMainColors.orangeColor,
                               shape: OvalBorder(),
@@ -80,11 +80,11 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          left: 214.w,
-                          top: -47.h,
+                          left: 214,
+                          top: -47,
                           child: Container(
-                            width: 458.w,
-                            height: 310.h,
+                            width: 458,
+                            height: 400,
                             decoration: const ShapeDecoration(
                               color: AppMainColors.mainColor,
                               shape: OvalBorder(),
@@ -101,7 +101,10 @@ class LoginScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 'Welcome\nBack',
-                                style: Theme.of(context).textTheme.displaySmall,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(color: AppMainColors.whiteColor),
                               ),
                             )),
                       ],
@@ -170,6 +173,7 @@ class LoginScreen extends StatelessWidget {
                                       }
                                     },
                                     text: 'Sign In',
+                                    textColor: AppMainColors.whiteColor,
                                     radius: 15,
                                     context: context,
                                   )
@@ -186,7 +190,9 @@ class LoginScreen extends StatelessWidget {
                                       'Sign In'.toUpperCase(),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headlineSmall,
+                                          .headlineSmall!
+                                          .copyWith(
+                                              color: AppMainColors.whiteColor),
                                     ),
                                   ),
                             Column(
@@ -194,7 +200,10 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    checkBox(context),
+                                    checkBox(
+                                      context,
+                                      color: AppMainColors.greyColor,
+                                    ),
                                     Text(
                                       'By creating an account, you agree to our',
                                       style: Theme.of(context)

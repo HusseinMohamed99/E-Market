@@ -224,7 +224,7 @@ class SettingScreen extends StatelessWidget {
                     desc: "Please, Login soon 🤚",
                     btnOkOnPress: () {
                       logOut(context);
-                      MainCubit.get(context).currentIndex == 0;
+                      MainCubit.get(context).currentIndex = 0;
                     },
                     btnCancelOnPress: () {},
                   ).show();

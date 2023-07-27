@@ -97,7 +97,10 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             child: Text(
                               'Create\nAccount',
-                              style: Theme.of(context).textTheme.displaySmall,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(color: AppMainColors.whiteColor),
                             ),
                           ),
                         ),
@@ -195,6 +198,7 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                   },
                                   text: 'Sign UP',
+                                  textColor: AppMainColors.whiteColor,
                                   radius: 20,
                                   context: context,
                                 )
@@ -211,7 +215,9 @@ class RegisterScreen extends StatelessWidget {
                                     'Sign UP'.toUpperCase(),
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headlineSmall,
+                                        .headlineSmall!
+                                        .copyWith(
+                                            color: AppMainColors.whiteColor),
                                   ),
                                 ),
                           Column(
