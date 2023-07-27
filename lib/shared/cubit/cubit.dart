@@ -200,6 +200,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   ChangeCartModel? changeCartModel;
+  Map<int, bool> carting = {};
 
   void changeCart(int productId) {
     emit(ChangeCartStates());
@@ -397,5 +398,12 @@ class MainCubit extends Cubit<MainStates> {
       }
       emit(SearchErrorStates());
     });
+  }
+
+  int activeIndex = 0;
+
+  void onPageChange(int index) {
+    activeIndex = index;
+    emit(OnPageChangeState());
   }
 }

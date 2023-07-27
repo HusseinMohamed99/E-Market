@@ -1,276 +1,235 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:super_marko/Screens/cart/cart_screen.dart';
-import 'package:super_marko/shared/components/my_divider.dart';
-import 'package:super_marko/shared/components/navigator.dart';
-import 'package:super_marko/shared/components/show_toast.dart';
+import 'package:super_marko/shared/components/buttons.dart';
+import 'package:super_marko/shared/components/image_with_shimmer.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
+import 'package:super_marko/shared/styles/colors.dart';
+import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  final PageController productImages = PageController();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        final scaffoldKey = GlobalKey<ScaffoldState>();
         var cubit = MainCubit.get(context);
-        var model = cubit.productResponse!.data;
-
-        return ConditionalBuilder(
-          condition: cubit.productResponse != null,
-          builder: (context) => SafeArea(
-            child: Scaffold(
-              key: scaffoldKey,
-              appBar: AppBar(),
-              body: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Text('${model!.name}'),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          SizedBox(
-                            height: 300,
+        var productModel = cubit.productResponse!.data;
+        return Scaffold(
+          key: scaffoldKey,
+          body: (state is! ProductLoadingStates)
+              ? AnnotatedRegion<SystemUiOverlayStyle>(
+                  value: SystemUiOverlayStyle(
+                    statusBarColor: Colors.black.withOpacity(0.3),
+                    statusBarIconBrightness: Brightness.light,
+                  ),
+                  child: Stack(
+                    children: [
+                      CarouselSlider.builder(
+                        itemCount: productModel!.images!.length,
+                        itemBuilder: (context, index, n) {
+                          return SizedBox(
                             width: double.infinity,
-                            child: Stack(
-                              children: [
-                                PageView.builder(
-                                  controller: productImages,
-                                  itemBuilder: (context, index) =>
-                                      Image.network(model.images![index]),
-                                  itemCount: model.images!.length,
-                                ),
-                              ],
+                            child: ImageWithShimmer(
+                              imageUrl: productModel.images![index],
+                              width: double.infinity,
+                              height: 200.h,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          SmoothPageIndicator(
-                            controller: productImages,
-                            count: model.images!.length,
+                          );
+                        },
+                        options: CarouselOptions(
+                          onPageChanged: (index, reason) {
+                            cubit.onPageChange(index);
+                          },
+                          autoPlay: true,
+                          height: 300.h,
+                          viewportFraction: 1,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enableInfiniteScroll: true,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 320).r,
+                          child: AnimatedSmoothIndicator(
+                            count: cubit.productResponse!.data!.images!.length,
+                            activeIndex: cubit.activeIndex,
                             effect: ExpandingDotsEffect(
-                                dotColor: Colors.grey.shade300,
-                                activeDotColor: Colors.deepOrange,
-                                expansionFactor: 1.01,
-                                dotHeight: 15,
-                                dotWidth: 15,
-                                spacing: 12),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                                color: Colors.deepOrangeAccent,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Price:  ${model.price}  LE',
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        height: 1),
-                                  ),
-                                  const Spacer(),
-                                  if (model.discount != 0)
-                                    Text(
-                                      '${model.discount}' '% OFF',
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          height: 1),
-                                    ),
-                                ],
-                              ),
+                              dotColor: AppMainColors.greyColor,
+                              dotHeight: 10.h,
+                              dotWidth: 10.w,
+                              expansionFactor: 4,
+                              spacing: 5,
+                              activeDotColor: AppMainColors.redColor,
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0, top: 35.0).r,
+                        child: CircleAvatar(
+                          backgroundColor: AppMainColors.greyColor,
+                          radius: 20.r,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(
+                              IconBroken.Arrow___Left_2,
+                              color: AppMainColors.orangeColor,
+                              size: 24.sp,
+                            ),
                           ),
-                          const MyDivider(),
-                          const SizedBox(
-                            height: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
+          floatingActionButton: (state is! ProductLoadingStates)
+              ? FloatingActionButton(
+                  backgroundColor: AppMainColors.whiteColor,
+                  onPressed: () {
+                    cubit.changeFavorites(cubit.productResponse!.data!.id!);
+                  },
+                  child: Icon(
+                    IconBroken.Heart,
+                    color: cubit.favorites[cubit.productResponse!.data!.id]
+                        ? Colors.red
+                        : Colors.grey,
+                    size: 25.sp,
+                  ))
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+          bottomNavigationBar: (state is! ProductLoadingStates)
+              ? BottomAppBar(
+                  shape: const CircularNotchedRectangle(),
+                  notchMargin: 9.0,
+                  elevation: 30.0,
+                  clipBehavior: Clip.antiAlias,
+                  child: Container(
+                    height: 390.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: cubit.isDark
+                          ? AppMainColors.whiteColor
+                          : AppColorsDark.primaryDarkColor,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                              left: 15.0, right: 15.0, bottom: 20.0, top: 30.0)
+                          .r,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            cubit.productResponse!.data!.name!,
+                            style: Theme.of(context).textTheme.titleLarge,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                                const EdgeInsets.only(top: 10.0, bottom: 5.0).r,
+                            child: Text(
+                              'About',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(color: AppMainColors.redColor),
+                            ),
+                          ),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(),
+                              child: Text(
+                                cubit.productResponse!.data!.description!,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Row(
                               children: [
-                                const Text(
-                                  'Description',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      '${cubit.productResponse!.data!.price} EPG',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge!
+                                          .copyWith(
+                                              color: AppMainColors.redColor),
+                                    ),
+                                    Text(
+                                      'Price',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const MyDivider(),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  '${model.description}',
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                SizedBox(width: 10.w),
+                                Expanded(
+                                  child: defaultButton(
+                                      color: cubit.isDark
+                                          ? AppMainColors.mainColor
+                                          : AppMainColors.orangeColor,
+                                      context: context,
+                                      widget: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          MainCubit.get(context)
+                                                  .cart[productModel!.id]
+                                              ? Text(
+                                                  'Add To Cart',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleLarge,
+                                                )
+                                              : Text(
+                                                  'In Cart',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleLarge,
+                                                ),
+                                          SizedBox(width: 5.w),
+                                          Icon(
+                                            IconBroken.Buy,
+                                            color: AppMainColors.whiteColor,
+                                            size: 24.sp,
+                                          ),
+                                        ],
+                                      ),
+                                      function: () {
+                                        cubit.changeCart(productModel.id!);
+                                      }),
                                 ),
                               ],
                             ),
-                          ),
-                          const SizedBox(
-                            height: 60,
-                            width: double.infinity,
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 60,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10.0,
-                        ),
-                        child: MaterialButton(
-                          color: Colors.deepOrangeAccent,
-                          onPressed: () {
-                            if (MainCubit.get(context).cart[model.id]) {
-                              showToast(
-                                state: ToastStates.success,
-                                text:
-                                    'Already in Your Cart \nCheck your cart To Edit or Delete ',
-                              );
-                            } else {
-                              MainCubit.get(context).changeCart(model.id!);
-                              scaffoldKey.currentState!.showBottomSheet(
-                                (context) => Container(
-                                  padding: const EdgeInsets.all(15),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.check_circle,
-                                            color: Colors.green,
-                                            size: 30,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '${model.name}',
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: const TextStyle(
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                const Text(
-                                                  'Added to Cart',
-                                                  style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 13),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          OutlinedButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text(
-                                                  'CONTINUE SHOPPING')),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              navigateTo(
-                                                  context, const CartScreen());
-                                              MainCubit.get(context)
-                                                  .getCartData();
-                                            },
-                                            child: const Text('CHECKOUT'),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                elevation: 50,
-                              );
-                            }
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Add to Cart',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.add_shopping_cart,
-                                color: Colors.white,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
                 ),
-              ),
-            ),
-          ),
-          fallback: (context) => const Center(
-            child: CircularProgressIndicator(),
-          ),
         );
       },
     );

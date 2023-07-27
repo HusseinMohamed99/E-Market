@@ -126,3 +126,5 @@ class SearchLoadingStates extends MainStates {}
 class SearchSuccessStates extends MainStates {}
 
 class SearchErrorStates extends MainStates {}
+
+class OnPageChangeState extends MainStates {}
