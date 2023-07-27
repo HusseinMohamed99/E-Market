@@ -52,26 +52,6 @@ class ProductDetailsScreen extends StatelessWidget {
                                       Image.network(model.images![index]),
                                   itemCount: model.images!.length,
                                 ),
-                                // Positioned(
-                                //   top: 10,
-                                //   left: 20,
-                                //   child: IconButton(
-                                //     onPressed: () {
-                                //       MainCubit.get(context)
-                                //           .changeFavorites(model.id!);
-                                //     },
-                                //     icon: Icon(
-                                //       MainCubit.get(context).favorites[model.id]
-                                //           ? Icons.favorite
-                                //           : Icons.favorite_border,
-                                //       color: MainCubit.get(context)
-                                //               .favorites[model.id]
-                                //           ? Colors.red
-                                //           : Colors.grey,
-                                //       size: 35,
-                                //     ),
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),
