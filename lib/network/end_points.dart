@@ -28,4 +28,4 @@ const address = 'addresses';
 
 const orders = 'orders';
 
-const changePassword = 'change-password';
+const newPassword = 'change-password';

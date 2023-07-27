@@ -14,10 +14,12 @@ import 'package:super_marko/model/cart/get_cart_model.dart';
 import 'package:super_marko/model/cart/update_cart_model.dart';
 import 'package:super_marko/model/category/category_details_model.dart';
 import 'package:super_marko/model/category/category_model.dart';
+import 'package:super_marko/model/changePassword/change_password_model.dart';
 import 'package:super_marko/model/faq/faq_model.dart';
 import 'package:super_marko/model/favorite/favorite_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/model/orders/orders_model.dart';
 import 'package:super_marko/model/search/search_model.dart';
 import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/network/dio_helper.dart';
@@ -405,5 +407,111 @@ class MainCubit extends Cubit<MainStates> {
   void onPageChange(int index) {
     activeIndex = index;
     emit(OnPageChangeState());
+  }
+
+  void addAddress({
+    required String name,
+    required String city,
+    required String region,
+    required String details,
+    required String notes,
+  }) {
+    emit(AddAddressLoadingState());
+    DioHelper.postData(
+      url: address,
+      token: token,
+      data: {
+        'name': name,
+        'city': city,
+        'region': region,
+        'details': details,
+        'notes': notes,
+        'latitude': '3123123',
+        'longitude': '2121545',
+      },
+    ).then((value) {
+      addOrder(idAddress: value.data['data']['id']);
+      emit(AddAddressSuccessState());
+    }).catchError((error) {
+      emit(AddAddressErrorState(error.toString()));
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
+
+  void addOrder({
+    required int idAddress,
+  }) {
+    emit(AddOrderLoadingState());
+    DioHelper.postData(
+      url: orders,
+      token: token,
+      data: {
+        'address_id': idAddress,
+        'payment_method': 1,
+        'use_points': false,
+      },
+    ).then((value) {
+      getCartData();
+      emit(AddOrderSuccessState());
+    }).catchError((error) {
+      emit(AddOrderErrorState(error.toString()));
+    });
+  }
+
+  OrdersModel? ordersModel;
+
+  void getOrders() {
+    emit(GetOrdersLoadingState());
+    DioHelper.getData(
+      url: orders,
+      token: token,
+    ).then((value) {
+      ordersModel = OrdersModel.fromJson(value.data);
+      emit(GetOrdersSuccessState());
+    }).catchError((error) {
+      emit(GetOrdersErrorState(error.toString()));
+    });
+  }
+
+  void cancelOrder({required int id}) {
+    emit(CancelOrdersLoadingState());
+    DioHelper.getData(
+      url: 'orders/$id/cancel',
+      token: token,
+    ).then((value) {
+      emit(CancelOrdersSuccessState());
+    }).catchError((error) {
+      emit(CancelOrdersErrorState(error.toString()));
+    });
+  }
+
+  ChangePasswordModel? changePasswordModel;
+
+  void changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) {
+    emit(ChangePasswordLoadingState());
+    DioHelper.postData(
+      url: newPassword,
+      token: token,
+      data: {
+        'current_password': currentPassword,
+        'new_password': newPassword,
+      },
+    ).then((value) {
+      changePasswordModel = ChangePasswordModel.fromJson(value.data);
+      if (kDebugMode) {
+        print(value.data);
+      }
+      emit(ChangePasswordSuccessState(changePasswordModel!));
+    }).catchError((error) {
+      emit(ChangePasswordErrorState(error.toString()));
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
   }
 }

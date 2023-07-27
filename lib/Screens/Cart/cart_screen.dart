@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:super_marko/Screens/Orders/order_screen.dart';
 import 'package:super_marko/generated/assets.dart';
 import 'package:super_marko/model/cart/get_cart_model.dart';
 import 'package:super_marko/shared/components/buttons.dart';
@@ -129,9 +130,10 @@ class CartScreen extends StatelessWidget {
                           : AppMainColors.orangeColor,
                       context: context,
                       function: () {
-                        // if(cubit.cartsModel.data.total!=0){
-                        //   navigatorPush(context, OrderScreen());
-                        // }
+                        if (MainCubit.get(context).cartModel!.data!.total !=
+                            0) {
+                          navigateTo(context, const OrderScreen());
+                        }
                       },
                       textColor: AppMainColors.whiteColor,
                       text: 'CheckOut',

@@ -34,7 +34,7 @@ class Data {
   int? perPage;
   String? prevPageUrl;
   int? to;
-  int? total;
+  dynamic total;
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];

@@ -1,4 +1,5 @@
 import 'package:super_marko/model/cart/add_cart_model.dart';
+import 'package:super_marko/model/changePassword/change_password_model.dart';
 import 'package:super_marko/model/favorite/favorite_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/model/login/login_model.dart';
@@ -128,3 +129,57 @@ class SearchSuccessStates extends MainStates {}
 class SearchErrorStates extends MainStates {}
 
 class OnPageChangeState extends MainStates {}
+
+class AddAddressLoadingState extends MainStates {}
+
+class AddAddressSuccessState extends MainStates {}
+
+class AddAddressErrorState extends MainStates {
+  final String error;
+
+  AddAddressErrorState(this.error);
+}
+
+class AddOrderLoadingState extends MainStates {}
+
+class AddOrderSuccessState extends MainStates {}
+
+class AddOrderErrorState extends MainStates {
+  final String error;
+
+  AddOrderErrorState(this.error);
+}
+
+class GetOrdersLoadingState extends MainStates {}
+
+class GetOrdersSuccessState extends MainStates {}
+
+class GetOrdersErrorState extends MainStates {
+  final String error;
+
+  GetOrdersErrorState(this.error);
+}
+
+class CancelOrdersLoadingState extends MainStates {}
+
+class CancelOrdersSuccessState extends MainStates {}
+
+class CancelOrdersErrorState extends MainStates {
+  final String error;
+
+  CancelOrdersErrorState(this.error);
+}
+
+class ChangePasswordLoadingState extends MainStates {}
+
+class ChangePasswordSuccessState extends MainStates {
+  final ChangePasswordModel changePasswordModel;
+
+  ChangePasswordSuccessState(this.changePasswordModel);
+}
+
+class ChangePasswordErrorState extends MainStates {
+  final String error;
+
+  ChangePasswordErrorState(this.error);
+}

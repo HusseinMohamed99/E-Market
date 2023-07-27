@@ -65,6 +65,7 @@ class Myapp extends StatelessWidget {
               ..getUserData()
               ..getCartData()
               ..getFaqData()
+              ..getOrders()
               ..changeAppMode(
                 fromShared: isDark,
               )),
