@@ -167,7 +167,6 @@ class CartProducts extends StatelessWidget {
           motion: const ScrollMotion(),
           children: [
             SlidableAction(
-              // An action can be bigger than the others.
               onPressed: (context) {
                 MainCubit.get(context).changeCart(cartModel.product!.id!);
               },
