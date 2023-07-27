@@ -65,16 +65,16 @@ class ProductsScreen extends StatelessWidget {
                 items: model.data!.banners
                     .map(
                       (e) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8).r,
                         child: SizedBox(
                           width: double.infinity,
-                          height: 300,
+                          height: 300.h,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Image(
-                              image: NetworkImage('${e.image}'),
+                            borderRadius: BorderRadius.circular(30).r,
+                            child: ImageWithShimmer(
+                              imageUrl: '${e.image}',
                               width: double.infinity,
-                              fit: BoxFit.cover,
+                              height: double.infinity,
                             ),
                           ),
                         ),
@@ -86,11 +86,9 @@ class ProductsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30.0,
-            ),
+            SizedBox(height: 30.h),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10).r,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -98,12 +96,9 @@ class ProductsScreen extends StatelessWidget {
                     'Categories',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
                   Container(
-                    height: 140.0,
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 150.h,
+                    padding: const EdgeInsets.symmetric(vertical: 10.0).r,
                     child: Scrollbar(
                       thickness: 1,
                       child: ListView.separated(
@@ -111,23 +106,21 @@ class ProductsScreen extends StatelessWidget {
                             start: 10.0, top: 10),
                         physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => categoriesItem(
-                            categoriesModel.data!.data[index], context),
-                        separatorBuilder: (context, index) => const SizedBox(
-                          width: 10.0,
+                        itemBuilder: (context, index) => CategoriesItem(
+                          dataModel: categoriesModel.data!.data[index],
+                        ),
+                        separatorBuilder: (context, index) => SizedBox(
+                          width: 10.w,
                         ),
                         itemCount: categoriesModel.data!.data.length,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  SizedBox(height: 20.h),
                   Text(
                     'New Products',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  SizedBox(height: 20.h),
                   StaggeredGridView.countBuilder(
                     padding: const EdgeInsets.symmetric(vertical: 15).r,
                     shrinkWrap: true,
@@ -150,43 +143,50 @@ class ProductsScreen extends StatelessWidget {
           ],
         ),
       );
+}
 
-  Widget categoriesItem(DataModel model, context) => InkWell(
-        onTap: () {
-          MainCubit.get(context).getCategoriesDetailData(model.id!);
-          navigateTo(context, CategoryProductsScreen(model.name!));
-        },
-        child: SizedBox(
-          width: 105,
-          child: Column(
-            children: [
-              Container(
-                width: 95.0,
-                height: 82.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.deepOrange, width: 2),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      model.image!,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+class CategoriesItem extends StatelessWidget {
+  const CategoriesItem({super.key, required this.dataModel});
+
+  final DataModel dataModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        MainCubit.get(context).getCategoriesDetailData(dataModel.id!);
+        navigateTo(context, CategoryProductsScreen(dataModel.name!));
+      },
+      child: SizedBox(
+        width: 105.w,
+        child: Column(
+          children: [
+            Container(
+              height: 90.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                border: Border.all(color: AppMainColors.orangeColor, width: 2),
               ),
-              Text(
-                model.name!.toUpperCase(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
-          ),
+              child: ImageWithShimmer(
+                imageUrl: dataModel.image!,
+                width: 90.w,
+                height: 90.h,
+                boxFit: BoxFit.fill,
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              dataModel.name!.toUpperCase(),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
 
 class GridProducts extends StatelessWidget {
