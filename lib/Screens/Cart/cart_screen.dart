@@ -110,19 +110,19 @@ class CartScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Total Price:',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          'Total Price :',
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Text(
                           '${MainCubit.get(context).cartModel!.data!.total} EGP',
                           style: Theme.of(context)
                               .textTheme
-                              .titleMedium!
+                              .titleLarge!
                               .copyWith(color: Colors.red),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 15.h),
                     defaultMaterialButton(
                       color: MainCubit.get(context).isDark
                           ? AppMainColors.mainColor
@@ -133,6 +133,7 @@ class CartScreen extends StatelessWidget {
                         //   navigatorPush(context, OrderScreen());
                         // }
                       },
+                      textColor: AppMainColors.whiteColor,
                       text: 'CheckOut',
                     ),
                   ],
