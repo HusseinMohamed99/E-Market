@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
           if (state.model.status!) {
             showToast(
               text: state.model.message!,
-              state: ToastStates.error,
+              state: ToastStates.success,
             );
           }
         }
