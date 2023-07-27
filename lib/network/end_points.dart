@@ -23,3 +23,9 @@ const search = 'products/search';
 const faqs = 'faqs';
 
 const notifications = 'notifications';
+
+const address = 'addresses';
+
+const orders = 'orders';
+
+const changePassword = 'change-password';
