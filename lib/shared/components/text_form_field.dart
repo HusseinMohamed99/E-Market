@@ -23,6 +23,7 @@ class DefaultTextFormField extends StatelessWidget {
     this.focusNode,
     this.color,
     this.onEditingComplete,
+    this.prefixPressed,
   });
 
   final TextEditingController controller;
@@ -37,6 +38,7 @@ class DefaultTextFormField extends StatelessWidget {
   final IconData? suffix;
   final IconData? prefix;
   final Function? suffixPressed;
+  final Function? prefixPressed;
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final Function(String)? onFieldSubmitted;
@@ -60,10 +62,13 @@ class DefaultTextFormField extends StatelessWidget {
       obscureText: isPassword,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        prefixIcon: Icon(
-          prefix,
-          color: Colors.grey,
-          size: 24.sp,
+        prefixIcon: IconButton(
+          icon: Icon(
+            prefix,
+            color: Colors.grey,
+            size: 24.sp,
+          ),
+          onPressed: () {},
         ),
         suffixIcon: suffix != null
             ? IconButton(

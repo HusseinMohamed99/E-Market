@@ -382,6 +382,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   SearchModel? searchModel;
+  var controller = TextEditingController();
 
   void getSearch({required String text}) {
     emit(SearchLoadingStates());
