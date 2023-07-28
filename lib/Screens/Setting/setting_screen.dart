@@ -11,6 +11,7 @@ import 'package:super_marko/Screens/Password/change_password.dart';
 import 'package:super_marko/Screens/ProfileScreen/profile_screen.dart';
 import 'package:super_marko/shared/components/logout.dart';
 import 'package:super_marko/shared/components/navigator.dart';
+import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
 import 'package:super_marko/shared/styles/colors.dart';
@@ -22,7 +23,17 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AddComplaintsSuccessState) {
+          pop(context);
+          showToast(text: 'Add Complaints Success', state: ToastStates.success);
+        }
+        if (state is ChangePasswordSuccessState) {
+          pop(context);
+          showToast(
+              text: ' Change Password Success', state: ToastStates.success);
+        }
+      },
       builder: (context, state) {
         return SingleChildScrollView(
           child: Padding(

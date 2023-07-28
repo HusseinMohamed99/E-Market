@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:super_marko/model/login/login_model.dart';
 import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/text_form_field.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
@@ -37,10 +38,10 @@ class ShowModalBottomSheet extends StatelessWidget {
     TextEditingController phoneController = TextEditingController();
     TextEditingController nameController = TextEditingController();
     MainCubit cubit = MainCubit.get(context);
-    // LoginModel? model = MainCubit.get(context).userData;
-    // emailController.text = model!.data!.email!;
-    // phoneController.text = model.data!.phone!;
-    // nameController.text = model.data!.name!;
+    UserModel? model = MainCubit.get(context).userData;
+    emailController.text = model!.data!.email!;
+    phoneController.text = model.data!.phone!;
+    nameController.text = model.data!.name!;
     return DraggableScrollableSheet(
         initialChildSize: 0.35.sp,
         minChildSize: 0.35.spMin,
