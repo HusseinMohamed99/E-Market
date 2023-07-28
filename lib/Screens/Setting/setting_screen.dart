@@ -24,230 +24,233 @@ class SettingScreen extends StatelessWidget {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0).r,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const ProfileScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Profile,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'My Profile',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0).r,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const ProfileScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Profile,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'My Profile',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const NotificationsScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Notification,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'Notifications',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const NotificationsScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Notification,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'Notifications',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const OrdersScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Bag,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'My Orders',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const OrdersScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Bag,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'My Orders',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const ChangePasswordScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Password,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'Change Password',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    bottomSheetChangePassword(
+                        context: context, cubit: MainCubit.get(context));
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Password,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'Change Password',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const ComplaintsScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Document,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'Complaints',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const ComplaintsScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Document,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'Complaints',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.question,
-                    animType: AnimType.topSlide,
-                    title: 'Do you want to change mode?',
-                    btnOkOnPress: () {
-                      MainCubit.get(context).changeAppMode();
-                    },
-                    btnCancelOnPress: () {},
-                  ).show();
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.dark_mode_outlined,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'Theme Mode',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.question,
+                      animType: AnimType.topSlide,
+                      title: 'Do you want to change mode?',
+                      btnOkOnPress: () {
+                        MainCubit.get(context).changeAppMode();
+                      },
+                      btnCancelOnPress: () {},
+                    ).show();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.dark_mode_outlined,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'Theme Mode',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const FaqScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Bookmark,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'FAQS',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const FaqScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Bookmark,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'FAQS',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  navigateTo(context, const AboutUsScreen());
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Info_Circle,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'About us',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const AboutUsScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Info_Circle,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'About us',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.question,
-                    animType: AnimType.rightSlide,
-                    title: 'Do you want to Logout ?',
-                    desc: "Please, Login soon 🤚",
-                    btnOkOnPress: () {
-                      logOut(context);
-                      MainCubit.get(context).currentIndex = 0;
-                    },
-                    btnCancelOnPress: () {},
-                  ).show();
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconBroken.Logout,
-                        color: AppMainColors.orangeColor,
-                        size: 35.sp,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        'Log Out',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.question,
+                      animType: AnimType.rightSlide,
+                      title: 'Do you want to Logout ?',
+                      desc: "Please, Login soon 🤚",
+                      btnOkOnPress: () {
+                        logOut(context);
+                        MainCubit.get(context).currentIndex = 0;
+                      },
+                      btnCancelOnPress: () {},
+                    ).show();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Logout,
+                          color: AppMainColors.orangeColor,
+                          size: 35.sp,
+                        ),
+                        SizedBox(width: 15.w),
+                        Text(
+                          'Log Out',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

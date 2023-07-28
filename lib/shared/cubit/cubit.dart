@@ -28,6 +28,7 @@ import 'package:super_marko/shared/components/constants.dart';
 import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/cubit/state.dart';
 import 'package:super_marko/shared/styles/colors.dart';
+import 'package:super_marko/shared/styles/icon_broken.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainInitialStates());
@@ -352,17 +353,6 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-  IconData suffix = Icons.visibility_outlined;
-  bool isPassword = true;
-
-  void showPassword() {
-    isPassword = !isPassword;
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-
-    emit(ShowPasswordStates());
-  }
-
   File? profileImage;
   var picker = ImagePicker();
 
@@ -513,5 +503,25 @@ class MainCubit extends Cubit<MainStates> {
         print(error.toString());
       }
     });
+  }
+
+  IconData suffix = IconBroken.Show;
+  bool isPassword = true;
+
+  void showPassword() {
+    isPassword = !isPassword;
+    suffix = isPassword ? IconBroken.Show : IconBroken.Hide;
+
+    emit(ShowPasswordStates());
+  }
+
+  IconData suffixIcon = IconBroken.Show;
+  bool iSPassword = true;
+
+  void showConfirmPassword() {
+    iSPassword = !iSPassword;
+    suffixIcon = iSPassword ? IconBroken.Show : IconBroken.Hide;
+
+    emit(ChangeConfirmPasswordState());
   }
 }

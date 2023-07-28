@@ -104,6 +104,8 @@ class UpdateCartErrorStates extends MainStates {}
 
 class ShowPasswordStates extends MainStates {}
 
+class ChangeConfirmPasswordState extends MainStates {}
+
 class ChangeNavBarItem extends MainStates {}
 
 class FaqLoadingStates extends MainStates {}
