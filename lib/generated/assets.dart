@@ -3,13 +3,7 @@ class Assets {
   Assets._();
 
   static const String assetsImagesCart = 'assets/images/cart.svg';
-  static const String assetsTest = 'assets/test.json';
   static const String fontsIcons = 'assets/fonts/icons.ttf';
-  static const String fontsJannaBold = 'assets/fonts/Janna_Bold.ttf';
-  static const String iconFacebook = 'assets/icon/facebook.svg';
-  static const String iconGoogle = 'assets/icon/google.svg';
-  static const String iconPhone = 'assets/icon/phone.svg';
-  static const String iconTwitter = 'assets/icon/twitter.svg';
   static const String imagesBackground = 'assets/images/background.svg';
   static const String imagesCart = 'assets/images/cart.png';
   static const String imagesLogin = 'assets/images/login.png';

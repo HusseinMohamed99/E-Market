@@ -50,16 +50,11 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/icon/
     - assets/
     - assets/fonts/
 
 
   fonts:
-    - family: Jannah
-      fonts:
-        - asset: assets/fonts/Janna_Bold.ttf
-          weight: 700
 
     - family: IconBroken
       fonts:
