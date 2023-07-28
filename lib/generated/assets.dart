@@ -13,6 +13,7 @@ class Assets {
   static const String imagesBackground = 'assets/images/background.svg';
   static const String imagesCart = 'assets/images/cart.png';
   static const String imagesLogin = 'assets/images/login.png';
+  static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesNodata = 'assets/images/Nodata.svg';
   static const String imagesOnlinePana = 'assets/images/Online_pana.png';
   static const String imagesOnlineShopping =

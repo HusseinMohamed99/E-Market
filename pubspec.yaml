@@ -13,7 +13,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^10.5.0
   dio: ^5.3.0
@@ -52,6 +51,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icon/
+    - assets/
+    - assets/fonts/
 
 
   fonts:
