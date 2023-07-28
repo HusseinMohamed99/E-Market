@@ -3,23 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:super_marko/Screens/login/login_screen.dart';
+import 'package:super_marko/model/onBoarding/on_boarding_model.dart';
 import 'package:super_marko/network/cache_helper.dart';
 import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/navigator.dart';
-
-class BoardingModel {
-  final String image;
-  final String title;
-  final String body;
-  final String text;
-
-  BoardingModel({
-    required this.image,
-    required this.title,
-    required this.body,
-    required this.text,
-  });
-}
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
