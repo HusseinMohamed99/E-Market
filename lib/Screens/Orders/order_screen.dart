@@ -93,16 +93,16 @@ class OrderScreen extends StatelessWidget {
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15).r,
               child: Form(
                 key: formState,
                 child: Column(
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: Divider(
-                            color: Colors.red,
+                            color: AppMainColors.dividerColor,
                             thickness: 1.2,
                             indent: 10.0,
                             endIndent: 10.0,
@@ -110,13 +110,11 @@ class OrderScreen extends StatelessWidget {
                         ),
                         Text(
                           'Enter Your Address',
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Divider(
-                            color: Colors.red,
+                            color: AppMainColors.dividerColor,
                             thickness: 1.2,
                             indent: 10.0,
                             endIndent: 10.0,
@@ -124,9 +122,7 @@ class OrderScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30.h),
                     DefaultTextFormField(
                       controller: nameController,
                       keyboardType: TextInputType.name,
@@ -139,9 +135,7 @@ class OrderScreen extends StatelessWidget {
                       label: 'Name',
                       prefix: IconBroken.User,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30.h),
                     DefaultTextFormField(
                       controller: cityController,
                       keyboardType: TextInputType.text,
@@ -154,9 +148,7 @@ class OrderScreen extends StatelessWidget {
                       label: 'City',
                       prefix: IconBroken.Location,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30.h),
                     DefaultTextFormField(
                       controller: regionController,
                       keyboardType: TextInputType.text,
@@ -169,9 +161,7 @@ class OrderScreen extends StatelessWidget {
                       label: 'Region',
                       prefix: IconBroken.Location,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30.h),
                     DefaultTextFormField(
                       controller: detailsController,
                       keyboardType: TextInputType.text,
@@ -184,9 +174,7 @@ class OrderScreen extends StatelessWidget {
                       label: 'Details',
                       prefix: IconBroken.Document,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30.h),
                     DefaultTextFormField(
                       controller: notesController,
                       keyboardType: TextInputType.text,
@@ -205,33 +193,29 @@ class OrderScreen extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
-            elevation: 10,
-            color: Colors.white,
+            color: cubit.isDark
+                ? AppMainColors.greyDarkColor
+                : AppColorsDark.primaryDarkColor,
             child: SizedBox(
-              height: 135,
+              height: 110.h,
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(15).r,
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           'Total Price:',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Text(
                           '${cubit.cartModel!.data!.total} EGP',
-                          style: const TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 16,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 20.h),
                     defaultMaterialButton(
                       context: context,
                       function: () {
