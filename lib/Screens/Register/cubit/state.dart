@@ -7,9 +7,9 @@ class RegisterInitialState extends RegisterState {}
 class RegisterLoadingState extends RegisterState {}
 
 class RegisterSuccessState extends RegisterState {
-  final LoginModel loginModel;
+  final UserModel userModel;
 
-  RegisterSuccessState(this.loginModel);
+  RegisterSuccessState(this.userModel);
 }
 
 class RegisterErrorState extends RegisterState {

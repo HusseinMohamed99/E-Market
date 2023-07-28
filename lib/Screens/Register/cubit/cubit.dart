@@ -12,7 +12,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   static RegisterCubit get(context) => BlocProvider.of(context);
 
-  LoginModel? loginModel;
+  UserModel? userModel;
 
   void userRegister({
     required String email,
@@ -33,8 +33,8 @@ class RegisterCubit extends Cubit<RegisterState> {
         'image': image,
       },
     ).then((value) {
-      loginModel = LoginModel.fromJson(value.data);
-      emit(RegisterSuccessState(loginModel!));
+      userModel = UserModel.fromJson(value.data);
+      emit(RegisterSuccessState(userModel!));
     }).catchError((error) {
       emit(RegisterErrorState(error.toString()));
     });

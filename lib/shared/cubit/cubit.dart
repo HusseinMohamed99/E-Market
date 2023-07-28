@@ -56,6 +56,10 @@ class MainCubit extends Cubit<MainStates> {
 
   void changeNavBar(int index) {
     currentIndex = index;
+    if (currentIndex == 0) getHomeData();
+    if (currentIndex == 1) getCategoriesData();
+    if (currentIndex == 2) getFavoritesData();
+    if (currentIndex == 3) getUserData();
     emit(ChangeNavBarItem());
   }
 
@@ -80,7 +84,7 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-  LoginModel? userData;
+  UserModel? userData;
 
   void getUserData() {
     emit(UserLoginLoadingStates());
@@ -89,7 +93,7 @@ class MainCubit extends Cubit<MainStates> {
       url: profile,
       token: token,
     ).then((value) {
-      userData = LoginModel.fromJson(value.data);
+      userData = UserModel.fromJson(value.data);
       emit(UserLoginSuccessStates(userData!));
     }).catchError((error) {
       if (kDebugMode) {
@@ -117,7 +121,7 @@ class MainCubit extends Cubit<MainStates> {
         'image': image,
       },
     ).then((value) {
-      userData = LoginModel.fromJson(value.data);
+      userData = UserModel.fromJson(value.data);
       emit(UserUpdateSuccessStates(userData!));
     }).catchError((error) {
       if (kDebugMode) {

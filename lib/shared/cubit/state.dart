@@ -14,9 +14,9 @@ class AppChangeModeState extends MainStates {}
 class UserLoginLoadingStates extends MainStates {}
 
 class UserLoginSuccessStates extends MainStates {
-  final LoginModel loginModel;
+  final UserModel userModel;
 
-  UserLoginSuccessStates(this.loginModel);
+  UserLoginSuccessStates(this.userModel);
 }
 
 class UserLoginErrorStates extends MainStates {
@@ -28,9 +28,9 @@ class UserLoginErrorStates extends MainStates {
 class UserUpdateLoadingStates extends MainStates {}
 
 class UserUpdateSuccessStates extends MainStates {
-  final LoginModel loginModel;
+  final UserModel userModel;
 
-  UserUpdateSuccessStates(this.loginModel);
+  UserUpdateSuccessStates(this.userModel);
 }
 
 class UserUpdateErrorStates extends MainStates {
