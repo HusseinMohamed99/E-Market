@@ -9,6 +9,9 @@ import 'package:super_marko/shared/styles/icon_broken.dart';
 void bottomSheetChangePassword(
     {required BuildContext context, required MainCubit cubit}) {
   showModalBottomSheet(
+    backgroundColor: cubit.isDark
+        ? AppMainColors.whiteColor
+        : AppColorsDark.primaryDarkColor,
     isScrollControlled: true,
     shape: RoundedRectangleBorder(
       borderRadius: const BorderRadius.only(
@@ -42,7 +45,9 @@ class ShowModalBottomSheet extends StatelessWidget {
             controller: scrollController,
             child: Container(
               decoration: BoxDecoration(
-                color: AppMainColors.whiteColor,
+                color: cubit.isDark
+                    ? AppMainColors.whiteColor
+                    : AppColorsDark.primaryDarkColor,
                 borderRadius:
                     BorderRadius.vertical(top: const Radius.circular(20).r),
               ),

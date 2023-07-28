@@ -194,7 +194,7 @@ class OrderScreen extends StatelessWidget {
           ),
           bottomNavigationBar: BottomAppBar(
             color: cubit.isDark
-                ? AppMainColors.greyDarkColor
+                ? AppMainColors.whiteColor
                 : AppColorsDark.primaryDarkColor,
             child: SizedBox(
               height: 110.h,

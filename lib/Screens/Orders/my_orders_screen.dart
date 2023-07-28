@@ -67,7 +67,7 @@ class OrdersScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8).r,
                           color: cubit.isDark
-                              ? AppMainColors.whiteColor
+                              ? AppMainColors.mainColor
                               : AppMainColors.greyDarkColor,
                         ),
                         child: Padding(
@@ -118,7 +118,8 @@ class OrdersScreen extends StatelessWidget {
                                             .textTheme
                                             .titleLarge!
                                             .copyWith(
-                                                color: AppMainColors.mainColor),
+                                                color:
+                                                    AppMainColors.whiteColor),
                                       ),
                                     ],
                                   ),
