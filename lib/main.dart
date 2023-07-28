@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,10 @@ void main() async {
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
 
   token = CacheHelper.getData(key: 'token');
+
+  if (kDebugMode) {
+    print(token);
+  }
 
   if (onBoarding != null) {
     if (token != null) {

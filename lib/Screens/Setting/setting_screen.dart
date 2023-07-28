@@ -121,7 +121,8 @@ class SettingScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    navigateTo(context, const ComplaintsScreen());
+                    bottomSheetComplaints(
+                        context: context, cubit: MainCubit.get(context));
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15).r,

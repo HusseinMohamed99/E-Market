@@ -24,6 +24,8 @@ class DefaultTextFormField extends StatelessWidget {
     this.color,
     this.onEditingComplete,
     this.prefixPressed,
+    this.maxLines,
+    this.minLines,
   });
 
   final TextEditingController controller;
@@ -44,6 +46,8 @@ class DefaultTextFormField extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
   final Function()? onEditingComplete;
   final Color? color;
+  final int? maxLines;
+  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +55,8 @@ class DefaultTextFormField extends StatelessWidget {
       onEditingComplete: onEditingComplete,
       style: Theme.of(context).textTheme.titleLarge,
       focusNode: FocusNode(),
-      maxLines: 1,
-      minLines: 1,
+      maxLines: maxLines ?? 1,
+      minLines: minLines ?? 1,
       controller: controller,
       validator: validate,
       enabled: isClickable,

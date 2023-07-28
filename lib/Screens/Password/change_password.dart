@@ -31,7 +31,7 @@ class ShowModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var formState = GlobalKey<FormState>();
+    var formKey = GlobalKey<FormState>();
     TextEditingController currentPasswordController = TextEditingController();
     TextEditingController newPasswordController = TextEditingController();
     MainCubit cubit = MainCubit.get(context);
@@ -71,7 +71,7 @@ class ShowModalBottomSheet extends StatelessWidget {
                   ),
                   SizedBox(height: 20.h),
                   Form(
-                    key: formState,
+                    key: formKey,
                     child: Column(
                       children: [
                         SizedBox(height: 10.h),
@@ -129,7 +129,7 @@ class ShowModalBottomSheet extends StatelessWidget {
                                 text: 'Change Password',
                                 textColor: AppMainColors.whiteColor,
                                 function: () {
-                                  if (formState.currentState!.validate()) {
+                                  if (formKey.currentState!.validate()) {
                                     cubit.changePassword(
                                       currentPassword:
                                           currentPasswordController.text,

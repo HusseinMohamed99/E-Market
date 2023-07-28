@@ -19,10 +19,10 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final emailController = TextEditingController();
-    final phoneController = TextEditingController();
-    final nameController = TextEditingController();
+    var formKey = GlobalKey<FormState>();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {
         if (state is UserUpdateSuccessStates) {

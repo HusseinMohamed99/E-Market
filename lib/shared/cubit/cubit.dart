@@ -136,12 +136,6 @@ class MainCubit extends Cubit<MainStates> {
       token: token,
     ).then((value) {
       homeModel = HomeModel.fromJson(value.data);
-      if (kDebugMode) {
-        print(homeModel!.status);
-      }
-      if (kDebugMode) {
-        print(token);
-      }
       for (var element in homeModel!.data!.products) {
         favorites.addAll({
           element.id: element.inFavorites,
@@ -561,7 +555,6 @@ class MainCubit extends Cubit<MainStates> {
       token: token,
     ).then((value) {
       notificationModel = NotificationModel.fromJson(value.data);
-      print(value.data);
       emit(GetNotificationSuccessState());
     }).catchError((error) {
       emit(GetNotificationErrorState(error.toString()));
