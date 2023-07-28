@@ -64,18 +64,20 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           body: MainCubit.get(context).cartModel!.data!.cartItems!.isEmpty
-              ? Column(
-                  children: [
-                    SvgPicture.asset(Assets.imagesNodata),
-                    Text(
-                      'Your Cart is empty',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    Text(
-                      'Be Sure to fill your cart with something you like',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    )
-                  ],
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SvgPicture.asset(Assets.imagesNodata),
+                      Text(
+                        'Your Cart is empty',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                      Text(
+                        'Be Sure to fill your cart with something you like',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      )
+                    ],
+                  ),
                 )
               : SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),

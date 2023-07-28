@@ -3,6 +3,7 @@ import 'package:super_marko/model/changePassword/change_password_model.dart';
 import 'package:super_marko/model/favorite/favorite_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/model/orders/orders_model.dart';
 
 abstract class MainStates {}
 
@@ -134,12 +135,26 @@ class OnPageChangeState extends MainStates {}
 
 class AddAddressLoadingState extends MainStates {}
 
-class AddAddressSuccessState extends MainStates {}
+class AddAddressSuccessState extends MainStates {
+  final OrdersModel model;
+
+  AddAddressSuccessState(this.model);
+}
 
 class AddAddressErrorState extends MainStates {
   final String error;
 
   AddAddressErrorState(this.error);
+}
+
+class AddComplaintsLoadingState extends MainStates {}
+
+class AddComplaintsSuccessState extends MainStates {}
+
+class AddComplaintsErrorState extends MainStates {
+  final String error;
+
+  AddComplaintsErrorState(this.error);
 }
 
 class AddOrderLoadingState extends MainStates {}

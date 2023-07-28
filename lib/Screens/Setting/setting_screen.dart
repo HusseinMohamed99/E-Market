@@ -6,7 +6,7 @@ import 'package:super_marko/Screens/AboutUs/about_us_screen.dart';
 import 'package:super_marko/Screens/Complaints/complaints_screen.dart';
 import 'package:super_marko/Screens/FAQS/faqs_screen.dart';
 import 'package:super_marko/Screens/Notifications/notifications_screen.dart';
-import 'package:super_marko/Screens/Orders/orders_screen.dart';
+import 'package:super_marko/Screens/Orders/my_orders_screen.dart';
 import 'package:super_marko/Screens/Password/change_password.dart';
 import 'package:super_marko/Screens/ProfileScreen/profile_screen.dart';
 import 'package:super_marko/shared/components/logout.dart';

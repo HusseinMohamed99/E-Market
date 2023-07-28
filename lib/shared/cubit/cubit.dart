@@ -416,14 +416,40 @@ class MainCubit extends Cubit<MainStates> {
         'region': region,
         'details': details,
         'notes': notes,
+        // I need GPS HERE
         'latitude': '3123123',
         'longitude': '2121545',
       },
     ).then((value) {
       addOrder(idAddress: value.data['data']['id']);
-      emit(AddAddressSuccessState());
+      emit(AddAddressSuccessState(ordersModel!));
     }).catchError((error) {
       emit(AddAddressErrorState(error.toString()));
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
+
+  void addComplaints({
+    required String name,
+    required String phone,
+    required String email,
+    required String message,
+  }) {
+    emit(AddComplaintsLoadingState());
+    DioHelper.postData(
+      url: complaints,
+      data: {
+        'name': name,
+        'phone': phone,
+        'email': email,
+        'message': message,
+      },
+    ).then((value) {
+      emit(AddComplaintsSuccessState());
+    }).catchError((error) {
+      emit(AddComplaintsErrorState(error.toString()));
       if (kDebugMode) {
         print(error.toString());
       }

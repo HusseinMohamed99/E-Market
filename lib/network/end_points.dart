@@ -26,6 +26,8 @@ const notifications = 'notifications';
 
 const address = 'addresses';
 
+const complaints = 'complaints';
+
 const orders = 'orders';
 
 const newPassword = 'change-password';

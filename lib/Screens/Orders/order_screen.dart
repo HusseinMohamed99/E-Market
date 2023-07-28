@@ -37,6 +37,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/navigator.dart';
+import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/components/text_form_field.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
@@ -57,21 +58,15 @@ class OrderScreen extends StatelessWidget {
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {
         if (state is AddOrderSuccessState) {
-          // navigatorReplacement(context, AnimatedDrawer());
-          // MotionToast.success(
-          //   title: "Success",
-          //   titleStyle: TextStyle(fontWeight: FontWeight.bold),
-          //   description: 'Thanks For Your Order, '
-          //       'it will be speedy, have a nice day.',
-          //   descriptionStyle: TextStyle(
-          //     overflow: TextOverflow.ellipsis,
-          //   ),
-          //   animationType: ANIMATION.FROM_LEFT,
-          //   position: MOTION_TOAST_POSITION.TOP,
-          //   borderRadius: 10.0,
-          //   width: 300,
-          //   height: 65,
-          // ).show(context);
+          showToast(
+            text: 'Add Order Success',
+            state: ToastStates.success,
+          );
+        } else {
+          showToast(
+            text: 'Add Order Error',
+            state: ToastStates.error,
+          );
         }
       },
       builder: (context, state) {
@@ -258,15 +253,6 @@ class OrderScreen extends StatelessWidget {
             ),
           ),
         );
-        // return ConditionalBuilder(
-        //   condition: state is AddOrderLoadingState,
-        //   builder: (BuildContext context) {
-        //
-        //   },
-        //   fallback: (BuildContext context) {
-        //     return const Center(child: CircularProgressIndicator());
-        //   },
-        // );
       },
     );
   }

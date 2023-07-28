@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:super_marko/shared/components/buttons.dart';
 import 'package:super_marko/shared/components/image_with_shimmer.dart';
+import 'package:super_marko/shared/components/show_toast.dart';
 import 'package:super_marko/shared/cubit/cubit.dart';
 import 'package:super_marko/shared/cubit/state.dart';
 import 'package:super_marko/shared/styles/colors.dart';
@@ -17,7 +18,21 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is ChangeCartSuccessStates) {
+          if (state.model.status!) {
+            showToast(
+              text: state.model.message!,
+              state: ToastStates.success,
+            );
+          } else {
+            showToast(
+              text: state.model.message!,
+              state: ToastStates.error,
+            );
+          }
+        }
+      },
       builder: (context, state) {
         final scaffoldKey = GlobalKey<ScaffoldState>();
         var cubit = MainCubit.get(context);

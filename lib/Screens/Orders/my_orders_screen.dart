@@ -30,7 +30,7 @@ class OrdersScreen extends StatelessWidget {
               icon: Icon(
                 IconBroken.Arrow___Left_Circle,
                 size: 24.sp,
-                color: MainCubit.get(context).isDark
+                color: cubit.isDark
                     ? AppMainColors.orangeColor
                     : AppMainColors.whiteColor,
               ),
@@ -38,7 +38,7 @@ class OrdersScreen extends StatelessWidget {
           ),
           body: state is! GetOrdersLoadingState
               ? ListView.separated(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0).r,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Slidable(
@@ -54,22 +54,24 @@ class OrdersScreen extends StatelessWidget {
                                       .ordersDetails![index].id!);
                               cubit.getOrders();
                             },
-                            foregroundColor: Colors.red,
+                            foregroundColor: AppMainColors.redColor,
                             icon: IconBroken.Close_Square,
                             label: 'Cancel',
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(8).r,
                           ),
                         ],
                       ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 90,
+                        width: double.infinity,
+                        height: 60.h,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(8).r,
+                          color: cubit.isDark
+                              ? AppMainColors.whiteColor
+                              : AppMainColors.greyDarkColor,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10).r,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -80,30 +82,43 @@ class OrdersScreen extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      const Text('Date:'),
-                                      const SizedBox(
-                                        width: 10.0,
+                                      Text(
+                                        'Date :',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
                                       ),
+                                      SizedBox(width: 10.w),
                                       Text(
                                         cubit.ordersModel!.data!
                                             .ordersDetails![index].date!,
-                                        style: const TextStyle(
-                                            color: Colors.redAccent),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .copyWith(
+                                                color:
+                                                    AppMainColors.dividerColor),
                                       ),
                                     ],
                                   ),
                                   Row(
                                     children: [
-                                      const Text('Total:'),
-                                      const SizedBox(
-                                        width: 10.0,
+                                      Text(
+                                        'Total :',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
                                       ),
+                                      SizedBox(width: 10.w),
                                       Text(
                                         cubit.ordersModel!.data!
                                             .ordersDetails![index].total
                                             .toString(),
-                                        style: const TextStyle(
-                                            color: Colors.redAccent),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .copyWith(
+                                                color: AppMainColors.mainColor),
                                       ),
                                     ],
                                   ),
@@ -112,12 +127,19 @@ class OrdersScreen extends StatelessWidget {
                               Text(
                                 cubit.ordersModel!.data!.ordersDetails![index]
                                     .status!,
-                                style: TextStyle(
-                                    color: cubit.ordersModel!.data!
-                                                .ordersDetails![index].status ==
-                                            'New'
-                                        ? Colors.green
-                                        : Colors.red),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                      color: cubit
+                                                  .ordersModel!
+                                                  .data!
+                                                  .ordersDetails![index]
+                                                  .status ==
+                                              'New'
+                                          ? AppMainColors.greenColor
+                                          : AppMainColors.redColor,
+                                    ),
                               ),
                             ],
                           ),
@@ -126,12 +148,10 @@ class OrdersScreen extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: 10.0,
-                    );
+                    return SizedBox(height: 10.h);
                   },
-                  itemCount: 1)
-              //  cubit.ordersModel!.data!.ordersDetails!.length,
+                  itemCount: cubit.ordersModel!.data!.ordersDetails!.length,
+                )
               : const Center(
                   child: CircularProgressIndicator(),
                 ),
