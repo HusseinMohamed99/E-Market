@@ -38,20 +38,21 @@ class AboutUsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, top: 20, bottom: 20).r,
               child: CircleAvatar(
-                maxRadius: 102.r,
-                minRadius: 102.r,
-                backgroundColor: MainCubit.get(context).isDark
-                    ? AppColorsDark.primaryDarkColor
-                    : AppMainColors.dividerColor,
+                maxRadius: 90.r,
+                minRadius: 90.r,
+                backgroundColor: AppMainColors.dividerColor,
                 child: CircleAvatar(
-                  maxRadius: 99.r,
-                  minRadius: 99.r,
+                  maxRadius: 85.r,
+                  minRadius: 85.r,
                   backgroundColor: MainCubit.get(context).isDark
                       ? AppColorsDark.primaryDarkColor
                       : AppMainColors.mainColor,
-                  child: Image.asset(
-                    Assets.imagesLogo,
-                    fit: BoxFit.fill,
+                  child: Center(
+                    child: Image.asset(
+                      Assets.imagesLogo,
+                      fit: BoxFit.cover,
+                      height: 110.h,
+                    ),
                   ),
                 ),
               ),
