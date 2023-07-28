@@ -58,8 +58,8 @@ class AboutUsScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'About Us',
-              style: Theme.of(context).textTheme.titleLarge,
+              'About Us :',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 10.h),
             Container(
@@ -70,6 +70,7 @@ class AboutUsScreen extends StatelessWidget {
                   color: MainCubit.get(context).isDark
                       ? AppColorsDark.primaryDarkColor
                       : AppMainColors.mainColor,
+                  width: 5,
                 ),
               ),
               child: Container(
@@ -77,7 +78,8 @@ class AboutUsScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15).r,
                   border: Border.all(
-                    color: AppMainColors.orangeColor,
+                    color: AppMainColors.dividerColor,
+                    width: 4,
                   ),
                 ),
                 child: Text(
