@@ -62,11 +62,6 @@ class OrderScreen extends StatelessWidget {
             text: 'Add Order Success',
             state: ToastStates.success,
           );
-        } else {
-          showToast(
-            text: 'Add Order Error',
-            state: ToastStates.error,
-          );
         }
       },
       builder: (context, state) {

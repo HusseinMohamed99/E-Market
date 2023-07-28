@@ -214,13 +214,19 @@ class ProductDetailsScreen extends StatelessWidget {
                                                   'Add To Cart',
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .titleLarge,
+                                                      .titleLarge!
+                                                      .copyWith(
+                                                          color: AppMainColors
+                                                              .whiteColor),
                                                 )
                                               : Text(
                                                   'In Cart',
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .titleLarge,
+                                                      .titleLarge!
+                                                      .copyWith(
+                                                          color: AppMainColors
+                                                              .whiteColor),
                                                 ),
                                           SizedBox(width: 5.w),
                                           Icon(

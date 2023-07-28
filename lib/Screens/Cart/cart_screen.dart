@@ -50,6 +50,10 @@ class CartScreen extends StatelessWidget {
         cartLength = MainCubit.get(context).cartModel!.data!.cartItems!.length;
         return Scaffold(
           appBar: AppBar(
+            title: Text(
+              'Cart',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
             leading: IconButton(
               onPressed: () {
                 pop(context);
@@ -218,7 +222,7 @@ class CartProducts extends StatelessWidget {
                     children: [
                       Text(
                         '${cartModel.product!.name}',
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleLarge,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
@@ -226,7 +230,7 @@ class CartProducts extends StatelessWidget {
                         '${cartModel.product!.price} EGP',
                         style: Theme.of(context)
                             .textTheme
-                            .titleMedium!
+                            .titleLarge!
                             .copyWith(color: AppMainColors.whiteColor),
                       ),
                       Row(

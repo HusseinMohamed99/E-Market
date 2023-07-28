@@ -63,7 +63,7 @@ class OrdersScreen extends StatelessWidget {
                       ),
                       child: Container(
                         width: double.infinity,
-                        height: 60.h,
+                        height: 100.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8).r,
                           color: cubit.isDark
@@ -98,6 +98,28 @@ class OrdersScreen extends StatelessWidget {
                                             .copyWith(
                                                 color:
                                                     AppMainColors.dividerColor),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Product ID :',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                      SizedBox(width: 10.w),
+                                      Text(
+                                        cubit.ordersModel!.data!
+                                            .ordersDetails![index].id
+                                            .toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .copyWith(
+                                                color:
+                                                    AppMainColors.whiteColor),
                                       ),
                                     ],
                                   ),

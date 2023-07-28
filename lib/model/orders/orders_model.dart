@@ -1,11 +1,9 @@
 class OrdersModel {
   bool? status;
-  String? message;
   Data? data;
 
   OrdersModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    message = json['message'];
     data = Data.fromJson(json['data']);
   }
 }
