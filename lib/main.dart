@@ -58,18 +58,17 @@ class Myapp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => MainCubit()
-              ..getHomeData()
-              ..getCategoriesData()
-              ..getFavoritesData()
-              ..getUserData()
-              ..getCartData()
-              ..getFaqData()
-              ..getOrders()
-              ..getNotifications()
-              ..changeAppMode(
-                fromShared: isDark,
-              )),
+          create: (context) => MainCubit()
+            ..getHomeData()
+            ..getCategoriesData()
+            ..getFavoritesData()
+            ..getUserData()
+            ..getCartData()
+            ..getFaqData()
+            ..getOrders()
+            ..getNotifications()
+            ..changeAppMode(fromShared: isDark),
+        ),
       ],
       child: BlocConsumer<MainCubit, MainStates>(
           listener: (context, state) {},
