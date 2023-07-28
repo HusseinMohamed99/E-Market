@@ -89,7 +89,6 @@ class AboutUsScreen extends StatelessWidget {
                   '\n - MVVM'
                   '\n - Theme Mode',
                   style: Theme.of(context).textTheme.titleLarge,
-                  maxLines: 12,
                 ),
               ),
             ),
