@@ -19,6 +19,7 @@ import 'package:super_marko/model/faq/faq_model.dart';
 import 'package:super_marko/model/favorite/favorite_model.dart';
 import 'package:super_marko/model/home/home_model.dart';
 import 'package:super_marko/model/login/login_model.dart';
+import 'package:super_marko/model/notification/notification_model.dart';
 import 'package:super_marko/model/orders/orders_model.dart';
 import 'package:super_marko/model/search/search_model.dart';
 import 'package:super_marko/network/cache_helper.dart';
@@ -549,5 +550,21 @@ class MainCubit extends Cubit<MainStates> {
     suffixIcon = iSPassword ? IconBroken.Show : IconBroken.Hide;
 
     emit(ChangeConfirmPasswordState());
+  }
+
+  NotificationModel? notificationModel;
+
+  void getNotifications() {
+    emit(GetNotificationLoadingState());
+    DioHelper.getData(
+      url: notifications,
+      token: token,
+    ).then((value) {
+      notificationModel = NotificationModel.fromJson(value.data);
+      print(value.data);
+      emit(GetNotificationSuccessState());
+    }).catchError((error) {
+      emit(GetNotificationErrorState(error.toString()));
+    });
   }
 }

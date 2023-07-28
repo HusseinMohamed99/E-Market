@@ -200,3 +200,13 @@ class ChangePasswordErrorState extends MainStates {
 
   ChangePasswordErrorState(this.error);
 }
+
+class GetNotificationLoadingState extends MainStates {}
+
+class GetNotificationSuccessState extends MainStates {}
+
+class GetNotificationErrorState extends MainStates {
+  final String error;
+
+  GetNotificationErrorState(this.error);
+}

@@ -1,11 +1,10 @@
 class NotificationModel {
   bool? status;
-  NotificationsData? data;
+  Data? data;
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data =
-        json['data'] != null ? NotificationsData.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -35,7 +34,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      data = <NotificationsData>[];
+      data = [];
       json['data'].forEach((v) {
         data!.add(NotificationsData.fromJson(v));
       });
