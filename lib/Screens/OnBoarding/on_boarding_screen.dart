@@ -24,7 +24,7 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var pageController = PageController();
 
-  List<OnBoardingModel> boarding = [
+  List<OnBoardingModel> onBoarding = [
     OnBoardingModel(
       image: Assets.imagesOnBoarding1,
       text: 'Online Shopping',
@@ -39,24 +39,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     ),
     OnBoardingModel(
       image: Assets.imagesOnBoarding3,
-      text: 'Order Online',
-      title: 'Make an order sitting on a sofa',
-      body: 'pay and choose online',
+      text: 'Order in the mobile',
+      title: 'Choose clothes online from home',
+      body: 'and place an order. Get bonuses!',
     ),
     OnBoardingModel(
       image: Assets.imagesBackground,
-      text: 'Order Online',
-      title: 'Make an order sitting on a sofa',
-      body: 'pay and choose online',
-    ),
-    OnBoardingModel(
-      image: Assets.imagesOnlinePana,
-      text: 'Order Online',
-      title: 'Make an order sitting on a sofa',
-      body: 'pay and choose online',
-    ),
-    OnBoardingModel(
-      image: Assets.imagesOnlineShopping,
       text: 'Order Online',
       title: 'Make an order sitting on a sofa',
       body: 'pay and choose online',
@@ -111,7 +99,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: PageView.builder(
                   physics: const BouncingScrollPhysics(),
                   onPageChanged: (int index) {
-                    if (index == boarding.length - 1) {
+                    if (index == onBoarding.length - 1) {
                       setState(() {
                         isLast = true;
                       });
@@ -123,10 +111,37 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   },
                   controller: pageController,
                   itemBuilder: (context, index) => OnBoardingItem(
-                    onBoardingModel: boarding[index],
+                    onBoardingModel: onBoarding[index],
                   ),
-                  itemCount: boarding.length,
+                  itemCount: onBoarding.length,
                 ),
+              ),
+              FloatingActionButton(
+                shape: StadiumBorder(
+                  side: BorderSide(
+                    color: Colors.white,
+                    width: 5.w,
+                  ),
+                ),
+                child: Icon(
+                  IconBroken.Arrow___Right_2,
+                  size: 35.sp,
+                ),
+                onPressed: () {
+                  if (isLast) {
+                    submit();
+                  } else {
+                    pageController.nextPage(
+                      duration: const Duration(
+                        milliseconds: 780,
+                      ),
+                      curve: Curves.bounceInOut,
+                    );
+                  }
+                },
+              ),
+              SizedBox(
+                height: 50.h,
               ),
               Padding(
                 padding: const EdgeInsets.all(20).r,
@@ -134,7 +149,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   children: [
                     SmoothPageIndicator(
                       controller: pageController,
-                      count: boarding.length,
+                      count: onBoarding.length,
                       effect: const ExpandingDotsEffect(
                         dotWidth: 10,
                         dotHeight: 10,
@@ -144,25 +159,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         spacing: 6,
                         expansionFactor: 4,
                       ),
-                    ),
-                    const Spacer(),
-                    FloatingActionButton(
-                      child: Icon(
-                        IconBroken.Arrow___Right_2,
-                        size: 35.sp,
-                      ),
-                      onPressed: () {
-                        if (isLast) {
-                          submit();
-                        } else {
-                          pageController.nextPage(
-                            duration: const Duration(
-                              milliseconds: 780,
-                            ),
-                            curve: Curves.bounceInOut,
-                          );
-                        }
-                      },
                     ),
                   ],
                 ),
@@ -241,12 +237,12 @@ class OnBoardingItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           onBoardingModel.image,
-          height: 250.h,
+          height: 230.h,
           width: double.infinity,
           fit: BoxFit.fill,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20).r,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40).r,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -270,6 +266,7 @@ class OnBoardingItem extends StatelessWidget {
                         fontWeight: FontWeight.w900,
                         color: AppMainColors.whiteColor),
                   ),
+                  SizedBox(height: 20.h),
                   Text(
                     onBoardingModel.body,
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(

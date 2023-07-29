@@ -9,7 +9,4 @@ class Assets {
   static const String imagesOnBoarding1 = 'assets/images/onBoarding1.svg';
   static const String imagesOnBoarding2 = 'assets/images/onBoarding2.svg';
   static const String imagesOnBoarding3 = 'assets/images/onBoarding3.svg';
-  static const String imagesOnlinePana = 'assets/images/Online_pana.png';
-  static const String imagesOnlineShopping =
-      'assets/images/Online_shopping.png';
 }
