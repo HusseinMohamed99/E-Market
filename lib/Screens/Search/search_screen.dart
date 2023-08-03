@@ -65,23 +65,18 @@ class SearchScreen extends StatelessWidget {
                     },
                     prefix: IconBroken.Search,
                   ),
-                  SizedBox(height: 20.h),
-                  if (state is SearchLoadingStates)
-                    const LinearProgressIndicator(),
-                  SizedBox(height: 20.h),
-                  if (state is SearchSuccessStates)
-                    Expanded(
-                      child: ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) => ProductList(
-                          searchProductModel:
-                              cubit.searchModel!.data!.products[index],
-                        ),
-                        separatorBuilder: (context, index) => const MyDivider(),
-                        itemCount: cubit.searchModel!.data!.products.length,
+                  Expanded(
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => ProductList(
+                        searchProductModel:
+                            cubit.searchModel!.data!.products[index],
                       ),
+                      separatorBuilder: (context, index) => const MyDivider(),
+                      itemCount: 1,
                     ),
+                  ),
                 ],
               ),
             ),

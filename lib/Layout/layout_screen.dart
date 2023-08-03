@@ -45,7 +45,7 @@ class LayoutScreen extends StatelessWidget {
                     Icons.dark_mode_outlined,
                     size: 24.sp,
                   ),
-                )
+                ),
               ],
             ),
             body: cubit.pages[cubit.currentIndex],

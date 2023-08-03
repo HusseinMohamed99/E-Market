@@ -56,7 +56,10 @@ class MainCubit extends Cubit<MainStates> {
 
   void changeNavBar(int index) {
     currentIndex = index;
-    if (currentIndex == 0) getHomeData();
+    if (currentIndex == 0) {
+      getUserData();
+      getHomeData();
+    }
     if (currentIndex == 1) getCategoriesData();
     if (currentIndex == 2) getFavoritesData();
     if (currentIndex == 3) getUserData();

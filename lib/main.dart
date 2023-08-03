@@ -64,10 +64,10 @@ class Myapp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => MainCubit()
+            ..getUserData()
             ..getHomeData()
             ..getCategoriesData()
             ..getFavoritesData()
-            ..getUserData()
             ..getCartData()
             ..getFaqData()
             ..getOrders()
