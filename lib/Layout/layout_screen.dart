@@ -34,7 +34,7 @@ class LayoutScreen extends StatelessWidget {
                     color: AppMainColors.orangeColor,
                   ),
                   onPressed: () {
-                    navigateTo(context, SearchScreen());
+                    navigateTo(context, const SearchScreen());
                   },
                 ),
                 IconButton(

@@ -116,6 +116,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   itemCount: onBoarding.length,
                 ),
               ),
+              SizedBox(
+                height: 20.h,
+              ),
               FloatingActionButton(
                 shape: StadiumBorder(
                   side: BorderSide(
@@ -141,7 +144,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 },
               ),
               SizedBox(
-                height: 50.h,
+                height: 60.h,
               ),
               Padding(
                 padding: const EdgeInsets.all(20).r,
@@ -169,60 +172,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
     );
   }
-
-// Widget buildBoardingItem(OnBoardingModel model) => Column(
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       children: [
-//         SvgPicture.asset(
-//           model.image,
-//           height: 250.h,
-//           width: double.infinity,
-//           fit: BoxFit.fill,
-//         ),
-//         Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: 20).r,
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Center(
-//                 child: Text(
-//                   model.text,
-//                   style: GoogleFonts.pacifico(
-//                     fontSize: 40.sp,
-//                     fontWeight: FontWeight.w900,
-//                     color: AppMainColors.orangeColor,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 30.h),
-//               Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     model.title,
-//                     style: Theme.of(context)
-//                         .textTheme
-//                         .headlineSmall!
-//                         .copyWith(
-//                             fontWeight: FontWeight.w900,
-//                             color: AppMainColors.whiteColor),
-//                   ),
-//                   Text(
-//                     model.body,
-//                     style: Theme.of(context)
-//                         .textTheme
-//                         .headlineSmall!
-//                         .copyWith(
-//                             fontWeight: FontWeight.w900,
-//                             color: AppMainColors.whiteColor),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
 }
 
 class OnBoardingItem extends StatelessWidget {
@@ -237,20 +186,20 @@ class OnBoardingItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           onBoardingModel.image,
-          height: 230.h,
+          height: 190.h,
           width: double.infinity,
           fit: BoxFit.fill,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40).r,
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 40).r,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Text(
                   onBoardingModel.text,
-                  style: GoogleFonts.pacifico(
-                    fontSize: 40.sp,
+                  style: GoogleFonts.cairo(
+                    fontSize: 35.sp,
                     fontWeight: FontWeight.w900,
                     color: AppMainColors.orangeColor,
                   ),
@@ -266,7 +215,7 @@ class OnBoardingItem extends StatelessWidget {
                         fontWeight: FontWeight.w900,
                         color: AppMainColors.whiteColor),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 5.h),
                   Text(
                     onBoardingModel.body,
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(

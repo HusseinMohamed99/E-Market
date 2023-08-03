@@ -110,7 +110,7 @@ class ProductItemBuilder extends StatelessWidget {
         MainCubit.get(context).getProductData(productData.id).then(
               (value) => navigateTo(
                 context,
-                ProductDetailsScreen(),
+                const ProductDetailsScreen(),
               ),
             );
       },

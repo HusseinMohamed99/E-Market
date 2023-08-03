@@ -103,7 +103,7 @@ class ProductList extends StatelessWidget {
       onTap: () {
         MainCubit.get(context)
             .getProductData(searchProductModel.id)
-            .then((value) => navigateTo(context, ProductDetailsScreen()));
+            .then((value) => navigateTo(context, const ProductDetailsScreen()));
       },
       child: Padding(
         padding: const EdgeInsets.all(20).r,
