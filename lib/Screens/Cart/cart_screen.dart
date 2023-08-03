@@ -129,7 +129,7 @@ class CartScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15.h),
+                    SizedBox(height: 10.h),
                     defaultMaterialButton(
                       color: MainCubit.get(context).isDark
                           ? AppMainColors.mainColor
